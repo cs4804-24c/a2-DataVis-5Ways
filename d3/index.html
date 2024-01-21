@@ -92,12 +92,14 @@
             });
 
             // add legend for point size
+            svg.append("text").attr("x", 680).attr("y", 100).text("bill_length_mm").style("font-size", "18px").attr("alignment-baseline","middle")
             svg.append("circle").attr("cx",680).attr("cy", 130).attr("r", 40*0.17).style("fill", "gray")
             svg.append("circle").attr("cx",680).attr("cy", 160).attr("r", 50*0.17).style("fill", "gray")
             svg.append("text").attr("x", 700).attr("y", 130).text("40mm").style("font-size", "15px").attr("alignment-baseline","middle")
             svg.append("text").attr("x", 700).attr("y", 160).text("50mm").style("font-size", "15px").attr("alignment-baseline","middle")
 
             // add legend for point color
+            svg.append("text").attr("x", 680).attr("y", 300).text("species").style("font-size", "18px").attr("alignment-baseline","middle")
             svg.append("circle").attr("cx",680).attr("cy", 330).attr("r", 35*0.17).style("fill", "#FF8C01")
             svg.append("circle").attr("cx",680).attr("cy", 360).attr("r", 35*0.17).style("fill", "#9933CB")
             svg.append("circle").attr("cx",680).attr("cy", 390).attr("r", 35*0.17).style("fill", "#128E8E")

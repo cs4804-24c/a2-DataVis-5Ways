@@ -7,8 +7,8 @@
         <script>
             console.log(d3); // test if d3 is loaded
             // set the dimensions and margins of the graph
-            var margin = {top: 10, right: 30, bottom: 60, left: 60},
-                width = 700 - margin.left - margin.right,
+            var margin = {top: 10, right: 300, bottom: 60, left: 60},
+                width = 1000 - margin.left - margin.right,
                 height = 600 - margin.top - margin.bottom;
 
             // append the svg object to the body of the page
@@ -90,6 +90,20 @@
                     .style("fill", function (d) { return color(d.species) } )
                     .style("opacity", 0.8)
             });
+
+            // add legend for point size
+            svg.append("circle").attr("cx",680).attr("cy", 130).attr("r", 40*0.17).style("fill", "gray")
+            svg.append("circle").attr("cx",680).attr("cy", 160).attr("r", 50*0.17).style("fill", "gray")
+            svg.append("text").attr("x", 700).attr("y", 130).text("40mm").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", 700).attr("y", 160).text("50mm").style("font-size", "15px").attr("alignment-baseline","middle")
+
+            // add legend for point color
+            svg.append("circle").attr("cx",680).attr("cy", 330).attr("r", 35*0.17).style("fill", "#FF8C01")
+            svg.append("circle").attr("cx",680).attr("cy", 360).attr("r", 35*0.17).style("fill", "#9933CB")
+            svg.append("circle").attr("cx",680).attr("cy", 390).attr("r", 35*0.17).style("fill", "#128E8E")
+            svg.append("text").attr("x", 700).attr("y", 330).text("Adelie").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", 700).attr("y", 360).text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", 700).attr("y", 390).text("Gentoo").style("font-size", "15px").attr("alignment-baseline","middle")
 
         </script>
     </body>

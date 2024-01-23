@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4804 Assignment 2 - Penguins Data Visualization Using D3</title>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"></link>
+  </head>
+  <body class = "has-background-danger-light">
+    <header>
+      <h1 class = "title is-1 is-family-primary has-text-success-dark has-text-weight-bold has-text-centered">Assignment 2 - Penguins Data Visualization Using D3</h1>
+    </header>
+    <main>
+      <section class = "section">
+        <div id = "container"></div>
+      </section>
+    </main>
+    <footer class = "footer">
+      <div class = "content has-text-centered">
+        Created by Matthew McAlarney
+      </div>
+    </footer>
+  </body>
+  <script>
+    const container = document.getElementById("container")
+    console.log(d3) // test if d3 is loaded
+
+    // Declare the dimensions for the svg container:
+    const margin = {top: 20, right: 20, bottom: 20, left: 20}
+    const width = 1440 - margin.left - margin.right
+    const height = 640 - margin.top - margin.bottom
+
+    // Add an SVG
+    const svg = d3.select("#container")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+    //Load the penguins.csv data:
+    
+
+  </script>
+</html>

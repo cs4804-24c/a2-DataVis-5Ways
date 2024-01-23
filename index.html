@@ -22,22 +22,32 @@
     </footer>
   </body>
   <script>
-    const container = document.getElementById("container")
-    console.log(d3) // test if d3 is loaded
+    //I am following the guidance of this article to learn how to create a scatter plot in D3.js from csv data and learning what different D3 functions do: 
+    //https://sabahatiqbal.medium.com/building-a-scatter-plot-with-d3-js-66178fde56ac
 
-    // Declare the dimensions for the svg container:
+    const container = document.getElementById("container")
+    console.log(d3) //test if d3 is loaded
+
+    //Load the penguins.csv data:
+
+    //Declare the dimensions for the svg container:
     const margin = {top: 20, right: 20, bottom: 20, left: 20}
     const width = 1440 - margin.left - margin.right
     const height = 640 - margin.top - margin.bottom
 
-    // Add an SVG
+    //Add an SVG and g grouping for visualization
     const svg = d3.select("#container")
     .append("svg")
       .attr("width", width)
       .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")") 
+    //Above, I am applying margin left and margin top to the visualization, which is made possible by appending the <g> SVG element.
+    //The <g> SVG element is a container used to group other SVG elements. Transformations applied to the <g> element are performed on its child elements, and the <g> element's attributes are inherited by its children.
 
-    //Load the penguins.csv data:
+    //Create the x-axis:
     
+
 
   </script>
 </html>

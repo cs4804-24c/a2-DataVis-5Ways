@@ -156,7 +156,7 @@ This visualization was not that hard to create. After loading the data it was ju
 
 ![igorPenglings](img/igorPenglings.png)
 
-Do technical / design stuff later? Make colors colors I want, standardize graph size? Make speciies different waves so I can get a color legend
+Do technical / design stuff later? Make colors colors I want, standardize graph size? Make speciies different waves so I can get a color legend. Update graph to make smallest points a littel smaller (3,7)
 
 # d3...
 

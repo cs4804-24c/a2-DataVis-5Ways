@@ -33,10 +33,13 @@ took some playing around with tools. I then had to figure out that I needed to m
 scatter plot in order to make the points different sizes based on bill length. I also had to play around with the scale
 of the bubbles because if you scaled using the area of the bubbles, all the bubbles would look the same, so you had 
 to make sure you were scaling by the width of the bubbles. Additionally, I had to guesstimate the colors for the bubbles
-because it would not let me enter a hex value to make them the exact color as the example graph. I can see this tool 
-being very useful because it is both easy to use and fairly easy to learn. Once you learn how to use the features, 
-making a graph is easy. It is also useful because it does not require knowing how to code, so it can be used by the 
-general public. 
+because it would not let me enter a hex value to make them the exact color as the example graph. Some things I was not 
+able to do in Excel were adding additional margin lines.I was only able to have margins where there was an interval on
+the axis, so my chart has less margin lines. I was also not able to make the first and last axis points (3000 and 6000)
+start slightly after and end slightly before the end of the graph (mow there is extra room on the original graph), so 
+on my graph the visual starts right at 3000 and ends right at 6000. I can see this tool being very useful because it is 
+both easy to use and fairly easy to learn. Once you learn how to use the features, making a graph is easy. It is also 
+useful because it does not require knowing how to code, so it can be used by the general public. 
 
 Technical Achievement: 
 My technical achievement for my Excel graph was adding a legend, background color, and changing the color of the 

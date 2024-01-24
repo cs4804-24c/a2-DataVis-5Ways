@@ -139,7 +139,7 @@ While it takes time to find the correct documentation, these functions made the 
 
 From here on out it is my work
 
-This visualization was easy to create. The only slightly annoying thing about it is that Altair is designed to work with notebook type IDEs, so it works well with JupyterNotebook. but not Spyder (which is my default preference). I can see myself using this in the future due to the ease of use and my existing familiarity with python code. That being said I haven't explored the limitations of this yet. I suspect Altair may have trouble producing more bespoke visualizations, though I don't know that for certain.
+This visualization was easy to create. The only slightly annoying thing about it is that Altair is designed to work with notebook type IDEs, so it works well with JupyterNotebook, but not Spyder (which is my default preference). The package automatically added the tick marks, though I did have to scale the axis myself. I can see myself using this in the future due to the ease of use and my existing familiarity with python code. That being said I haven't explored the limitations of this yet. I suspect Altair may have trouble producing more bespoke visualizations, though I don't know that for certain.
 
 ![altair_viz_1](https://github.com/Termite1/a2-DataVis-5Ways/assets/67423556/5ed447c1-211e-4dcb-b13b-3e606d63e3cd)
 
@@ -149,6 +149,14 @@ Technical Achievements
 Come back to this design if I have time, shouldnt be too hard to add modifications to bump my design and technical grade (shape --> island; choose my own colors; limit bill length circles to just 40 and 50; maybe get fancy and do shade change based on year; internal shapes based on gender; or split the graph based on gender, island, etc.) Maybe split based on speices --> bee swarm graph, and so on; Interaction!)
 
 REMEMBER TO UPLOAD CODE BEFORE SUBMITTING PROJECT
+
+# Igor 8
+
+This visualization was not that hard to create. After loading the data it was just a matter of graphing the correct waves (columns) as a scatter plot. I manually added a column that mapped the species to numbers (0, 1, 2), then I added the species to color and pill length to circle size additions. This was easily enabled by the graphing program as it had mapping the color and size of points to various waves (columns) as an inbuilt option. I could not directly map each species to choose color this way, though it should still be possible to get specific colors by fixing the start and end point of the number-to-color scale and then changing the color values to the species map to the desired colors. The software also automatically scaled the axis and added the tick marks. Renaming the axis was easy as well. I'm not sure adding a legend for species color and bill size to point size is possible directly. That being said, having transparency did not appear to be an option. With more work it might be possible to add partial transparency, but that might involve making a 4th color channel to account for it. I use igor with the data from my chemistry lab. One of the reasons we use it is that it is scriptable, so it can be programmed to take data even from unusual file types and automatically create graphs or a number of graphs. It also easily produces high quality exports in whatever size we specify (in inch, pixels, or cm scale, with modifiable dpi). I suspect I will keep using it in the future for graphing scientific data due to ease of use and other features, such as being able to zoom in on an area of the data, have a cursor follow the data, and easy way to annotate data in the graph. 
+
+![igorPenglings](img/igorPenglings.png)
+
+Do technical / design stuff later? Make colors colors I want, standardize graph size? Make speciies different waves so I can get a color legend
 
 # d3...
 

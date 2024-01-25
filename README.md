@@ -42,9 +42,20 @@ Hypothetically, I could make a wrapper around this plot and move the labels, but
 
 ![d3](./img/d3.png)
 
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+# Vega-Lite
+I really liked Vega-Lite! It took me a little while to get used to encoding, but I think I understand it now. My experience here was certainly better than that which I had with d3: most of the work was done for me.
 
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+I found that the difference in marker size wasn't enough to communicate much, so I applied a range and disabled zeroing to amplify the differences.
+
+```json
+size: {
+  field: "bill_length_mm",
+  type: "quantitative",
+  axis: {title: 'Bill Length (mm)'},
+  scale: {zero: false, range: [10, 500]},
+},
+```
+
+I also love that there's a menu in the top right. If I need to make any graphs for personal projects in the near future, I'll likely be using Vega-Lite.
+
+[!Vega-Lite](./img/vega-lite.png)

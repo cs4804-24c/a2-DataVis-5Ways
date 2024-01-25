@@ -158,7 +158,13 @@ This visualization was not that hard to create. After loading the data it was ju
 
 Do technical / design stuff later? Make colors colors I want, standardize graph size? Make speciies different waves so I can get a color legend. Update graph to make smallest points a littel smaller (3,7)
 
-# d3...
+# d3
+
+This visualization was a bit trickier to create. I had to learn how to host a local server from the command line and how to properly load data into the .html from another source (which I think I am doing correctly). Ultimately I turned to ChatGPT 3.5 to give me a code framework to work from rather than spending an exhaustive amount of time trying to find the correct commands and syntax necessary. After that everything progressed fairly quickly, with writing a small function to handle the different colors, writing an equation to manipulate the circles' size, adding an opacity feature, and some other small changes to get the axis and axis titles looking better.
+
+![d3_viz_1](img/d3_viz_1.png)
+
+Add legend and make colors better later. Maybe add interactivity later for gender/island. Maybe choose different fonts as well.
 
 (And so on...)
 

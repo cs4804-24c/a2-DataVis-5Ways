@@ -160,7 +160,7 @@ Do technical / design stuff later? Make colors colors I want, standardize graph 
 
 # d3
 
-This visualization was a bit trickier to create. I had to learn how to host a local server from the command line and how to properly load data into the .html from another source (which I think I am doing correctly). Ultimately I turned to ChatGPT 3.5 to give me a code framework to work from rather than spending an exhaustive amount of time trying to find the correct commands and syntax necessary. After that everything progressed fairly quickly, with writing a small function to handle the different colors, writing an equation to manipulate the circles' size, adding an opacity feature, and some other small changes to get the axis and axis titles looking better.
+This visualization was a bit trickier to create. I had to learn how to host a local server from the command line and how to properly load data into the .html from another source (which I think I am doing correctly). Ultimately I turned to ChatGPT 3.5 to give me a code framework to work from rather than spending an exhaustive amount of time trying to find the correct commands and syntax necessary. After that everything progressed fairly quickly, with writing a small function to handle the different colors, writing an equation to manipulate the circles' size, adding an opacity feature, and some other small changes to get the axis and axis titles looking better. Overall d3 took the most amount of code so far, but also seemed like the tool I had the most control over. If I was trying to make a visualization with a very specific feel, I would likely turn to it for the control that it gives.
 
 ![d3_viz_1](img/d3_viz_1.png)
 

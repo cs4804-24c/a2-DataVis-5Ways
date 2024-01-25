@@ -23,6 +23,25 @@ plt.figure(figsize=(12, 8))
 
 [!Matplotlib](./img/matplotlib.png)
 
+# d3
+I actually had a lot of trouble with d3. I'm sure I'll figure it out soon enough, but I felt like I had too many options. The first thing I tried to do was plot the points, but I ended up not framing my scatterplot well and then everything else just feels like an overlay.
+
+Everything got so busy, so I abstracted all of my drawing to functions and passed in the svg.
+
+```javascript
+appendLabels(svg)
+appendGrid(svg)
+appendTicks(svg)
+mapDots(svg, data)
+appendLegend(svg)
+```
+
+If I were to make this in d3 again, I would start by creating the grid, labels, and legend. That way I can frame my data and then, hopefully, create an SVG inside the frame where I place my points according to a slightly smaller scale.
+
+Hypothetically, I could make a wrapper around this plot and move the labels, but I'd like to move on to another library.
+
+![d3](./img/d3.png)
+
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...
 - **Solved AI Forever**: ...

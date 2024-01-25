@@ -1,0 +1,25 @@
+pip install altair vega_datasets
+
+import pandas as pd
+data = pd.read_csv('penglings.csv')
+data.head()
+
+import altair as alt
+chart = alt.Chart(data)
+
+alt.Chart(data).mark_point().encode(
+    x='flipper_length_mm',
+    y='body_mass_g'
+)
+
+domain = ['Adelie', 'Chinstrap', 'Gentoo']
+range_ = ['#E28038', '#8F3D8D', '#1D8476']
+
+alt.Chart(data).mark_point(filled=True).encode(
+    x=alt.X('flipper_length_mm', title="Flipper Length (mm)").scale(zero=False),
+    y=alt.Y('body_mass_g', title="Body Mass (g)").scale(zero=False),
+    opacity=alt.value(0.5),
+    size=alt.Size('bill_length_mm'),
+    color=alt.Color('species', scale=alt.Scale(domain=domain, range=range_)),
+    tooltip=['flipper_length_mm', 'body_mass_g']
+)

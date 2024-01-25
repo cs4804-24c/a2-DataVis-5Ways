@@ -9,8 +9,25 @@ Lastly, made the shapes, colors, and sizes of the dots change depending on the i
 Design Achievements:</n>
 Changed the transparency to be low enough that datapoints can be seen through one another so that overlapping datapoints can be noticed. Changed the size of the graph to better fit on the screen. Changed the default x and y ranges for the graph to make the data more visible.</n>
 
+Summary of Usage:</n>
+Altair seems to be one of the best tools that can be used to make an interactive scatter plot. There is a wide variety of tools used to generate the html file for the graph in addition to the fact that the data collection can likely be augmented by other software such as Pandas. In theory it would be possible to program an AI for data scrapping or import a large dataset and just plug it into Altair to get an interactive chart. It can be used for making nearly any kind of graph.
+
+
+Resources Used:</n>
+https://altair-viz.github.io/gallery/scatter_tooltips.html</n>
+
 DataWrapper Graph</n>
 ![DataWrapper Graph](DataWrapper/DataWrapper%20Graph.png)</n>
+
+Tecchnical Achievements:</n>
+Learned how to use the DataWrapper website and used it to change the color and size of the datapoints on the graph depending on the penguin species and the bill size. Additionally added a title and a legend to the graph.</n>
+
+Design Achievements:</n>
+Made the size of the circles linked to the bill length and the color of the points linked to the species of penguin. Additionally created a title and enabled the legend to allow for easier data analysis.
+
+Summary of Usage:</n>
+DataWrapper seems to be one of the best tools for making a quick and dirty scatter plot. It is a web based software that is super easy to learn, in fact I could replicate the initial graph within half an hour. However, it isn't the best at customization or legend creation. From my expereince with the software, it is limited in what it can do. I would say it is best for making simple graphs.
+
 
 <!-- 
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)

@@ -35,7 +35,7 @@
     console.log(d3) //test if d3 is loaded
 
     function loadDataAndGeneratePlot() {
-      d3.csv("penglings.csv", function(dataRow) {
+      d3.csv("../penglings.csv", function(dataRow) {
       return ({
         homeSpecies: dataRow.species,
         billLength: dataRow.bill_length_mm,

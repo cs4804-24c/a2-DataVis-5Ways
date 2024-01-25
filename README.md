@@ -1,7 +1,13 @@
 Assignment 2 - Data Visualization, 5 ways</n></n>
 
 Altair Graph:</n>
-![Altair Graph](altair/altairGraph.png)
+![Altair Graph](altair/altairGraph.png)</n>
+Technical Achievements:</n>
+Used Pandas to get a runtime of O(n) for processing the data from the csv. Additionally created a tooltip showing all relevent information for every penguin data point the user clicks on.
+Lastly, made the shapes, colors, and sizes of the dots change depending on the island, species, and bill length.</n>
+
+Design Achievements:</n>
+Changed the transparency to be low enough that datapoints can be seen through one another so that overlapping datapoints can be noticed. Changed the size of the graph to better fit on the screen. Changed the default x and y ranges for the graph to make the data more visible.</n>
 
 <!-- 
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)

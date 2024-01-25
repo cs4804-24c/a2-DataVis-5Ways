@@ -1,4 +1,9 @@
+Assignment 2 - Data Visualization, 5 ways</n></n>
 
+Altair Graph:</n>
+![AltairGraph](altair/altairGraph.html)
+
+<!-- 
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
 
 # 02-DataVis-5ways
@@ -145,4 +150,4 @@ While it takes time to find the correct documentation, these functions made the 
 - **Solved AI Forever**: ...
 
 ### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme... -->

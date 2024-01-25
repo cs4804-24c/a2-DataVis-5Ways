@@ -32,15 +32,19 @@ A technical achievement included in this method of visualizing the data is a sli
 
 Being famiiar with Python, the two new libraries used weren't too hard to figure out, and made it quite easy to create a detailed chart. The `dash` library makes it pretty easy to develop and make an interactive application (though the enterprise version appears to have more functionality). 
 
-# 3. 
+# 3. Altair
+
+Another Python visualization library developed by Vega-Altair. The function `alt.Chart()` for creating a Chart object is relatively straightforward and similar with chart creation methods in other Python libraries. It seems that this library was mainly for use in IPython Notebooks, and there didn't seem to be an easy way to just get the resulting chart to display without saving it as an HTML file. Besides the displaying and saving process, everything else was pretty streamlined.
+
+![altair_vis_00](img/altair_vis_00.png)
 
 
 
-# 4. 
+# 4. D3
 
 
 
-# 5. 
+# 5. Racket
 
 
 

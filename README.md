@@ -9,6 +9,9 @@ Lastly, made the shapes, colors, and sizes of the dots change depending on the i
 Design Achievements:</n>
 Changed the transparency to be low enough that datapoints can be seen through one another so that overlapping datapoints can be noticed. Changed the size of the graph to better fit on the screen. Changed the default x and y ranges for the graph to make the data more visible.</n>
 
+DataWrapper Graph</n>
+![DataWrapper Graph](DataWrapper/DataWrapper%20Graph.png)</n>
+
 <!-- 
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
 

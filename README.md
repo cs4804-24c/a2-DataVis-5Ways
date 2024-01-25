@@ -43,6 +43,21 @@ It seems to be about equivalent to Altair, being one of the best tools that can 
 Resources Used:</n>
 https://www.youtube.com/watch?v=Dh7P5ExsYCg&t=339s </n>
 
+d3 Graph</n>
+![d3 Graph](d3/d3Graph.png)</n>
+
+Technical Achievements:</n>
+Used d3 and javascript to read and analyze the csv data from the pengling.csv file. Made the graph represent the flipper lengths and body mass data in the x and y directions. Additionally each data point's size represents the size of the penguin's bill and the color represents the species. Additionally made custom line graphs and labels to show what the x and y represent. Lastly limited the size of the graph to better show the data. </n>
+
+Design Achievements:</n>
+Showed the species, bill size, flipper length, and body mass in the graph. These were represented by the color, size, x position, and y position of every data point. Additionally the size of the graph was changed to better represent the data and make it easier to digest.</n>
+
+Summary of Usage</n>
+d3 seems to be the most customizable graphing script, however it is also the hardest to learn and is unintuitive. While unlike any of the other languages used you can represent the datapoints as small penguins rather than just a dot, it is also much harder to use. As seen by the length of code whiel ggplot and altair needed less than 40 lines of code, while DataWrapper and Flourish needed none, d3 required 94 lines of code to create an inferior graph. The best comparison to this difficulty spike would be while the web based graphing software are like using a smartphone, altair and ggplot are like using Windows, and d3 is like using Linux. While d3 offers more freedom, it is also much harder to use.
+
+Resources Used:</n>
+https://d3-graph-gallery.com/graph/scatter_basic.html
+
 
 
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<svg width="700" height="550"></svg>
+
+<script>
+  d3.csv('penglings.csv').then(data => {
+  
+    const width = 600;
+    const height = 450;
+
+    const svg = d3.select("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    const xValue = d => +d['flipper_length_mm'];
+    const yValue = d => +d['body_mass_g'];
+    const billLength = d => +d['bill_length_mm'];
+    const speciesValue = d => d['species'];
+
+    const xScale = d3.scaleLinear()
+      .domain(d3.extent(data, xValue))
+      .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+      .domain([3000, d3.max(data, yValue)]) 
+      .range([height, 0]);
+
+    const colorScale = d3.scaleOrdinal()
+      .domain(['Adelie', 'Chinstrap', 'Gentoo'])
+      .range(['orange', 'purple', 'turquoise']);
+
+    const opacityScale = d3.scaleLinear()
+      .domain(d3.extent(data, xValue))
+      .range([0.2, 1]); 
+
+    const sizeScale = d3.scaleLinear()
+      .domain([40, 50])
+      .range([5, 10]);
+
+  //add points
+    svg.selectAll("circle")
+      .data(data)
+      .enter().append("circle")
+      .attr("cx", d => xScale(xValue(d)))
+      .attr("cy", d => yScale(yValue(d)))
+      .attr("r", d => sizeScale(billLength(d)))
+      .attr("fill", d => colorScale(speciesValue(d)))
+      .attr("opacity", d => opacityScale(xValue(d)));
+
+    svg.append("g")
+      .attr("transform", `translate(33, 430)`)
+      .call(d3.axisBottom(xScale))
+      .append("text")
+      .attr("x", width / 2)
+      .attr("y", -10)
+      .attr("fill", "black")
+      .attr("text-anchor", "middle")
+      .text("Flipper Length (mm)");
+
+    svg.append("g")
+      .attr("transform", `translate(35,0)`)
+      .call(d3.axisLeft(yScale).ticks(5))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -300)
+      .attr("y", 10)
+      .attr("fill", "black")
+      .attr("text-anchor", "middle")
+      .text("Body Mass (g)");
+
+//species legend
+    const legend = svg.selectAll(".legend")
+      .data(colorScale.domain())
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", (d, i) => `translate(-200,${i * 20})`);
+
+    legend.append("rect")
+      .attr("x", 580)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", colorScale);
+
+    legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(d => d);
+//size legend
+    const sizeLegend = svg.selectAll(".size-legend")
+      .data(sizeScale.ticks(1))
+      .enter().append("g")
+      .attr("class", "size-legend")
+      .attr("transform", (d, i) => `translate(${width - 150}, ${i * 30})`); 
+
+    sizeLegend.append("circle")
+      .attr("r", d => sizeScale(d))
+      .attr("fill", "grey");
+
+    sizeLegend.append("text")
+      .attr("x", 24)
+      .attr("y", 15)
+      .text(d => d);
+
+
+  });
+</script>
+
+</body>
+</html>

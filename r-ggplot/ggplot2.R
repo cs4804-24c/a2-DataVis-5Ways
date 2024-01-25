@@ -1,9 +1,4 @@
-# library (ggplot2)
-# print(bills)
-# #Creating basic plot
-# ggplot2(bills, aes = (x = flipper_legnth_mm, y = body_mass_g)) + 
-# geom_point()
-
+# Source Used: https://www.youtube.com/watch?v=Dh7P5ExsYCg&t=339s
 library(ggplot2)
 
 bills <- read.csv("penglings.csv")

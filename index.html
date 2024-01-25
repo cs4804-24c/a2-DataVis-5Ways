@@ -50,7 +50,7 @@
     //The <g> SVG element is a container used to group other SVG elements. Transformations applied to the <g> element are performed on its child elements, and the <g> element's attributes are inherited by its children.
 
     //Create the x-axis:
-    let xScale = d3.scaleLinear().domain([165, 235]).range([0, width]) //Smallest, largest passed into range function.
+    let xScale = d3.scaleLinear().domain([169, 235]).range([0, width]) //Smallest, largest passed into range function.
     //The d3 domain function creates a value domain between the specified minimum and maximum values, and the D3 range function maps those values into pixels on the screen.
 
     //Position the x-axis at the correct location in our svg container and pass x into the axisBottom() function to ensure that the argument axis (x-axis) has tick marks facing outwards (towards the bottom).
@@ -112,8 +112,9 @@
           return yScale(parseFloat(d.bodyMass)) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
         })
         .attr("r", function (d) {
-          return parseFloat(d.billLength) / 2 //Play around with the value of the denominator.
+          return parseFloat(d.billLength) / 6.0 //Play around with the value of the denominator.
         })
+        .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
         }).catch(function(error) {
           console.error(error)
         })

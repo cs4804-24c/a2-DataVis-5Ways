@@ -19,7 +19,7 @@ https://altair-viz.github.io/gallery/scatter_tooltips.html</n>
 DataWrapper Graph</n>
 ![DataWrapper Graph](DataWrapper/DataWrapper%20Graph.png)</n>
 
-Tecchnical Achievements:</n>
+Technical Achievements:</n>
 Learned how to use the DataWrapper website and used it to change the color and size of the datapoints on the graph depending on the penguin species and the bill size. Additionally added a title and a legend to the graph.</n>
 
 Design Achievements:</n>
@@ -27,6 +27,25 @@ Made the size of the circles linked to the bill length and the color of the poin
 
 Summary of Usage:</n>
 DataWrapper seems to be one of the best tools for making a quick and dirty scatter plot. It is a web based software that is super easy to learn, in fact I could replicate the initial graph within half an hour. However, it isn't the best at customization or legend creation. From my expereince with the software, it is limited in what it can do. I would say it is best for making simple graphs.
+
+ggplot2 Graph</n>
+![ggplot2 Graph](r-ggplot/ggplot2Graph.png)</n>
+
+Technical Achievements:</n>
+Used R to read and process the csv file from the folder. Made the graph represent the flipper length and body mass data in the x and y direction. Additionally each data point also displays the island the penguin is from, the size of its bill, and its species.</n>
+
+Design Achievements:</n>
+Made the background a dark blue to represent the sea in the background. This made the data points "pop" allowing them to be more easily seen than on the white graph due to the varying intensity. Additionally, the differing shapes for the island the penguin in a datapoint is from also allows for an easy distinction of the islands. Additionally added a title and x and y labels to show what the datapoints mean.</n>
+
+Summary of Usage</n>
+It seems to be about equivalent to Altair, being one of the best tools that can be used to make a sccatter plot. However, it doesn't generate an interactive scatterplot and it is not in as widespread programming language. It seems to be best at making customized static graphs for uses such as usage in research papers. While it is very useful, I believe that Altair is simply a more accessible and versatile language for creating grpahs.</n>
+
+Resources Used:</n>
+https://www.youtube.com/watch?v=Dh7P5ExsYCg&t=339s </n>
+
+
+
+
 
 
 <!-- 

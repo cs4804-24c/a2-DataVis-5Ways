@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("penglings.csv")
+df = pd.read_csv("..\penglings.csv")
 
 colors = {'Adelie': '#FF8C01', 'Chinstrap': '#9933CB', 'Gentoo': '#128E8E'}
 fig, ax = plt.subplots()

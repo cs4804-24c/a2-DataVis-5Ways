@@ -7,11 +7,11 @@
 library(ggplot2)
 
 bills <- read.csv("penglings.csv")
-#Basic Graph Additions (Minimum Requirements)
 ggplot(bills, aes(x = flipper_length_mm, y = body_mass_g)) +
-    geom_point(aes(color = species, size = bill_length_mm, alpha = 0.2, shape = island)) +
+    geom_point(aes(color = species, size = bill_length_mm, shape = island)) +
     xlab('Flipper Length (mm)') +
     ylab('Body Mass (g)') +
-    ggtitle('Penguin Flipper Length vs Body Mass')
+    ggtitle('Penguin Flipper Length vs Body Mass') + 
+    theme(panel.background = element_rect(fill='darkblue',color='darkblue'))
 
 ggsave('ggplot2Graph.png',width=20,height=10)

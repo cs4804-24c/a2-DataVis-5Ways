@@ -26,42 +26,43 @@
     //https://sabahatiqbal.medium.com/building-a-scatter-plot-with-d3-js-66178fde56ac
     //I also learned about the D3 enter function and its role in completing the mapping of data to SVG elements:
     //https://www.educative.io/answers/what-is-d3-enter-and-exit
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+    //I learned about the D3 csv function: https://www.codecademy.com/resources/docs/d3/selection/csv
+
+    //NOTE: As per the guidance of the TA, I am choosing to kepp the data rows with NA values for the relevant attributes that are part of the scatter plot.
 
     const container = document.getElementById("container")
     console.log(d3) //test if d3 is loaded
 
-    //Load the penguins.csv data:
-    const data = null
-
     //Declare the dimensions for the svg container:
-    const margin = {top: 20, right: 20, bottom: 20, left: 20}
-    const width = 1440 - margin.left - margin.right
-    const height = 640 - margin.top - margin.bottom
+    const margin = {top: 15, right: 60, bottom: 60, left: 60}
+    const width = 700 - margin.left - margin.right
+    const height = 500 - margin.top - margin.bottom
 
     //Add an SVG and g grouping for visualization
     const svg = d3.select("#container")
     .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", width + margin.left + margin.right) //Have the width include both horizontal margins to make space for the y-axis label.
+      .attr("height", height + margin.top + margin.bottom) //Have the height include both vertical margins to make space for the x-axis label.
       .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")") 
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")") //Position the container so that there are still margins at the top and at the left.
     //Above, I am applying margin left and margin top to the visualization, which is made possible by appending the <g> SVG element.
     //The <g> SVG element is a container used to group other SVG elements. Transformations applied to the <g> element are performed on its child elements, and the <g> element's attributes are inherited by its children.
 
     //Create the x-axis:
-    let xScale = d3.scaleLinear().domain([168, 235]).range([0, width]) //Smallest, largest passed into range function.
+    let xScale = d3.scaleLinear().domain([165, 235]).range([0, width]) //Smallest, largest passed into range function.
     //The d3 domain function creates a value domain between the specified minimum and maximum values, and the D3 range function maps those values into pixels on the screen.
 
     //Position the x-axis at the correct location in our svg container and pass x into the axisBottom() function to ensure that the argument axis (x-axis) has tick marks facing outwards (towards the bottom).
     svg
     .append("g")
-    .attr("transform", "translate(0," + height + ")") //The correct position for the x-axis to begin is at (0, height). The x-axis is included in this grouping through appending g above in this method chaining sequence.
+    .attr("transform", "translate(" + 0 + "," + height + ")") //The correct position for the x-axis to begin is at (0, height). The x-axis is included in this grouping through appending g above in this method chaining sequence.
     .call(d3.axisBottom(xScale)) //The call function invokes a callback function on the selection itself. The x-axis is now included in the selection, and the selection is essentially the current grouping that is appended to the svg element.
 
     //Set a label for the x-axis:
     svg
     .append("text")
-    .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom) + ")")
+    .attr("transform", "translate(" + (width / 2) + "," + (height + (margin.bottom - 20)) + ")")
     .style("text-anchor", "middle") //The text-anchor style is used to align text that is already formatted or wrapped in some way. In this case, we have already translated the text element, and the middle of the text string is aligned at the current x text position.
     .text("Flipper Length (mm)") //Specify the text that appears in the current text element.
 
@@ -75,7 +76,7 @@
     svg
     .append("text")
     .attr("transform", "rotate(270)") //We need to rotate the y-axis label 270 degrees so that the text is aligned vertically and is facing in the correct direction.
-    .attr("y", -20) //The x and y attributes are reversed as a result of rotating the text by 270 degrees. 
+    .attr("y", -45) //The x and y attributes are reversed as a result of rotating the text by 270 degrees. 
     .attr("x", (0 - (height / 2)))
     .style("text-anchor", "middle") //Middle of the text string (using y attribute now) is aligned at the current y text position.
     .text("Body Mass (g)")
@@ -85,25 +86,39 @@
       ["Adelie", "Chinstrap", "Gentoo"]).range(
       ["#FF9013", "#9932CC", "#048B8C"]) //When colorScale is used as a function call, a color in the scale range will be returned that corresponds to the specified species type in the domain. 
 
-    //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
-    //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.
-    svg.selectAll("circle") //No circles appended to DOM yet.
-    .data(data, function(dataPoint) {
-      return dataPoint[""] //Go through the data and return each datapoint.
-    })
-    .enter() //return an enter selection for the joined dataset (one circle for each datapoint) that represents the SVG elements that have not been appended to the DOM yet.
-    .append("circle") //We append one circle per datapoint that is returned from the data function call chained to the selectAll function call.
-    .attr("fill", function (dataPoint) {
-      return colorScale(dataPoint["species"])
-    })
-    .attr("cx", function (dataPoint) {
-      return xScale(dataPoint["flipper_length_mm"]) //We need to pass in the raw x-coordinate of each data point into the xScale to accurately place the data point on the scatter plot.
-    })
-    .attr("cy", function (dataPoint) {
-      return yScale(dataPoint["body_mass_g"]) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
-    })
-    .attr("r", function (dataPoint) {
-      return dataPoint["bill_length_mm"] / 2
-    })
+    function loadDataAndGeneratePlot() {
+      d3.csv("penglings.csv", function(dataRow) {
+      return ({
+        homeSpecies: dataRow.species,
+        billLength: dataRow.bill_length_mm,
+        flipperLength: dataRow.flipper_length_mm,
+        bodyMass: dataRow.body_mass_g
+      })
+      }).then(function(data) {
+        console.log(data)
+        //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
+        //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.
+        svg.selectAll("circle") //No circles appended to DOM yet.
+        .data(data)
+        .enter() //return an enter selection for the joined dataset (one circle for each datapoint) that represents the SVG elements that have not been appended to the DOM yet.
+        .append("circle") //We append one circle per datapoint that is returned from the data function call chained to the selectAll function call.
+        .attr("fill", function (d) {
+          return colorScale(d.homeSpecies)
+        })
+        .attr("cx", function (d) {
+          return xScale(parseFloat(d.flipperLength)) //We need to pass in the raw x-coordinate of each data point into the xScale to accurately place the data point on the scatter plot.
+        })
+        .attr("cy", function (d) {
+          return yScale(parseFloat(d.bodyMass)) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
+        })
+        .attr("r", function (d) {
+          return parseFloat(d.billLength) / 2 //Play around with the value of the denominator.
+        })
+        }).catch(function(error) {
+          console.error(error)
+        })
+    }
+
+    loadDataAndGeneratePlot()
   </script>
 </html>

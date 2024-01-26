@@ -21,7 +21,7 @@ Documentation was easy to find, and my previous experience in Python also made t
 
 # ggplot2 + R + RStudio
 
-![ggplot2]([(https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/ggplot2.png))
+![ggplot2](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/ggplot2.png)
 
 R is a programming language for statistic programming and data visualization. RStudio is an integrated development environment for R and Python. ggplot2 is a R package dedicated to data visualization
 
@@ -33,7 +33,7 @@ Documentation was easy to find, this visualizion was easy to make.
 
 # VegaLite
 
-![VegaLite]([img/<Vega.png>](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/Vega.png))
+![VegaLite](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/Vega.png)
 
 Vega-Lite is a high-level grammar of interactive graphics.
 

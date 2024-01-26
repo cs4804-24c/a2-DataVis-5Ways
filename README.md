@@ -21,7 +21,7 @@ Documentation was easy to find, and my previous experience in Python also made t
 
 # ggplot2 + R + RStudio
 
-![ggplot2](img/<ggplot2.png>)
+![ggplot2]([(https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/ggplot2.png))
 
 R is a programming language for statistic programming and data visualization. RStudio is an integrated development environment for R and Python. ggplot2 is a R package dedicated to data visualization
 
@@ -33,7 +33,7 @@ Documentation was easy to find, this visualizion was easy to make.
 
 # VegaLite
 
-![VegaLite](img/<Vega.png>)
+![VegaLite]([img/<Vega.png>](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/Vega.png))
 
 Vega-Lite is a high-level grammar of interactive graphics.
 
@@ -49,11 +49,11 @@ To visualize the penglings dataset, I selected scatterplot from flourish's list 
 
 Flourish was the easiest to use, but there were some parts I found difficult to customize. It is definitely helpful if you have to make a quick visualization. 
 
-![Flourish](img/<flourish.png>)
+![Flourish](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/flourish.png)
 
 # d3 + javascript + visual studio code
 
-![d3](img/<d3.png>)
+![d3](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/d3.png)
 
 D3 is a free, open-source JavaScript library for visualizing data. JavaScript is a programming language used to develop web pages. Visual studio code is source code editor. 
 

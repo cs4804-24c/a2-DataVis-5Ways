@@ -25,7 +25,7 @@ data extra meaningful and useful for them. I also kept consistent font throughou
 for all aspects of the vis, there are not any distractions from the data being presented.
 
 Sources: 
-Professor Harrison's example
+Professor Harrison's example and
 https://stackoverflow.com/questions/38917101/how-do-i-show-the-y-value-on-tooltip-while-hover-in-ggplot2
 
 # d3

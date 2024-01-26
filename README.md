@@ -21,7 +21,7 @@ And I scaled up the entire figure:
 plt.figure(figsize=(12, 8))
 ```
 
-[!Matplotlib](./img/matplotlib.png)
+![Matplotlib](./img/matplotlib.png)
 
 # d3
 I actually had a lot of trouble with d3. I'm sure I'll figure it out soon enough, but I felt like I had too many options. The first thing I tried to do was plot the points, but I ended up not framing my scatterplot well and then everything else just feels like an overlay.
@@ -53,12 +53,12 @@ size: {
   type: "quantitative",
   axis: {title: 'Bill Length (mm)'},
   scale: {zero: false, range: [10, 500]},
-},
+}
 ```
 
 I also love that there's a menu in the top right. If I need to make any graphs for personal projects in the near future, I'll likely be using Vega-Lite.
 
-[!Vega-Lite](./img/vega-lite.png)
+![Vega-Lite](./img/vega-lite.png)
 
 # R
 R gave me a lot of trouble with installing packages! I was able to resolve them, but I had to make a new library folder to do so.
@@ -69,7 +69,7 @@ My R code is very simple, and my output is just the same. I filled in the marker
 
 Overall, I'm glad that R was able to make a grid & legend without too much trouble, but I'm not satisfied with the final product. I think it looks a little too... stiff? It's unfriendly and unflattering. The ggplot example you gave is charming. So is my Vega-Lite plot.
 
-[!R](./img/r.png)
+![R](./img/r.png)
 
 # Flourish
 Flourish is awesome! [here's](https://public.flourish.studio/visualisation/16583271/) a link to my scatterplot. I like everything about Flourish. It's pretty, modern, and animates smoothly. 

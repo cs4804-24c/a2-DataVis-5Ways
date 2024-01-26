@@ -74,4 +74,10 @@ Overall, I'm glad that R was able to make a grid & legend without too much troub
 # Flourish
 Flourish is awesome! [here's](https://public.flourish.studio/visualisation/16583271/) a link to my scatterplot. I like everything about Flourish. It's pretty, modern, and animates smoothly. 
 
-[!Flourish](./img/flourish.png)
+![Flourish](./img/flourish.png)
+
+# Technical Achievements
+- Created a legend on each plot
+- Created a background grid on each plot
+- Adapted to R's package installation process
+- Abstracted d3 drawing functions to improve readability

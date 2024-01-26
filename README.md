@@ -1,6 +1,5 @@
 
-# Assignment 2 - Data Visualization, 5 Ways  
-===
+# Assignment 2 - Data Visualization, 5 Ways
 
 # R + ggplot2 + R Markdown
 ![Screenshot 2024-01-25 at 11.11.35 PM.png](R%20%2B%20ggplot2%2FScreenshot%202024-01-25%20at%2011.11.35%20PM.png)
@@ -13,6 +12,17 @@ of different ways I was able to try looking online. The only time I had to get m
 I had to make the graph go into the shiny app in order to get the tooltips to work correctly. I could see this tool 
 being useful in the future because of how many options there are for it. You can create so many things, and I really 
 like how the graph shows up right next to it in RStudio instead of appearing in a separate window. 
+
+Technical Achievement:
+I used tooltips to create an interaction with each of the data points. When the user mouses over each of the data
+points, they are able to see the species, flipper length, body mass, and bill length. This allows the user to see all
+the information about each individual point by simply mousing over it.
+
+Design Achievement:
+My tool tips are also my design achievement. Tooltips give the user additional functionality making the information they
+are seeing more clear. With the tooltips the user is able to find out exact information about every point, making the
+data extra meaningful and useful for them. I also kept consistent font throughout the graph. By keep the font the same
+for all aspects of the vis, there are not any distractions from the data being presented.
 
 Sources: 
 Professor Harrison's example

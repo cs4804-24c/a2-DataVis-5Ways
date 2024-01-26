@@ -6,143 +6,57 @@
 Assignment 2 - Data Visualization, 5 Ways  
 ===
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+# altair + python + jupyter notebook
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+![Altair graph](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/altair.png)
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
+Python is a general-purpose programming language. Altair is a visualization library in Python. Jupyter Notebook is a web-based interactive computing platform that creates interactive notebook documents containing live code, equations, visualizations, media, and other computational outputs. 
 
-Your goal is to use 5 different tools to make the following chart:
+To visualize the penglings dataset, I used altair's Chart.encode() method. This allows easy encoding of the data.
 
-![](img/ggplot2.png)
+Documentation was easy to find, and my previous experience in Python also made this visualizion very easy to make. 
 
-These features should be preserved as much as possible in your replication:
+## Design achievements: I matched the colors to the example by scanning for the exact RGB code. I used altair's domain and range parameters with the scale method to assign my own colors. I also added a title and subtitle, which involved passing the title keyword argument with data.
+## Technical achievements: My visualization is interactive. You can pan and zoom on the chart. This is done using interactive(). 
 
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
+# ggplot2 + R + RStudio
 
-Other features are not required. This includes:
+![ggplot2](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/ggplot2.png)
 
-- The background grid.
-- The legends.
+R is a programming language for statistic programming and data visualization. RStudio is an integrated development environment for R and Python. ggplot2 is a R package dedicated to data visualization
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
+To visualize the penglings dataset, I used ggplot2's geom_point() function. 
 
-Improvements are also welcome as part of Technical and Design achievements.
+Documentation was easy to find, this visualizion was easy to make. 
 
-Libraries, Tools, Languages
----
+## Design achievements: I matched the colors to the example by scanning for the exact RGB code. I used ggplot2's scale_color_manual and passed the RGB codes.
 
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
+# VegaLite
 
-Otherwise, you should seek tools and libraries to fill out your 5.
+![VegaLite](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/Vega.png)
 
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
+Vega-Lite is a high-level grammar of interactive graphics.
 
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
+To visualize the penglings dataset, I used vega-lite's encoding function to define each data field and its type. Note, the dataset in vegalite is called penguins.csv
 
-I have marked a few that are strongly suggested.
+Documentation was easy to figure out, and it was fun to figure out how to make the visualization.
 
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
+# Flourish
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
+Flourish provides templates to make data visualizations without code.
 
-Tips
----
+To visualize the penglings dataset, I selected scatterplot from flourish's list of templates and imported the csv in. 
 
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
+Flourish was the easiest to use, but there were some parts I found difficult to customize. It is definitely helpful if you have to make a quick visualization. 
 
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
+![Flourish](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/flourish.png)
 
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
+# d3 + javascript + visual studio code
 
-Readme Requirements
----
+![d3](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/d3.png)
 
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
+D3 is a free, open-source JavaScript library for visualizing data. JavaScript is a programming language used to develop web pages. Visual studio code is source code editor. 
 
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
+To visualize the penglings dataset, I began with creating and svg. I then read the penglings csv with, d3.csv('penglings.csv').then(data => {...}. I then define the dimensions of the plot and create an SVG with those dimensions. Next, I create the scales for the x and y axis, color, size, and opacity. These give me control to map the data values to the corresponding need. Then, I append the x and y-axis, as well as its labels. I also have a species and size legend. 
 
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
-
-
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
-
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+This was the most difficult visualization to make, as I have no previous javascript experience. 

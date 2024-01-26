@@ -8,7 +8,7 @@ Assignment 2 - Data Visualization, 5 Ways
 
 # altair + python + jupyter notebook
 
-![Altair graph](img/<altair.png>)
+![Altair graph]([img/<altair.png>](https://github.com/kwang1004/a2-DataVis-5Ways/blob/main/img/altair.png))
 
 Python is a general-purpose programming language. Altair is a visualization library in Python. Jupyter Notebook is a web-based interactive computing platform that creates interactive notebook documents containing live code, equations, visualizations, media, and other computational outputs. 
 

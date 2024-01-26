@@ -1,4 +1,4 @@
-% Assuming you have the penguins data loaded or created
+% data loaded or created
 
 % Create the scatter plot with color mapping and smaller marker size
 figure('Position', [100, 100, 800, 500]);

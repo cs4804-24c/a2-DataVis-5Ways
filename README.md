@@ -38,20 +38,54 @@ Another Python visualization library developed by Vega-Altair. The function `alt
 
 ![altair_vis_00](img/altair_vis_00.png)
 
-
-
 # 4. D3
 
+**Note:** When tested locally in the `d3` folder with `python -m http.server`, it appears that the current file directory will fail to properly load the HTML file, as it only works with files inside the directory.
 
+D3.js is a JavaScript library built for producing data visualizations and appears to be a prominant tool used in this course.
 
-# 5. Racket
+Surprisingly, it was actually not that simple to create a scatterplot, requiring a length function to be defined upon reading in the CSV file. Using the linked [D3.js Scatterplot Example](https://d3-graph-gallery.com/graph/scatter_tooltip.html), the given code was adjusted to fit with the Penglings data, as well as several improvements:
+- Addition of a Legend
+- Color Mapping
+- Shape Mapping
+- Axis Titles
 
+Was also surprising that D3.js doesn't provide any helper functions for creating legends, seeing as how they're a pretty important aspect of data visualizations. Luckily, D3.js did have a page dedicated to Legend examples: https://d3-graph-gallery.com/graph/custom_legend.html. 
 
+The potential does exist to really customize a data visualization, even sometihng as basic as a scatterplot; just takes a lot more effort.
+
+![d3_vis_00](img/d3_vis_00.png)
+
+# 5. Flourish
+
+**Note:** Link to published chart: https://public.flourish.studio/visualisation/16582081/
+
+Flourish is a online platform that has a user-friendly UI, allowing for easy uploading and manipulation of data to quickly create visualizations from a vast library of example charts. Creating the visualization was extremely easy; specific attributes of charts could be created simply by filling in which column to use:
+
+![flourish_vis_00](img/flourish_vis_00.png)
+
+Interactive elements can also be easily created by editing sections in the Preview tab. For example, clicking on the legend values can show/hide the respective data points.
+
+![flourish_vis_01](img/flourish_vis_01.png)
+
+Unfortunately, Flourish has some features locked behind their premium plan, one of them being the ability to download the chart as an HTML file. For free users, downloading an image is the only option, though the project can be published and shared at a link (mentioned at the top of the section):
+
+![flourish_vis_02](img/flourish_vis_02.png)
 
 # Technical Achievements
-- mplcursor interactivity in matplotlib graph
-- Making a working app with Dash, having a slider to filter entries by bill length
-
+- **Matplotlib**
+    - Interactivity in the graph with the help of the `mplcursor` library
+- **Plotly + Dash**
+    - Creating an interactive application in Python
+    - Implementing a slider bar to filter entries based off of bill length
+- **D3.js**
+    - Interactive Tooltip implementation
+    - Legend
 
 # Design Achievements
-- Having a slider to filter entries to get new insights
+- **Matplotlib**
+    - Color mapping with the help of the `seaborn` library
+- **Plotly + Dash**
+    - Integrating another aspect of the Penglings data via a slider bar
+- **D3.js**
+    - Color and Shape mapping

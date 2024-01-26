@@ -6,30 +6,38 @@
   <title>CS4804 A2</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.6/canvg.min.js"></script>
-  <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+  <style>
+    .legend {
+        font-size: 12px;
+        fill: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    .body {
+        font-family: 'Arial', sans-serif;
+    }
+    .tooltip {
+        font-family: 'Arial', sans-serif;
+    }
+  </style>
 </head>
 <body style="margin: 0; overflow: hidden;">
 
+<div id="my_dataviz"></div>
+
 <script>
-    // set the dimensions and margins of the graph
-    const margin = {top: 10, right: 30, bottom: 30, left: 60},
-        width = 460 - margin.left - margin.right,
-        height = 450 - margin.top - margin.bottom;
-    
-    // append the svg object to the body of the page
+    const margin = { top: 10, right: 30, bottom: 50, left: 60 },
+        width = window.innerWidth - margin.left - margin.right,
+        height = 0.85 * window.innerHeight - margin.top - margin.bottom;
+
     const svg = d3.select("#my_dataviz")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform",
-                `translate(${margin.left}, ${margin.top})`);
-    
-    //Read the data
-    d3.csv("penglings.csv").then( function(data) {
-    
-        // Add X axis
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    d3.csv("../penglings.csv").then(function (data) {
+        // Add and scale X-axis
         const x = d3.scaleLinear()
         .domain([160, 240])
         .range([ 0, width ]);
@@ -37,66 +45,104 @@
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x));
     
-        // Add Y axis
+        // Add and scale Y-axis
         const y = d3.scaleLinear()
         .domain([2300, 6700])
         .range([ height, 0]);
         svg.append("g")
         .call(d3.axisLeft(y));
-    
-        // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
-        // Its opacity is set to 0: we don't see it by default.
+
+        // Add X-axis title
+        svg.append("text")
+            .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`) // Adjust the positioning
+            .style("text-anchor", "middle")
+            .text("Flipper Length (mm)");
+
+        // Add Y-axis title
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - height / 2)
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Body Mass (g)");
+
+        // Add a tooltip div
         const tooltip = d3.select("#my_dataviz")
-        .append("div")
-        .style("opacity", 0)
-        .attr("class", "tooltip")
-        .style("background-color", "white")
-        .style("border", "solid")
-        .style("border-width", "1px")
-        .style("border-radius", "5px")
-        .style("padding", "10px")
-    
-    
-    
-        // A function that change this tooltip when the user hover a point.
-        // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
-        const mouseover = function(event, d) {
-        tooltip
-            .style("opacity", 1)
-        }
-    
-        const mousemove = function(event, d) {
-        tooltip
-            .html(`The exact value of<br>Za Pengling is: ${d.flipper_length_mm}`)
-            .style("left", (event.x)/2 + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-            .style("top", (event.y)/2 + "px")
-        }
-    
-        // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
-        const mouseleave = function(event,d) {
-        tooltip
-            .transition()
-            .duration(200)
+            .append("div")
             .style("opacity", 0)
-        }
-    
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "1px")
+            .style("border-radius", "5px")
+            .style("padding", "10px");
+
+        const mouseover = function (event, d) {
+            tooltip.style("opacity", 1);
+        };
+
+        const mousemove = function (event, d) {
+            tooltip
+                .html(`<b>Species:</b> ${d.species}<br><b>Island:</b> ${d.island}<br><b>Flipper length:</b> ${d.flipper_length_mm}mm<br><b>Body Mass:</b> ${d.body_mass_g}g.`)
+                .style("left", "100px")
+                .style("top", "100px");
+        };
+
+        const mouseleave = function (event, d) {
+            tooltip.style("opacity", 0);
+        };
+
+        const color = d3.scaleOrdinal()
+            .domain(["Adelie", "Gentoo", "Chinstrap"])
+            .range(["#6761A8", "#E43F6F", "#45CB85"]);
+
         // Add dots
         svg.append('g')
-        .selectAll("dot")
-        .data(data.filter(function(d,i){return i<50})) // the .filter part is just to keep a few dots on the chart, not all of them
-        .enter()
-        .append("circle")
-            .attr("cx", function (d) { return x(d.flipper_length_mm); } )
-            .attr("cy", function (d) { return y(d.body_mass_g); } )
-            .attr("r", 7)
-            .style("fill", "#69b3a2")
-            .style("opacity", 0.3)
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("path")
+            .attr("transform", function (d) {
+                return "translate(" + x(d.flipper_length_mm) + "," + y(d.body_mass_g) + ")";
+            })
+            .attr("d", function (d) {
+                if (d.island === "Biscoe") return d3.symbol().type(d3.symbolCircle).size(100)();
+                else if (d.island === "Dream") return d3.symbol().type(d3.symbolTriangle).size(100)();
+                else return d3.symbol().type(d3.symbolSquare).size(100)();
+            })
+            .style("fill", function (d) { return color(d.species); })
+            .style("opacity", 0.6)
             .style("stroke", "white")
-        .on("mouseover", mouseover )
-        .on("mousemove", mousemove )
-        .on("mouseleave", mouseleave )
-    
-    })
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave);
+
+        // Add legend
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${width - 100},${10})`);
+
+        const legendRectSize = 18;
+        const legendSpacing = 4;
+
+        const legendItems = legend.selectAll(".legend-item")
+            .data(color.domain())
+            .enter()
+            .append("g")
+            .attr("class", "legend-item")
+            .attr("transform", (d, i) => `translate(0, ${i * (legendRectSize + legendSpacing)})`);
+
+        legendItems.append("rect")
+            .attr("width", legendRectSize)
+            .attr("height", legendRectSize)
+            .style("fill", color);
+
+        legendItems.append("text")
+            .attr("x", legendRectSize + legendSpacing)
+            .attr("y", legendRectSize - legendSpacing)
+            .text(d => d);
+    });
 </script>
 
 </body>

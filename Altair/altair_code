@@ -1,0 +1,19 @@
+Note:
+I used Jupyter Notebook to code in Python using Altair to make this graph, so this code is copied from there.
+
+import pandas as pd
+import altair as alt
+source = pd.read_csv('https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv')
+dom = ['Adelie', 'Chinstrap', 'Gentoo']
+rng = ['#FF8F10', '#8945C3', '#2E9697']
+
+c = alt.Chart(source).mark_circle().encode(
+    x = alt.X('flipper_length_mm', title = 'Flipper Length (mm)', scale=alt.Scale(domain=[168,233])),
+    y = alt.Y('body_mass_g', title = 'Body Mass (g)', scale=alt.Scale(domain=[2550,6450]), axis=alt.Axis(values=[3000,4000,5000,6000])),
+    color = alt.Color('species', title = 'Species', scale = alt. Scale(domain = dom, range = rng)),
+    size = alt.Size('bill_length_mm', title = 'Bill Length (mm)'),
+    tooltip = [alt.Tooltip('species', title = 'Species'),
+                alt.Tooltip('flipper_length_mm', title = 'Flipper Length(mm)'),
+                alt.Tooltip('body_mass_g', title = 'Body Mass (g)'),
+                alt.Tooltip('bill_length_mm', title = 'Bill Length (mm)')])
+c

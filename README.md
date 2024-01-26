@@ -1,7 +1,7 @@
 
 # Assignment 2 - Data Visualization, 5 Ways
 
-# R + ggplot2 + R Markdown
+# R + ggplot2
 ![Screenshot 2024-01-25 at 11.11.35 PM.png](R%20%2B%20ggplot2%2FScreenshot%202024-01-25%20at%2011.11.35%20PM.png)
 ![Screenshot 2024-01-25 at 11.11.52 PM.png](R%20%2B%20ggplot2%2FScreenshot%202024-01-25%20at%2011.11.52%20PM.png)
 

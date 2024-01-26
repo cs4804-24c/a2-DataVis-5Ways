@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS4804 A2</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.6/canvg.min.js"></script>
+  <style>
+    .legend {
+        font-size: 12px;
+        fill: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    .body {
+        font-family: 'Arial', sans-serif;
+    }
+    .tooltip {
+        font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+
+<div id="my_dataviz"></div>
+
+<script>
+    const margin = { top: 10, right: 30, bottom: 50, left: 60 },
+        width = window.innerWidth - margin.left - margin.right,
+        height = 0.85 * window.innerHeight - margin.top - margin.bottom;
+
+    const svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    d3.csv("../penglings.csv").then(function (data) {
+        // Add and scale X-axis
+        const x = d3.scaleLinear()
+        .domain([160, 240])
+        .range([ 0, width ]);
+        svg.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x));
+    
+        // Add and scale Y-axis
+        const y = d3.scaleLinear()
+        .domain([2300, 6700])
+        .range([ height, 0]);
+        svg.append("g")
+        .call(d3.axisLeft(y));
+
+        // Add X-axis title
+        svg.append("text")
+            .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`) // Adjust the positioning
+            .style("text-anchor", "middle")
+            .text("Flipper Length (mm)");
+
+        // Add Y-axis title
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - height / 2)
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Body Mass (g)");
+
+        // Add a tooltip div
+        const tooltip = d3.select("#my_dataviz")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "1px")
+            .style("border-radius", "5px")
+            .style("padding", "10px");
+
+        const mouseover = function (event, d) {
+            tooltip.style("opacity", 1);
+        };
+
+        const mousemove = function (event, d) {
+            tooltip
+                .html(`<b>Species:</b> ${d.species}<br><b>Island:</b> ${d.island}<br><b>Flipper length:</b> ${d.flipper_length_mm}mm<br><b>Body Mass:</b> ${d.body_mass_g}g.`)
+                .style("left", "100px")
+                .style("top", "100px");
+        };
+
+        const mouseleave = function (event, d) {
+            tooltip.style("opacity", 0);
+        };
+
+        const color = d3.scaleOrdinal()
+            .domain(["Adelie", "Gentoo", "Chinstrap"])
+            .range(["#6761A8", "#E43F6F", "#45CB85"]);
+
+        // Add dots
+        svg.append('g')
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("path")
+            .attr("transform", function (d) {
+                return "translate(" + x(d.flipper_length_mm) + "," + y(d.body_mass_g) + ")";
+            })
+            .attr("d", function (d) {
+                if (d.island === "Biscoe") return d3.symbol().type(d3.symbolCircle).size(100)();
+                else if (d.island === "Dream") return d3.symbol().type(d3.symbolTriangle).size(100)();
+                else return d3.symbol().type(d3.symbolSquare).size(100)();
+            })
+            .style("fill", function (d) { return color(d.species); })
+            .style("opacity", 0.6)
+            .style("stroke", "white")
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave);
+
+        // Add legend
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(${width - 100},${10})`);
+
+        const legendRectSize = 18;
+        const legendSpacing = 4;
+
+        const legendItems = legend.selectAll(".legend-item")
+            .data(color.domain())
+            .enter()
+            .append("g")
+            .attr("class", "legend-item")
+            .attr("transform", (d, i) => `translate(0, ${i * (legendRectSize + legendSpacing)})`);
+
+        legendItems.append("rect")
+            .attr("width", legendRectSize)
+            .attr("height", legendRectSize)
+            .style("fill", color);
+
+        legendItems.append("text")
+            .attr("x", legendRectSize + legendSpacing)
+            .attr("y", legendRectSize - legendSpacing)
+            .text(d => d);
+    });
+</script>
+
+</body>
+</html>

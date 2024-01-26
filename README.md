@@ -42,7 +42,7 @@ y-axis to make all the data fit on the visualization. The data was going off of 
 had to change them slightly, so it was all within the right area.
 
 Sources:
-https://stackoverflow.com/questions/37654596/d3-js-appending-tooltip-to-each-data-circle-point-and-finding-on-hover-event-for
+https://stackoverflow.com/questions/37654596/d3-js-appending-tooltip-to-each-data-circle-point-and-finding-on-hover-event-for and
 https://d3-graph-gallery.com/graph/custom_theme.html#ggplot2
 
 Technical Achievement:
@@ -73,9 +73,9 @@ all within the right area. I could definitely see this tool being useful in the 
 out. I felt like I was able to accomplish a lot and add a lot of functionality without running into much trouble. 
 
 Sources I used to help make the graph:
-https://altair-viz.github.io/gallery/scatter_tooltips.html
-https://altair-viz.github.io/altair-viz-v4/user_guide/troubleshooting.html#:~:text=If%20you%20are%20expecting%20a,display%20properly%20or%20at%20all.
-https://stackoverflow.com/questions/52223358/rename-tooltip-in-altair
+https://altair-viz.github.io/gallery/scatter_tooltips.html, 
+https://altair-viz.github.io/altair-viz-v4/user_guide/troubleshooting.html#:~:text=If%20you%20are%20expecting%20a,display%20properly%20or%20at%20all, 
+https://stackoverflow.com/questions/52223358/rename-tooltip-in-altair, and
 https://stackoverflow.com/questions/57695261/changing-the-size-of-altair-plot-renders-in-jupyter-notebook
 
 Technical Achievement: 

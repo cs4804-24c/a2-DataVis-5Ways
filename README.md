@@ -59,3 +59,16 @@ size: {
 I also love that there's a menu in the top right. If I need to make any graphs for personal projects in the near future, I'll likely be using Vega-Lite.
 
 [!Vega-Lite](./img/vega-lite.png)
+
+# R
+R gave me a lot of trouble with installing packages! I was able to resolve them, but I had to make a new library folder to do so.
+
+I didn't realize that ggplot would export a PDF instead of pulling up a window. I concluded that it wasn't working and made the plot in R. I regret not looking into it further.
+
+My R code is very simple, and my output is just the same. I filled in the markers by setting `pch = 19`. I feel like there has to be a better way to do this. Maybe there's some other type of plot that I could be using?
+
+Overall, I'm glad that R was able to make a grid & legend without too much trouble, but I'm not satisfied with the final product. I think it looks a little too... stiff? It's unfriendly and unflattering. The ggplot example you gave is charming. So is my Vega-Lite plot.
+
+[!R](./img/r.png)
+
+# 

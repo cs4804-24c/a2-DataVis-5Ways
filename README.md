@@ -1,148 +1,156 @@
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
+# Assignment 2 - Data Visualization, 5 Ways
 
-# 02-DataVis-5ways
+# R + ggplot2
+![Screenshot 2024-01-25 at 11.11.35 PM.png](R%20%2B%20ggplot2%2FScreenshot%202024-01-25%20at%2011.11.35%20PM.png)
+![Screenshot 2024-01-25 at 11.11.52 PM.png](R%20%2B%20ggplot2%2FScreenshot%202024-01-25%20at%2011.11.52%20PM.png)
 
-Assignment 2 - Data Visualization, 5 Ways  
-===
+For one of my language requirements I used R with ggplot 2. This was not that difficult to figure out, but I think I am
+biased because we had a lot of help from Professor Harrison's example in class. Once I got the data loaded, I got the 
+code working pretty easily. I was also able to get my technical feature working pretty easily because there were a lot 
+of different ways I was able to try looking online. The only time I had to get more hacky was with my technical feature.
+I had to make the graph go into the shiny app in order to get the tooltips to work correctly. I could see this tool 
+being useful in the future because of how many options there are for it. You can create so many things, and I really 
+like how the graph shows up right next to it in RStudio instead of appearing in a separate window. 
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+Technical Achievement:
+I used tooltips to create an interaction with each of the data points. When the user mouses over each of the data
+points, they are able to see the species, flipper length, body mass, and bill length. This allows the user to see all
+the information about each individual point by simply mousing over it.
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+Design Achievement:
+My tool tips are also my design achievement. Tooltips give the user additional functionality making the information they
+are seeing more clear. With the tooltips the user is able to find out exact information about every point, making the
+data extra meaningful and useful for them. I also kept consistent font throughout the graph. By keep the font the same
+for all aspects of the vis, there are not any distractions from the data being presented.
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
+Sources: 
+Professor Harrison's example and
+https://stackoverflow.com/questions/38917101/how-do-i-show-the-y-value-on-tooltip-while-hover-in-ggplot2
 
-Your goal is to use 5 different tools to make the following chart:
+# d3
+![Screenshot 2024-01-25 at 10.20.06 PM.png](d3%2FScreenshot%202024-01-25%20at%2010.20.06%20PM.png)
+![Screenshot 2024-01-25 at 10.20.25 PM.png](d3%2FScreenshot%202024-01-25%20at%2010.20.25%20PM.png)
 
-![](img/ggplot2.png)
+For one of my language requirements I used Javascript with d3. I think this was the most difficult to figure out. I had 
+a hard time loading my data for a while, and am still not really sure how I fixed it. I was first trying to reference 
+the csv that I have in the project folder instead of the one on GitHub, but I had to switch it to make it work. I feel 
+like the tool is very useful for more experienced data vis creators because there is a lot of ways to personalize the 
+content. I also think that this makes the tool a little more difficult to use, so in the future I think this tool is 
+going to be good for more professional data vis creators. Some hacks I did use were manipulating the domain of the x and 
+y-axis to make all the data fit on the visualization. The data was going off of the sides and the top and bottom, so I 
+had to change them slightly, so it was all within the right area.
 
-These features should be preserved as much as possible in your replication:
+Sources:
+https://stackoverflow.com/questions/37654596/d3-js-appending-tooltip-to-each-data-circle-point-and-finding-on-hover-event-for and
+https://d3-graph-gallery.com/graph/custom_theme.html#ggplot2
 
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
+Technical Achievement:
+I used tooltips to create an interaction with each of the data points. When the user mouses over each of the data
+points, they are able to see the species, flipper length, body mass, and bill length. This allows the user to see all
+the information about each individual point by simply mousing over it.
 
-Other features are not required. This includes:
+Design Achievement:
+My tool tips are also my design achievement. Tooltips give the user additional functionality making the information they
+are seeing more clear. With the tooltips the user is able to find out exact information about every point, making the 
+data extra meaningful and useful for them. I also kept consistent font throughout the graph. By keep the font the same 
+for all aspects of the vis, there are not any distractions from the data being presented. 
 
-- The background grid.
-- The legends.
+# Altair
+![Screenshot 2024-01-25 at 9.42.23 PM.png](Altair%2FScreenshot%202024-01-25%20at%209.42.23%20PM.png)
+![Screenshot 2024-01-25 at 9.42.36 PM.png](Altair%2FScreenshot%202024-01-25%20at%209.42.36%20PM.png)
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
+For one of the language requirements I coded in Python using Altair. I thought Altair was very easy to use once I had it 
+set up. It was very difficult for me to get everything downloaded and working at first. I tried to code this originally 
+in VSCode, but ended up having to switch to Jupyter Notebook because I was having too many installation issues. 
+Thankfully everything worked once I transferred it over to Jupyter. I found it very easy to create the graph because 
+there were many online resources explaining how to change features and utilize tooltips. One thing I wished I was able 
+to fix was the size of the circles. They are mapped to the bill length, but it is not super obvious which are different
+sizes. The circles are different sizes if you look closely, but none of my manipulations worked to make the difference
+more apparent. Some hacks I did use were manipulating the domain of the x and y-axis to make all the data fit on the 
+visualization. The data was going off of the sides and the top and bottom, so I had to change them slightly, so it was 
+all within the right area. I could definitely see this tool being useful in the future given how easy it was to figure
+out. I felt like I was able to accomplish a lot and add a lot of functionality without running into much trouble. 
 
-Improvements are also welcome as part of Technical and Design achievements.
+Sources I used to help make the graph:
+https://altair-viz.github.io/gallery/scatter_tooltips.html, 
+https://altair-viz.github.io/altair-viz-v4/user_guide/troubleshooting.html#:~:text=If%20you%20are%20expecting%20a,display%20properly%20or%20at%20all, 
+https://stackoverflow.com/questions/52223358/rename-tooltip-in-altair, and
+https://stackoverflow.com/questions/57695261/changing-the-size-of-altair-plot-renders-in-jupyter-notebook
 
-Libraries, Tools, Languages
----
+Technical Achievement: 
+I used tooltips to create an interaction with each of the data points. When the user mouses over each of the data 
+points, they are able to see the species, flipper length, body mass, and bill length. This allows the user to see all 
+the information about each individual point by simply mousing over it. 
 
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
+Design Achievement: 
+I have legends on the graph. The legends add clarity to the graph allowing the user to see what the colors and sizes
+of each point means. By adding a legend, a lot more information is conveyed to the user. I also used consistent styling
+throughout the graph. By making sure all the text was the same font and presented the same way, there is additional 
+clarity to the graph. 
 
-Otherwise, you should seek tools and libraries to fill out your 5.
+# Excel
 
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
+![Screenshot 2024-01-23 at 11.20.17 PM.png](img%2FScreenshot%202024-01-23%20at%2011.20.17%20PM.png)
 
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
+For one of my tools I used Excel. It was pretty easy to create the plot after the initial learning curve of 
+understanding how to use the tool. I first had to relearn how to put multiple different plots on the same graph which 
+took some playing around with tools. I then had to figure out that I needed to make it with a bubble plot instead of a 
+scatter plot in order to make the points different sizes based on bill length. I also had to play around with the scale
+of the bubbles because if you scaled using the area of the bubbles, all the bubbles would look the same, so you had 
+to make sure you were scaling by the width of the bubbles. Additionally, I had to guesstimate the colors for the bubbles
+because it would not let me enter a hex value to make them the exact color as the example graph. Some things I was not 
+able to do in Excel were adding additional margin lines.I was only able to have margins where there was an interval on
+the axis, so my chart has less margin lines. I was also not able to make the first and last axis points (3000 and 6000)
+start slightly after and end slightly before the end of the graph (mow there is extra room on the original graph), so 
+on my graph the visual starts right at 3000 and ends right at 6000. I can see this tool being very useful because it is 
+both easy to use and fairly easy to learn. Once you learn how to use the features, making a graph is easy. It is also 
+useful because it does not require knowing how to code, so it can be used by the general public. 
 
-I have marked a few that are strongly suggested.
+Technical Achievement: 
+My technical achievement for my Excel graph was adding a legend, background color, and changing the color of the 
+margins. I was able to more closely replicate the original graph by figuring out how to add a legend to the side, change
+the background to light gray, and change the margin lines to be white. 
 
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
+Design Achievement: 
+My design achievement for my Excel graph was using a consistent styling for the words within the graph. I made sure to 
+keep my graph consistent by using Times New Roman for all the features within the graph. I also made sure the axis 
+titles and legend titles were bold so that they drew more attention, while keeping the axis labels regular so they did
+not have as much emphasis. 
 
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
+# Tableau
+![Screenshot 2024-01-25 at 11.20.21 PM.png](Tableau%2FScreenshot%202024-01-25%20at%2011.20.21%20PM.png)
+![Screenshot 2024-01-25 at 11.20.38 PM.png](Tableau%2FScreenshot%202024-01-25%20at%2011.20.38%20PM.png)
 
-Tips
----
+For one of my tools I used Tableau. It was pretty easy to create the plot. The entire process of uploading the data and 
+creating the different aspects of the graph were all very simple. I did not have to use any hacks because the site was
+so simple. I could see this being very useful in the future because of how easy it was to use. It does not require any 
+code, and you can create a very elegant visualization very simply. I found this much easier to create more interesting 
+features than in Excel. 
 
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
+Technical Achievement: 
+My Tableau graph has popovers displaying details of each of the data points. This allows the user to see the exact 
+information about each individual point. I was able to more closely replicate the original graph by having a legend on 
+the side. 
 
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
+Design Achievement:
+I have legends on the graph. The legends add clarity to the graph allowing the user to see what the colors and sizes
+of each point means. By adding a legend, a lot more information is conveyed to the user. I also used consistent styling
+throughout the graph. By making sure all the text was the same font and presented the same way, there is additional
+clarity to the graph.
 
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
+# Technical Achievements
+I had different technical achievements for each of my graphs, though most of them were very similar. Most of my 
+technical achievements included adding tooltips to the graph so that all the data for each given point would appear when
+it was hovered over. More details about the technical achievement for each graph can be found in the individual section
+for each graph. 
 
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
+# Design Achievements
+I had different design achievements for each graph, though most of them are very similar. Most of my design achievements 
+included adding tool tips and legends for user clarity. By adding these additional features, users are able to more 
+easily and clearly understand the data they are looking at. Other design achievements I had included using consistent 
+styling throughout the graph. By making sure all the text was the same font and presented the same way, there is 
+additional clarity to the graph. Graphs need to be clear so there is no attention taken away from the data. More details 
+about the design achievements for each graph can be found in the individual section for each graph. 
 
 
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
-
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...

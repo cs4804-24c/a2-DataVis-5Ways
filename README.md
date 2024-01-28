@@ -135,6 +135,13 @@ While it takes time to find the correct documentation, these functions made the 
 
 ![ggplot2](img/ggplot2.png)
 
+# Python Seaborn, Pandas, and Matplotlib
+  These libraries were very straightforward and easy to use. I am familiar with Pandas Data Frames, so the only thing I had to learn was Seaborn, and I liked using it. 
+Seaborn is very simple because everything I wanted to do was as easy as adding a parameter to the scatterplot function. The only things I didn't use that one function for were axis labels, as well as showing and saving my plot. 
+The Function I used to create this visualization was as follows: sns.scatterplot(x = 'flipper_length_mm', y = 'body_mass_g', hue = 'species', size = 'bill_length_mm', alpha = 0.8, data = df). Because it was so straightforward and quick,
+this will likely be my go-to method for quick data visualization. 
+
+![Python](img/penglins_python.png)
 # d3...
 
 (And so on...)

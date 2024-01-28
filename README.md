@@ -8,6 +8,11 @@ However I modified it in the following ways: Ensure the axes were on the correct
 
 # matplotlib.pyplot
 
+# plotnine
+
+# p5js
+https://editor.p5js.org/allison.parrish/sketches/ry9wlx46b
+
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...
 - **Solved AI Forever**: ...

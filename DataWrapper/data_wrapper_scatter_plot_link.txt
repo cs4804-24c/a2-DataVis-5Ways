@@ -1,0 +1,5 @@
+Here is a link to my public DataWrapper scatter plot visualization of the Penguins dataset:
+
+https://www.datawrapper.de/_/UGoGK/
+
+I also have included an image of my DataWrapper replication as well for further reference.

@@ -164,7 +164,7 @@ This visualization was a bit trickier to create. I had to learn how to host a lo
 
 ![d3_viz_1](img/d3_viz_1.png)
 
-Add legend and make colors better later. Maybe add interactivity later for gender/island. Maybe choose different fonts as well.
+Add legend and make colors better later. Maybe add interactivity later for gender/island. Maybe choose different fonts as well. Graph x axis is wrong, make sure it aligns properly with the data
 
 # matplotlib + Python (Spyder)
 

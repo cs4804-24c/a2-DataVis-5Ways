@@ -10,8 +10,9 @@ However I modified it in the following ways: Ensure the axes were on the correct
 
 # plotnine
 
-# p5js
-https://editor.p5js.org/allison.parrish/sketches/ry9wlx46b
+# altair
+I used this resource to get started with making a scatter plot in altair: https://altair-viz.github.io/gallery/scatter_tooltips.html
+
 
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...

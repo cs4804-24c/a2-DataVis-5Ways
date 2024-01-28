@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+</head>
+
+<body>
+<script>
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 200, bottom: 40, left: 100},
+        width = 850 - margin.left - margin.right,
+        height = 520 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")")
+    
+    // Add the grey background that makes ggplot2 famous
+    svg
+      .append("rect")
+        .attr("x",0)
+        .attr("y",0)
+        .attr("height", height)
+        .attr("width", width+30)
+        .style("fill", "#EBEBEB")
+
+    // Legend
+    var legend_species = 280;    
+    svg.append("circle").attr("cx",620).attr("cy",legend_species).attr("r", 4).style("fill", "orange")
+    svg.append("circle").attr("cx",620).attr("cy",legend_species+30).attr("r", 4).style("fill", "purple")
+    svg.append("circle").attr("cx",620).attr("cy",legend_species+60).attr("r", 4).style("fill", "teal")
+    svg.append("text").attr("x", 635).attr("y", legend_species).text("Adelie").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("text").attr("x", 635).attr("y", legend_species+30).text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("text").attr("x", 635).attr("y", legend_species+60).text("Gentoo").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("text").attr("x", 615).attr("y", legend_species-30).text("species").style("font-size", "20px").attr("alignment-baseline","middle")
+    var legend_bill = 160;    
+    svg.append("circle").attr("cx",620).attr("cy",legend_bill).attr("r", 7).style("fill", "black")
+    svg.append("circle").attr("cx",620).attr("cy",legend_bill+30).attr("r", 9).style("fill", "black")
+    svg.append("text").attr("x", 635).attr("y", legend_bill).text("40").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("text").attr("x", 635).attr("y", legend_bill+30).text("50").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("text").attr("x", 615).attr("y", legend_bill-30).text("bill_length_mm").style("font-size", "20px").attr("alignment-baseline","middle")
+    
+
+    //Read the data
+    d3.csv("https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv", function(data) {
+    
+      // Add X axis
+      var x = d3.scaleLinear()
+        .domain([170, 230])
+        .range([ 20, width])
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(5))
+        .select(".domain").remove()
+    
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([3000, 6000])
+        .range([ 400, 60])
+        .nice()
+      svg.append("g")
+        .call(d3.axisLeft(y).tickSize(-width*1.3).ticks(7))
+        .select(".domain").remove()
+    
+      // Customization
+      svg.selectAll(".tick line").attr("stroke", "white")
+    
+      // Add X axis label:
+      svg.append("text")
+          .attr("text-anchor", "end")
+          .attr("x", width/2 + 80)
+          .attr("y", height + margin.top + 20)
+          .text("Flipper Length (mm)");
+    
+      // Y axis label:
+      svg.append("text")
+          .attr("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
+          .attr("y", -margin.left + 40)
+          .attr("x", -margin.top - height/2 + 70)
+          .text("Body Mass (g)")
+
+      // Color scale: give me a specie name, I return a color
+      var color = d3.scaleOrdinal()
+        .domain(["Adelie", "Chinstrap", "Gentoo"])
+        .range([ "orange", "purple", "teal"])
+
+      // Tooltip for mouseover display
+        var tooltip = svg.append("g")
+        .attr("class", "tooltip")
+        .style("display", "none");
+
+        tooltip.append("rect")
+        .attr("width", 200)
+        .attr("height", 25)
+        .attr("fill", "white")
+        .style("opacity", 1);
+
+        tooltip.append("text")
+        .attr("x", 100)
+        .attr("dy", "1.2em")
+        .style("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("font-weight", "bold");
+    
+      // Add dots
+      svg.append('g')
+        .selectAll("dot")
+        .data(data.filter(function(d) {
+        // Filter out data points where x or y values are NaN
+        return !isNaN(d.flipper_length_mm) && !isNaN(d.body_mass_g);
+    }))
+        .enter()
+        .append("circle")
+          .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+          .attr("cy", function (d) { return y(d.body_mass_g); } )
+          .attr("r", function(d) { return d.bill_length_mm/6;})
+          .attr("opacity", function(d) { return  0.7;})
+          .style("fill", function (d) { return color(d.species) } )
+          .on('mouseover', function (d, i) { d3.select(this).transition().duration('50').attr('opacity', '0.9').attr("r", 15); 
+                tooltip.style("display", null)
+                       .attr("transform", "translate(" + (x(d.flipper_length_mm)-210) + "," + (y(d.body_mass_g) - 30) + ")");
+                tooltip.select("text").text("Species: " + d.species + " - " + "Body Mass: " + d.body_mass_g + "g");} )
+          .on('mouseout', function (d, i) { d3.select(this).transition().duration('50').attr('opacity', '0.7').attr("r", function(d) { return d.bill_length_mm/6;}); 
+                tooltip.style("display", "none");} )
+    
+    })
+
+</script>
+</body>
+</html>

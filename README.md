@@ -176,6 +176,13 @@ Add legend, grid, unify colors? Remove top and right sides of the box if I can
 
 (And so on...)
 
+# Excel
+
+This visualization was not that difficult to create, but surprisingly not that much easier to create either. This may have been due to the fact that Excel for some reason seemed to be sluggish with this data set. I separated the data into three different sets based on the species, then had to manually remove the two entries that had 'Na' data entries for the values I was trying to graph. I made a scatter plot, plotting each species as a different set. Adding axis titles and a legend was very simple, just using the attached graph modification options. Changing the color and transparency just required going into the graph options sidebar. Unfortunately, it does not appear that Excel gives you the option to link scatter point size to data, so the points remain the same size for this graph. I do see myself using Excel in the future, but mostly only for data exploration. This is due to the ease with which the data can be manipulated from within the program. Making graphs then is more about searching for trends than it is about nice readable and usable finished products.
+
+![excel_viz_1](img/excel_viz_1.png)
+
+Maybe unify colors? See if I can manipulate the top and right axis to remove them.
 
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...

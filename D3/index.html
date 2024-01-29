@@ -36,12 +36,14 @@
 
     function loadDataAndGeneratePlot() {
       d3.csv("../penglings.csv", function(dataRow) {
-      return ({
-        homeSpecies: dataRow.species,
-        billLength: dataRow.bill_length_mm,
-        flipperLength: dataRow.flipper_length_mm,
-        bodyMass: dataRow.body_mass_g
-      })
+        //Data imputation: Here, I am filtering out all data rows that contain NaN/NA values and species values that are not of type String. Thus, I am only returning the data rows that contain complete data and using those rows to plot points on the scatter plot.
+        if (!(dataRow.species instanceof String) && !(isNaN(dataRow.bill_length_mm)) && !(isNaN(dataRow.flipper_length_mm)) && !(isNaN(dataRow.body_mass_g))) {
+          return ({
+            homeSpecies: dataRow.species,
+            billLength: dataRow.bill_length_mm,
+            flipperLength: dataRow.flipper_length_mm,
+            bodyMass: dataRow.body_mass_g
+        })}
       }).then(function(data) {
         console.log(data)
 
@@ -55,6 +57,9 @@
         const xAxisMaximumValue = 235
         const yAxisMinimumValue = 2500
         const yAxisMaximumValue = 6500
+
+        //Declare the title of the visualization:
+        const title = "Body Mass (g) vs. Flipper Length (mm) Penguins Data Scatter Plot"
 
         //Add an SVG and g grouping for visualization
         const svg = d3.select("#container")
@@ -88,6 +93,8 @@
         .attr("transform", "translate(" + (width / 2) + "," + (height + (margin.bottom - 20)) + ")")
         .style("text-anchor", "middle") //The text-anchor style is used to align text that is already formatted or wrapped in some way. In this case, we have already translated the text element, and the middle of the text string is aligned at the current x text position.
         .text("Flipper Length (mm)") //Specify the text that appears in the current text element.
+        .attr("font-family", "Helvetica Neue, Arial")
+        .style('font-size', "15px")
 
         //Create the y-axis:
         let yScale = d3.scaleLinear().domain([yAxisMinimumValue, yAxisMaximumValue]).range([height, 0]) //Smallest, largest passed into range function.
@@ -108,6 +115,18 @@
         .attr("x", (0 - (height / 2)))
         .style("text-anchor", "middle") //Middle of the text string (using y attribute now) is aligned at the current y text position.
         .text("Body Mass (g)")
+        .attr("font-family", "Helvetica Neue, Arial")
+        .style('font-size', "15px")
+
+        //Append the title to the plot:
+        svg
+        .append("text")
+        .attr("class", "title")
+        .attr("y", 20)
+        .attr("x", 20)
+        .attr("font-family", "Helvetica Neue, Arial")
+        .style('font-size', "12px")
+        .text(title)
 
         //Create an ordinal scale to assign colors to different species (a scale consisting of ordinal data - data that is discretely classified and has an order - in this case, the species data is ordinal).
         const colorScale = d3.scaleOrdinal().domain(

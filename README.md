@@ -10,7 +10,7 @@ Your goal is to use 5 different tools to make the following chart:
 ![](altair/altair_penguins.png)
 
 # Data Wrapper
-![](data-wrapper/sV5OG-penguins.png)
+![](data-wrapper/sV5OG-penglings.png)
 
 # Excel
 ![](excel/excel-chart.png)

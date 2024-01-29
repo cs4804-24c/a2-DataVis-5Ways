@@ -15,12 +15,30 @@ Each row contains a penguin observation and several variables about it, includin
 
 Your goal is to use 5 different tools to make the following chart:
 
+Example Chart
+---
 ![](in-class-example/ggplot2.png)
 
+
+Altair
+---
 ![](altair/altair_penguins.png)
+
+Data Wrapper
+---
 ![](data-wrapper/sV5OG-penguins.png)
+
+Excel
+---
 ![](excel/excel-chart.png)
+
+Vega-Lite
+---
 ![](vega-lite/vega-lite-penguins.png)
+
+D3.js
+---
+![](d3.png)
 
 These features should be preserved as much as possible in your replication:
 

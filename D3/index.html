@@ -28,8 +28,7 @@
     //https://www.educative.io/answers/what-is-d3-enter-and-exit
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
     //I learned about the D3 csv function: https://www.codecademy.com/resources/docs/d3/selection/csv
-
-    //NOTE: As per the guidance of the TA, I am choosing to kepp the data rows with NA values for the relevant attributes that are part of the scatter plot.
+    //I followed the code from this article closely to learn how to construct tooltips: https://observablehq.com/@john-guerra/how-to-add-a-tooltip-in-d3
 
     const container = document.getElementById("container")
     console.log(d3) //test if d3 is loaded
@@ -122,16 +121,25 @@
         svg
         .append("text")
         .attr("class", "title")
-        .attr("y", 20)
+        .attr("y", 5)
         .attr("x", 20)
         .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "12px")
+        .style('font-size', "16px")
         .text(title)
 
         //Create an ordinal scale to assign colors to different species (a scale consisting of ordinal data - data that is discretely classified and has an order - in this case, the species data is ordinal).
         const colorScale = d3.scaleOrdinal().domain(
           ["Adelie", "Chinstrap", "Gentoo"]).range(
           ["#FF9013", "#9932CC", "#048B8C"]) //When colorScale is used as a function call, a color in the scale range will be returned that corresponds to the specified species type in the domain. 
+
+        //Create a tooltip:
+        const tooltip = svg
+        .append("text")
+        .attr("class", "tooltip")
+        .attr("fill", "black")
+        .style("pointer-events", "none")
+        .attr("font-family", "Helvetica Neue, Arial")
+        .style('font-size', "10px")
 
         //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
         //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.
@@ -152,11 +160,24 @@
           return parseFloat(d.billLength) / 6.0 //Play around with the value of the denominator.
         })
         .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
+        .on('mouseover', (event, d) => { //Add an interactive tooltip for each circle.
+          const [mouseX, mouseY] = d3.pointer(event)
+          infoText = `Species: ${d.homeSpecies}, Flipper Length (mm): ${d.flipperLength}, Body Mass (g): ${d.bodyMass}, Bill Length: ${d.billLength}`
+          tooltip
+          .raise()
+          .attr("x", mouseX)
+          .attr("y", mouseY)
+          .transition()
+          .duration(100)
+          .text(infoText)
+        })
+        .on('mouseout', function() {
+          tooltip.text("")
+        })
         }).catch(function(error) {
           console.error(error)
         })
     }
-
     loadDataAndGeneratePlot()
   </script>
 </html>

@@ -1,6 +1,4 @@
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
-
 # 02-DataVis-5ways
 
 https://d3-graph-gallery.com/graph/bubble_color.html
@@ -18,6 +16,11 @@ Each row contains a penguin observation and several variables about it, includin
 Your goal is to use 5 different tools to make the following chart:
 
 ![](in-class-example/ggplot2.png)
+
+![](altair/altair_penguins.png)
+![](data-wrapper/sV5OG-penguins.png)
+![](excel/excel-chart.png)
+![](vega-lite/vega-lite-penguins.png)
 
 These features should be preserved as much as possible in your replication:
 

@@ -3,6 +3,8 @@
 
 # 02-DataVis-5ways
 
+https://d3-graph-gallery.com/graph/bubble_color.html
+
 Assignment 2 - Data Visualization, 5 Ways  
 ===
 
@@ -15,7 +17,7 @@ Each row contains a penguin observation and several variables about it, includin
 
 Your goal is to use 5 different tools to make the following chart:
 
-![](img/ggplot2.png)
+![](in-class-example/ggplot2.png)
 
 These features should be preserved as much as possible in your replication:
 

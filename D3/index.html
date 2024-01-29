@@ -63,7 +63,7 @@
         //Add an SVG and g grouping for visualization
         const svg = d3.select("#container")
         .append("svg")
-        .attr("width", width + margin.left + margin.right) //Have the width include both horizontal margins to make space for the y-axis label.
+        .attr("width", (2 * width) + margin.left + margin.right) //Have the width include both horizontal margins to make space for the y-axis label.
         .attr("height", height + margin.top + margin.bottom) //Have the height include both vertical margins to make space for the x-axis label.
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")") //Position the container so that there are still margins at the top and at the left.
@@ -121,7 +121,7 @@
         svg
         .append("text")
         .attr("class", "title")
-        .attr("y", 5)
+        .attr("y", 2)
         .attr("x", 20)
         .attr("font-family", "Helvetica Neue, Arial")
         .style('font-size', "16px")
@@ -139,7 +139,7 @@
         .attr("fill", "black")
         .style("pointer-events", "none")
         .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "10px")
+        .style('font-size', "13px")
 
         //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
         //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.

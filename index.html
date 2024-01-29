@@ -1,0 +1,86 @@
+
+<div id="container"></div>
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<script>
+var margin = {top: 10, right: 20, bottom: 40, left: 60},
+    width = 550 - margin.left - margin.right,
+    height = 420 - margin.top - margin.bottom;
+
+  console.log(d3); // test if d3 is loaded
+
+  // Assign colors
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range(["#ff8c02", "#158f8f", "#9a34ca"])
+
+  // Add an SVG
+  var svg = d3.select("#container").append("svg")
+    .attr("width", width + margin.left + margin.right+50)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+  d3.csv("penglings.csv", (data) => {
+    
+    // Add X axis
+    console.log(data.flipper_length_mm)
+    var x = d3.scaleLinear()
+      .domain([170, 240])
+      .range([ 0, width ]);
+      
+    svg.append("g")
+      .attr("transform", "translate(0 ," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([2500, 7000])
+      .range([ height, 0])
+
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    //X axis label
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", (width+margin.left+60)/2)
+        .attr("y", height + margin.top + 20)
+        .text("Flipper Length (mm)");
+
+    // Y axis label:
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -margin.left-50)
+        .attr("y", -margin.top-30)
+        .text("Body Mass (g)")
+
+    //Dot size scale
+    var z = d3.scaleLinear()
+      .domain([0, 60])
+      .range([0,8]);
+
+    svg.append('g').selectAll("dot").data(data).enter().append("circle")
+      .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+      .attr("cy", function (d) { return y(d.body_mass_g); } )
+      .attr("r", function (d) {return z(d.bill_length_mm); })
+      .style("fill", function (d) { return color(d.species)})
+      .style("opacity", 0.8)
+
+    
+    var legend = svg.append('g')
+legend.append("circle").attr("cx",450).attr("cy",190).attr("r", 6).style("fill", "#ff8c02")
+legend.append("circle").attr("cx",450).attr("cy",220).attr("r", 6).style("fill", "#9a34ca")
+legend.append("circle").attr("cx",450).attr("cy",250).attr("r", 6).style("fill", "#158f8f")
+legend.append("circle").attr("cx",450).attr("cy",300).attr("r", z(40)).style("fill", "#000000")
+legend.append("circle").attr("cx",450).attr("cy",330).attr("r", z(50)).style("fill", "#000000")
+legend.append("text").attr("x", 470).attr("y", 190).text("Adelie").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 470).attr("y", 220).text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 470).attr("y", 250).text("Gentoo").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 470).attr("y", 300).text("40").style("font-size", "15px").attr("alignment-baseline","middle")
+legend.append("text").attr("x", 470).attr("y", 330).text("50").style("font-size", "15px").attr("alignment-baseline","middle")
+
+  })
+</script>

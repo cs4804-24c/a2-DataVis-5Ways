@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('/home/taya/a2-DataVis-5Ways-yakovenko/penglings.csv')
 
 # Plot the data using Seaborn
-sns.lineplot(data=df, x='bill_length_mm', y='bill_depth_mm')
+sns.scatterplot(data=df, x='bill_length_mm', y='bill_depth_mm')
 
 # Add title and labels
 plt.title('Line Plot of Data from CSV')

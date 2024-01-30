@@ -141,6 +141,11 @@ While it takes time to find the correct documentation, these functions made the 
 
 ![sheets](img/sheets.png)
 
+# d3
+
+~
+
+![d3](img/d3.png)
 
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...

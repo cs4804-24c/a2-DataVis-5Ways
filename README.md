@@ -121,28 +121,59 @@ Make sure you include the files necessary to reproduce your plots.
 You should structure these in folders if helpful.
 We will choose some at random to run and test.
 
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
 
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
-
-
+# JavaScript + d3
+JavaScript is a versatile language mainly used in web development.
+D3.js is a JavaScript library for producing dynamic, interactive data visualizations in web browsers. 
+The visualization manually parses through the csv file using d3 and then creates a visualization as the result.
+![js_visualization](img/js_visualization.png)
 ## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+- **In-Function Parsing**: The visualization parses the csv file within the code.
+- **Point Resizing**: The data points are automatically resized based on how clustered it is.
 
 ### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+- **Color Scheme Similarity**: The color scheme matches the original visualization as much as possible.
+
+# JavaScript + Chart.js
+JavaScript is a versatile language mainly used in web development.
+Chart.js is a popular visualization library within JavaScript.
+This visualization makes use of Chart.js to create interactive media, which is visible within a web browser.
+![js_chart_visualization](img/js_chart_visualization.png)
+## Technical Achievements
+- **Interactivity**: Hovering over a data point will show which category it belongs to.
+
+### Design Achievements
+- **Color Scheme Similarity**: The color scheme matches the original visualization as much as possible.
+- **Legend**: The visualization has a legend similar to the original ggplot2 chart.
+# Python + Matplotlib
+Python is a widely-used language primarily used in data science, AI/ML, and back-end development.
+Matplotlib is a popular visualization library within Python.
+The visualization is pretty standard, all things considered, simply loading in the data by linking the file path.
+![py_visualization](img/py_visualization.png)
+## Technical Achievements
+- **Line2D**: Makes use of the Line2D feature within matplotlib.
+
+### Design Achievements
+- **Color Scheme Similarity**: The color scheme matches the original visualization as much as possible.
+- **Legend**: The visualization has a legend similar to the original ggplot2 chart.
+# Python + Plotly
+Python is a widely-used language primarily used in data science, AI/ML, and back-end development.
+Plotly is a popular visualization library within Python.
+The visualization uses a couple of nested dictionaries to store the data, which has been parsed by utilizing the pandas library, available within Python.
+![py_plotly_visualization](img/py_plotly_visualization.png)
+## Technical Achievements
+- **Dictionaries**: Python's dictionary structure is used to hold the x and y axises.
+
+### Design Achievements
+- **Color Scheme Similarity**: The color scheme matches the original visualization as much as possible.
+- **Legend**: The visualization has a legend similar to the original ggplot2 chart.
+# R + ggplot2
+R is a language primarily focused on statistical computing.
+ggplot2 is a popular library for charting in R.
+The visualization integrates Python to represent the data as a dataframe, which makes the loading and parsing of the data much more simplistic.
+![r_visualization](img/r_visualization.png)
+## Technical Achievements
+- **Python Integration**: Python is integrated within the file to help with formatting the data correctly.
+
+### Design Achievements
+- **Legend**: The visualization has a legend similar to the original ggplot2 chart.

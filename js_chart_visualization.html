@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scatter Plot with Chart.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+<canvas id="myChart" width="800" height="400"></canvas>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    Papa.parse("penglings.csv", {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      complete: function(results) {
+        const data = results.data;
+        const validData = data.filter(d => d.species && d.flipper_length_mm && d.body_mass_g && d.bill_length_mm);
+        const dataset = validData.map(item => ({
+          x: item.flipper_length_mm,
+          y: item.body_mass_g,
+          r: item.bill_length_mm / 10
+        }));
+        const species = [...new Set(validData.map(item => item.species))];
+        const backgroundColors = ['red', 'blue', 'green'];
+
+        const scatterData = {
+          datasets: species.map((specie, index) => ({
+            label: specie,
+            data: dataset.filter(item => validData[dataset.indexOf(item)].species === specie),
+            backgroundColor: backgroundColors[index % backgroundColors.length],
+            hoverBackgroundColor: backgroundColors[index % backgroundColors.length],
+            pointRadius: dataset.filter(item => validData[dataset.indexOf(item)].species === specie).map(item => item.r)
+          }))
+        };
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const scatterChart = new Chart(ctx, {
+          type: 'scatter',
+          data: scatterData,
+          options: {
+            scales: {
+              x: {
+                type: 'linear',
+                position: 'bottom',
+                title: {
+                  display: true,
+                  text: 'Flipper Length (mm)'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Body Mass (g)'
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'Penguin Size Metrics by Species'
+              },
+              legend: {
+                display: true
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const labelIndex = context.dataIndex;
+                    const labelSpecies = validData[labelIndex].species;
+                    const labelSize = validData[labelIndex].bill_length_mm;
+                    return `${labelSpecies} (Bill Length: ${labelSize} mm)`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
+

@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-file_path = r'E:\IdeaProjects\python_method\penglings.csv'
+file_path = r'E:\IdeaProjects\python_method\penglings.csv' #replace this path to your path
 data = pd.read_csv(file_path)
 
 data_clean = data.dropna(subset=['flipper_length_mm', 'body_mass_g', 'bill_length_mm'])
@@ -35,4 +35,4 @@ plt.legend(title='Species')
 
 plt.show()
 
-plt.savefig(r'E:\IdeaProjects\python_method\penguin_scatterplot.png')
+plt.savefig(r'E:\IdeaProjects\python_method\penguin_scatterplot.png') #this is the output path, replace it to your own

@@ -61,6 +61,15 @@
         //Declare the title of the visualization:
         const title = "Scatter Plot of Body Mass (g) vs. Flipper Length (mm) of Penguins"
 
+        //Create an ordinal scale to assign colors to different species (a scale consisting of ordinal data - data that is discretely classified and has an order - in this case, the species data is ordinal).
+        const colorScale = d3.scaleOrdinal().domain(
+          ["Adelie", "Chinstrap", "Gentoo"]).range(
+          ["#FF9013", "#9932CC", "#048B8C"]) //When colorScale is used as a function call, a color in the scale range will be returned that corresponds to the specified species type in the domain. 
+
+        //Sample size data for a size legend:
+        const sampleSizeData = [{size: data[(Math.floor(Math.random() * data.length))].billLength, fillColor: "black"}, 
+        {size: data[(Math.floor(Math.random() * data.length))].billLength, fillColor: "black"}]
+
         //Add an SVG and g grouping for visualization
         const svg = d3.select("#container")
         .append("svg")
@@ -128,11 +137,6 @@
         .style('font-size', "16px")
         .text(title)
 
-        //Create an ordinal scale to assign colors to different species (a scale consisting of ordinal data - data that is discretely classified and has an order - in this case, the species data is ordinal).
-        const colorScale = d3.scaleOrdinal().domain(
-          ["Adelie", "Chinstrap", "Gentoo"]).range(
-          ["#FF9013", "#9932CC", "#048B8C"]) //When colorScale is used as a function call, a color in the scale range will be returned that corresponds to the specified species type in the domain. 
-
         //Create a tooltip:
         const tooltip = svg
         .append("text")
@@ -171,6 +175,12 @@
         .attr("alignment-baseline", "middle") //The alignment-baseline attribute specifies how an object is aligned with respect to its parent. This property specifies which baseline of this element is to be aligned with the corresponding baseline of the parent.
         //Aligns the vertical midpoint of the box with the baseline of the parent box plus half the x-height of the parent.
 
+        //Create a size legend:
+        sampleSizeData.forEach(function(d, i) {
+          svg.append("circle").attr("cx", 50).attr("cy", 110 + (i * 15)).attr("r", (d.size / 6)).style("fill", d.fillColor)
+          svg.append("text").attr("x", 70).attr("y", 110 + (i * 15)).text(d.size).attr("font-family", "Helvetica Neue, Arial").style("font-size", "12px").attr("text-anchor", "start").attr("alignment-baseline", "middle")
+        })
+        
         //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
         //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.
         svg.selectAll("circle") //No circles appended to DOM yet.
@@ -187,7 +197,7 @@
           return yScale(parseFloat(d.bodyMass)) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
         })
         .attr("r", function (d) {
-          return parseFloat(d.billLength) / 6.0 //Play around with the value of the denominator.
+          return parseFloat(d.billLength) / 6.0 //I have divided tbe billLength by 6.0 here so that the sizes of the circles that appear on the screen match the way the circles appear in the original scatter plot image as closely as possible. 
         })
         .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
         .on('mouseover', (event, d) => { //Add an interactive tooltip for each circle.

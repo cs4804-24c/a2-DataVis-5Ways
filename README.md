@@ -3,7 +3,7 @@
 README
 ---
 
-python (plotly & pandas)
+Python (Plotly & Pandas)
 screenshot
 ![](img/datavis-1way.png)
 paragrapph

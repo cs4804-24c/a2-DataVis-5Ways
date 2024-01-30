@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+	
+	<style>
+        .legend {
+            font-size: 14px;
+        }
+
+        .legend circle {
+            fill: gray;
+        }
+
+        .legend text {
+            fill: black;
+            font-size: 12px;
+            alignment-baseline: middle;
+        }
+    </style>
+	
+</head>
+<body>
+    <!-- Code adapted from ChatGBT 3.5 -->
+	
+	<svg width="700" height="400" id="scatter-plot"></svg>
+
+    <script>
+    d3.csv("penglings2.csv").then(function(data) {
+        // Convert strings to numbers if needed
+        data.forEach(function(d) {
+            d.flipper_length_mm = +d.flipper_length_mm;
+            d.body_mass_g = +d.body_mass_g;
+        });
+
+        // Set up SVG and scales
+        const svg = d3.select("#scatter-plot");
+        const margin = { top: 20, right: 120, bottom: 50, left: 50 };
+        const width = +svg.attr("width") - margin.left - margin.right;
+        const height = +svg.attr("height") - margin.top - margin.bottom;
+		const leftOffset = 43 //Offset for left axis
+
+        const xScale = d3.scaleLinear().range([leftOffset, width]).domain([160, 230]).nice();
+        const yScale = d3.scaleLinear().range([height, 0]).domain(d3.extent(data, d => d.body_mass_g)).nice();
+
+        // Create circles for each data point
+        svg.selectAll("circle")
+            .data(data)
+            .enter().append("circle")
+            .attr("cx", d => xScale(d.flipper_length_mm))
+            .attr("cy", d => yScale(d.body_mass_g))
+            .attr("r", d => (d.bill_length_mm - 20) / 3) // Radius of circles
+            .attr("fill", function(d,i){ // Circle color
+				if (d.species === "Adelie"){
+					return "red";}
+				if (d.species === "Gentoo"){
+					return "purple";}
+				if (d.species === "Chinstrap"){
+					return "blue";}
+				})
+			.style("opacity", '0.6') // Circle opacity
+			.on("mouseover", showInfo)
+            .on("mouseout", hideInfo);
+
+        // Add x-axis
+        svg.append("g")
+            .attr("transform", "translate(" + margin.left + "," + (height + margin.top) + ")")
+            .call(d3.axisBottom(xScale).ticks(8));
+			
+
+        // Add y-axis
+        svg.append("g")
+            .attr("transform", "translate(" + (margin.left + leftOffset) + "," + margin.top + ")")
+            .call(d3.axisLeft(yScale));
+
+        // Add axis labels
+        svg.append("text")
+            .attr("transform", "translate(" + (width / 2 + margin.left) + "," + (height + margin.top + 40) + ")")
+            .style("text-anchor", "middle")
+            .text("Flipper Length (mm)");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", margin.left - 5)
+            .attr("x", 0 - (height / 2) - margin.top)
+            .style("text-anchor", "middle")
+            .text("Body Mass (g)");
+		
+		
+		// Function to show additional information in a popup box
+        function showInfo(d) {
+            const tooltip = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("left", (d3.event.pageX + 10) + "px")
+                .style("top", (d3.event.pageY - 10) + "px");
+
+            tooltip.html("Species: " + d.species + "<br>Flipper Length (mm): " + d.flipper_length_mm + "<br>Body Mass (g): " + d.body_mass_g + "<br>Bill Length (mm): " + d.bill_length_mm + "<br>Sex: " + d.sex + "<br> Island: " + d.island);
+        }
+
+        // Function to hide the popup box
+        function hideInfo() {
+            d3.select(".tooltip").remove();
+        }
+		
+		
+		// Add legend
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", "translate(" + (width + 45) + "," + 20 + ")");
+
+        legend.append("circle")
+            .attr("r", 20/3)
+            .attr("cx", 0)
+            .attr("cy", 10);
+
+        legend.append("text")
+            .attr("x", 15)
+            .attr("y", 10)
+            .text("Bill Length 40 mm");
+			
+		legend.append("circle")
+            .attr("r", 30/3)
+            .attr("cx", 0.3)
+            .attr("cy", 32);
+
+        legend.append("text")
+            .attr("x", 15)
+            .attr("y", 32)
+            .text("Bill Length 50 mm");
+		
+		// Add additional circles with species colors
+		
+    });
+</script>
+
+</body>
+</html>

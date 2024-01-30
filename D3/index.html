@@ -58,7 +58,7 @@
         const yAxisMaximumValue = 6500
 
         //Declare the title of the visualization:
-        const title = "Body Mass (g) vs. Flipper Length (mm) Penguins Data Scatter Plot"
+        const title = "Scatter Plot of Body Mass (g) vs. Flipper Length (mm) of Penguins"
 
         //Add an SVG and g grouping for visualization
         const svg = d3.select("#container")
@@ -122,7 +122,7 @@
         .append("text")
         .attr("class", "title")
         .attr("y", 0)
-        .attr("x", 25)
+        .attr("x", 0 + (width / 20))
         .attr("font-family", "Helvetica Neue, Arial")
         .style('font-size', "16px")
         .text(title)
@@ -140,6 +140,7 @@
         .style("pointer-events", "none")
         .attr("font-family", "Helvetica Neue, Arial")
         .style('font-size', "13px")
+        .style("font-weight", "bold")
 
         //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
         //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.

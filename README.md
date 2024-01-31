@@ -139,16 +139,18 @@ While it takes time to find the correct documentation, these functions made the 
 
 From here on out it is my work
 
-This visualization was easy to create. The only slightly annoying thing about it is that Altair is designed to work with notebook type IDEs, so it works well with JupyterNotebook, but not Spyder (which is my default preference). The package automatically added the tick marks, though I did have to scale the axis myself. I can see myself using this in the future due to the ease of use and my existing familiarity with python code. That being said I haven't explored the limitations of this yet. I suspect Altair may have trouble producing more bespoke visualizations, though I don't know that for certain.
+This visualization was easy to create. The only slightly annoying thing about it is that Altair is designed to work with notebook type IDEs, so it works well with JupyterNotebook, but not Spyder (which is my default preference). The package automatically added the tick marks, though I did have to scale the axis myself. I can see myself using this in the future due to the ease of use and my existing familiarity with python code. That being said I haven't explored the limitations of this yet. I suspect Altair may have trouble producing more bespoke visualizations, though I don't know that for certain. Adding additional features such as tooltips and specific colors was not too har either.
 
-![altair_viz_1](https://github.com/Termite1/a2-DataVis-5Ways/assets/67423556/5ed447c1-211e-4dcb-b13b-3e606d63e3cd)
+![altair_viz_2](altair_viz_2.png)
+
+Design Achievement
+- Altered species colors to colors of my choice
 
 Technical Achievements
 - Renamed axis and legend titles so they aren't the data names
+- Added tooltip that explains additional information about scatter points when they are moused over
 
 Come back to this design if I have time, shouldnt be too hard to add modifications to bump my design and technical grade (shape --> island; choose my own colors; limit bill length circles to just 40 and 50; maybe get fancy and do shade change based on year; internal shapes based on gender; or split the graph based on gender, island, etc.) Maybe split based on speices --> bee swarm graph, and so on; Interaction!)
-
-REMEMBER TO UPLOAD CODE BEFORE SUBMITTING PROJECT
 
 # Igor 8
 

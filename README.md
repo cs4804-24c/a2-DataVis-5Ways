@@ -141,6 +141,8 @@ From here on out it is my work
 
 This visualization was easy to create. The only slightly annoying thing about it is that Altair is designed to work with notebook type IDEs, so it works well with JupyterNotebook, but not Spyder (which is my default preference). The package automatically added the tick marks, though I did have to scale the axis myself. I can see myself using this in the future due to the ease of use and my existing familiarity with python code. That being said I haven't explored the limitations of this yet. I suspect Altair may have trouble producing more bespoke visualizations, though I don't know that for certain. Adding additional features such as tooltips and specific colors was not too har either.
 
+![altair_viz_2-2](altair_viz_2-2.png)
+
 ![altair_viz_2](altair_viz_2.png)
 
 Design Achievement
@@ -180,6 +182,9 @@ Add legend and make colors better later. Maybe add interactivity later for gende
 This visualization was not too difficult to create, though it did take more code than the Altair version did. I had to extract the values from the data frame to effectively manipulate the scatter points sizes and colors. The circles by default plotted small and telling the size difference was difficult, so I went about exaggerating the difference so it could be observed by cubing the size then dividing by 500 to get the circles back down to a reasonable size. Mostly I was using plt.scatter for the first time, as directly creating the circles using plt.circle and plt.add_patch resulted in the circle flattening to horizontal lines when created due to the y axis scaling. I also think the matplotlib graph does not look as good as the Altair version. I do see myself using matplotlib in the future, but only due to ease of use and certainly not for professional or final product visualizations.
 
 ![matplotlib_viz_1](img/matplotlib_viz_1.png)
+
+Design Achievement
+- Managed to get the bill_length_mm scatter point size relationship to provide a reasonable visual scale
 
 Add legend, grid, unify colors? Remove top and right sides of the box if I can
 

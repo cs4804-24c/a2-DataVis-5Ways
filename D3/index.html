@@ -91,6 +91,7 @@
           .attr("class", "title")
           .attr("x", xCoordinate)
           .attr("y", yCoordinate)
+          .style("text-anchor", "middle")
           .attr("font-family", fontFamily)
           .style('font-size', fontSize)
           .text(title)
@@ -171,11 +172,11 @@
         let xAxisBuilder = createXAxisBuilder(xScale, 7, [170, 180, 190, 200, 210, 220, 230], 0)
         let yAxisBuilder = createYAxisBuilder(yScale, 4, [3000, 4000, 5000, 6000], 0)
         
-        attachTitle(title, (0 + (width / 20)), 0, "Helvetica Neue, Arial", "16px")
+        attachTitle(title, ((xScale(xAxisMaximumValue) - xScale(xAxisMinimumValue)) / 2), yScale(yAxisMaximumValue), "Helvetica Neue, Arial", "16px")
         attachXAxis(xAxisBuilder, 0, height)
         attachYAxis(yAxisBuilder, 0, 0)
-        setXAxisLabel("Flipper Length (mm)", (width / 2), (height + (margin.bottom - 20)), "middle", "Helvetica Neue, Arial", "15px")
-        setYAxisLabel("Body Mass (g)", -45, (0 - (height / 2)), "middle", "Helvetica Neue, Arial", "15px")
+        setXAxisLabel("Flipper Length (mm)", ((xScale(xAxisMaximumValue) - xScale(xAxisMinimumValue)) / 2), (yScale(yAxisMinimumValue) + (margin.bottom / 1.5)), "middle", "Helvetica Neue, Arial", "15px")
+        setYAxisLabel("Body Mass (g)", (xScale(xAxisMinimumValue) - (margin.bottom / 1.5)), ((yScale(yAxisMaximumValue) - yScale(yAxisMinimumValue)) / 2), "middle", "Helvetica Neue, Arial", "15px")
         
         svg.append("text").attr("font-family", "Helvetica Neue, Arial").style('font-size', "12px").attr("x", 40).attr("y", 35).text(colorLegendTitle)  
         svg.selectAll("circle")

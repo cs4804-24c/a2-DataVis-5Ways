@@ -1,4 +1,4 @@
-// Set up the dximensions of the SVG container
+// Set up the dimensions of the SVG container
 const width = 600;
 const height = 400;
 const margin = { top: 20, right: 20, bottom: 40, left: 40 };
@@ -75,14 +75,14 @@ d3.csv('../penglings.csv').then(data => {
     .attr('text-anchor', 'middle')
     .attr('x', -margin.left -180)
     .attr('y', height / 2 -220)
-    .attr('dy', '-2.5em')  // Adjust position based on your preference
+    .attr('dy', '-2.5em')
     .attr('transform', 'rotate(-90)')
     .text(yAxisLabel);
 
 // Create size scale legend
 const sizeLegend = svg.append('g')
     .attr('class', 'size-legend')
-    .attr('transform', `translate(${width - 100},${height - 50})`); // Adjust the position
+    .attr('transform', `translate(${width - 100},${height - 50})`);
 
 // Specify the desired labels for the size scale
 const sizeLegendData = [40, 50];
@@ -96,7 +96,7 @@ const sizeLegendScale = d3.scaleLinear()
 sizeLegend.append('text')
     .attr('class', 'legend-label')
     .attr('x', 40)
-    .attr('y', 40) // Adjust the vertical position
+    .attr('y', 40)
     .attr('text-anchor', 'middle')
     .text('bill_length_mm');
 
@@ -105,7 +105,7 @@ sizeLegend.selectAll('circle')
     .enter()
     .append('circle')
     .attr('cx', 0)
-    .attr('cy', (d, i) => -i * 20) // Adjust spacing between circles
+    .attr('cy', (d, i) => -i * 20)
     .attr('r', d => sizeLegendScale(d))
     .attr('fill', 'none')
     .attr('stroke', '#000');
@@ -117,7 +117,7 @@ sizeLegend.selectAll('text')
     .attr('x', 20)
     .attr('y', (d, i) => -i * 20)
     .attr('dy', '0.4em')
-    .text(d => d + ' mm'); // Include 'mm' in the text label
+    .text(d => d + ' mm');
 
 
 

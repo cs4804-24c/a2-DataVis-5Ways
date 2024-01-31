@@ -6,6 +6,7 @@
 Assignment 2 - Data Visualization, 5 Ways  
 ===
 Python
+
 Pandas + Matplotlib + Seaborn
 
 Python is considered as a popular programming language that has strong visualization capabilities. Matplotlib is the most widely used and the first library for plotting in Python. Seaborn is another Python visualization library based on the Matplotlib library.
@@ -20,6 +21,7 @@ Design achievements
 Assigning colors to the species used in the graph. Styling with Seaborn to show a grid. Adding axes labels for increasing the plot interpretability.
 --------------------------------------------------------------------------------------------
 R
+
 R + ggplot2 + R Markdown + RStudio
 
 R is considered as a programming language for statistical computing and the visualization of data. R Markdown is a format of document that compiles to html or PDF and lets us include the output of R code in the document. ggplot 2 package is an open-source popular visualization package used in R. RStudio is another tool I used for working with the R programming language. I used ggplot2 in R to represent values for two different numeric variables and observe their relationship. ‘geom_point()’ function was also used for the functions for color and size.
@@ -66,6 +68,7 @@ Trying to assign colors similar to the colors used in the template. I also speci
 --------------------------------------------------------------------------------------------
 
 D3
+
 JavaScript + D3
 
 Javascript is a widely used programming language that is mostly used in web development and works with html files. D3.js is an open source JavaScript library for visualizing data.

@@ -17,4 +17,4 @@ scatter_plot = alt.Chart(df).mark_circle(opacity=0.8, stroke='black', strokeWidt
 )
 
 # Save the scatter plot as an HTML file
-scatter_plot.save('../img/altair_plot.html')
+scatter_plot.save('../img/altair_penglings.html')

@@ -12,5 +12,5 @@ sns.scatterplot(x = 'flipper_length_mm', y = 'body_mass_g', hue = 'species', siz
 plt.xlabel('Flipper Length (mm)')
 plt.ylabel('Body Mass (g)')
 
-plt.savefig('../img/penglins_python.png')
+plt.savefig('../img/matplotlib_seaborn_penglings.png')
 plt.show()

@@ -70,6 +70,10 @@
         const sampleSizeData = [{size: data[(Math.floor(Math.random() * data.length))].billLength, fillColor: "black"}, 
         {size: data[(Math.floor(Math.random() * data.length))].billLength, fillColor: "black"}]
 
+        //Declare titles for each legend:
+        const colorLegendTitle = "Species"
+        const sizeLegendTitle = "Bill Length (mm)"
+
         //Add an SVG and g grouping for visualization
         const svg = d3.select("#container")
         .append("svg")
@@ -80,144 +84,170 @@
         //Above, I am applying margin left and margin top to the visualization, which is made possible by appending the <g> SVG element.
         //The <g> SVG element is a container used to group other SVG elements. Transformations applied to the <g> element are performed on its child elements, and the <g> element's attributes are inherited by its children.
 
-        //Create the x-axis:
-        let xScale = d3.scaleLinear().domain([xAxisMinimumValue, xAxisMaximumValue]).range([0, width]) //Smallest, largest passed into range function.
+        //Append the title to the plot:
+        function attachTitle(title, xCoordinate, yCoordinate, fontFamily, fontSize) {
+          svg
+          .append("text")
+          .attr("class", "title")
+          .attr("x", xCoordinate)
+          .attr("y", yCoordinate)
+          .attr("font-family", fontFamily)
+          .style('font-size', fontSize)
+          .text(title)
+        }
+
+        function createXScale(domainMinimum, domainMaximum, rangeMinimum, rangeMaximum) {
+          return d3.scaleLinear().domain([domainMinimum, domainMaximum]).range([rangeMinimum, rangeMaximum]) //Smallest, largest passed into range function.
         //The d3 domain function creates a value domain between the specified minimum and maximum values, and the D3 range function maps those values into pixels on the screen.
+        }
+
+        function createYScale(domainMinimum, domainMaximum, rangeMinimum, rangeMaximum) {
+          return d3.scaleLinear().domain([domainMinimum, domainMaximum]).range([rangeMinimum, rangeMaximum]) //Smallest, largest passed into range function.
+        }
 
         //Position the x-axis at the correct location in our svg container and pass x into the axisBottom() function to ensure that the argument axis (x-axis) has tick marks facing outwards (towards the bottom).
         //Note: We need to perform all manipulations on a given axis before rendering it to the screen through the D3 call function.
-        let xAxisCreator = d3.axisBottom(xScale)
-        xAxisCreator.ticks(7)
-        xAxisCreator.tickValues([170, 180, 190, 200, 210, 220, 230])
-        xAxisCreator.tickSizeOuter(0)
+        function createXAxisBuilder(xScale, tickNumber, tickValueList, outerTickSize) {
+          return d3.axisBottom(xScale).ticks(tickNumber).tickValues(tickValueList).tickSizeOuter(outerTickSize)
+        }
 
-        svg
-        .append("g")
-        .attr("transform", "translate(" + 0 + "," + height + ")") //The correct position for the x-axis to begin is at (0, height). The x-axis is included in this grouping through appending g above in this method chaining sequence.
-        .call(xAxisCreator) //The call function invokes a callback function on the selection itself. The x-axis is now included in the selection, and the selection is essentially the current grouping that is appended to the svg element.
-
-        //Set a label for the x-axis:
-        svg
-        .append("text")
-        .attr("transform", "translate(" + (width / 2) + "," + (height + (margin.bottom - 20)) + ")")
-        .style("text-anchor", "middle") //The text-anchor style is used to align text that is already formatted or wrapped in some way. In this case, we have already translated the text element, and the middle of the text string is aligned at the current x text position.
-        .text("Flipper Length (mm)") //Specify the text that appears in the current text element.
-        .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "15px")
-
-        //Create the y-axis:
-        let yScale = d3.scaleLinear().domain([yAxisMinimumValue, yAxisMaximumValue]).range([height, 0]) //Smallest, largest passed into range function.
-    
         //Position the y-axis at the correct location in our svg container and pass y into the axisLeft() function to ensure that the argument axis (y-axis) has tick marks facing outwards (towards the left).
-        let yAxisCreator = d3.axisLeft(yScale)
-        yAxisCreator.ticks(4)
-        yAxisCreator.tickValues([3000, 4000, 5000, 6000])
-        yAxisCreator.tickSizeOuter(0)
-        
-        svg.append("g").call(yAxisCreator) //The call function invokes a callback function on the selection itself. The y-axis is now included in the selection, and the selection is essentially the current grouping that is appended to the svg element.
+        function createYAxisBuilder(yScale, tickNumber, tickValueList, outerTickSize) {
+          return d3.axisLeft(yScale).ticks(tickNumber).tickValues(tickValueList).tickSizeOuter(outerTickSize)
+        }
 
-        //Set a label for the y-axis:
-        svg
-        .append("text")
-        .attr("transform", "rotate(270)") //We need to rotate the y-axis label 270 degrees so that the text is aligned vertically and is facing in the correct direction.
-        .attr("y", -45) //The x and y attributes are reversed as a result of rotating the text by 270 degrees. 
-        .attr("x", (0 - (height / 2)))
-        .style("text-anchor", "middle") //Middle of the text string (using y attribute now) is aligned at the current y text position.
-        .text("Body Mass (g)")
-        .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "15px")
+        function attachXAxis(xAxisBuilder, xTranslation, yTranslation) {
+          svg
+          .append("g")
+          .attr("transform", "translate(" + xTranslation + "," + yTranslation + ")") //The correct position for the x-axis to begin is at (0, height). The x-axis is included in this grouping through appending g above in this method chaining sequence.
+          .call(xAxisBuilder) //The call function invokes a callback function on the selection itself. The x-axis is now included in the selection, and the selection is essentially the current grouping that is appended to the svg element.
+        }
 
-        //Append the title to the plot:
-        svg
-        .append("text")
-        .attr("class", "title")
-        .attr("y", 0)
-        .attr("x", 0 + (width / 20))
-        .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "16px")
-        .text(title)
+        function attachYAxis(yAxisBuilder, xTranslation, yTranslation) {
+          svg.append("g").attr("transform", "translate(" + xTranslation + "," + yTranslation + ")").call(yAxisBuilder) //The call function invokes a callback function on the selection itself. The y-axis is now included in the selection, and the selection is essentially the current grouping that is appended to the svg element.
+        }
+
+        function setXAxisLabel(label, xCoordinate, yCoordinate, relativeTextPosition, fontFamily, fontSize) {
+          //Set a label for the x-axis:
+          svg
+          .append("text")
+          .attr("transform", "rotate(0)")
+          .attr("x", xCoordinate)
+          .attr("y", yCoordinate)
+          .style("text-anchor", relativeTextPosition) //The text-anchor style is used to align text that is already formatted or wrapped in some way. In this case, we have already translated the text element, and the middle of the text string is aligned at the current x text position.
+          .text(label) //Specify the text that appears in the current text element.
+          .attr("font-family", fontFamily)
+          .style('font-size', fontSize)
+        }
+
+        function setYAxisLabel(label, xCoordinate, yCoordinate, relativeTextPosition, fontFamily, fontSize) {
+          //Set a label for the y-axis:
+          svg
+          .append("text")
+          .attr("transform", "rotate(270)") //We need to rotate the y-axis label 270 degrees so that the text is aligned vertically and is facing in the correct direction.
+          .attr("x", yCoordinate)
+          .attr("y", xCoordinate) //The x and y attributes are reversed as a result of rotating the text by 270 degrees.
+          .style("text-anchor", relativeTextPosition) //Middle of the text string (using y attribute now) is aligned at the current y text position.
+          .text(label)
+          .attr("font-family", fontFamily)
+          .style('font-size', fontSize)
+        }
 
         //Create a tooltip:
-        const tooltip = svg
-        .append("text")
-        .attr("class", "tooltip")
-        .attr("fill", "black")
-        .style("pointer-events", "none")
-        .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "13px")
-        .style("font-weight", "bold")
+        function generateTooltip(textColorFill, fontFamily, fontSize, fontWeight) {
+          return svg
+          .append("text")
+          .attr("class", "tooltip")
+          .attr("fill", textColorFill)
+          .style("pointer-events", "none")
+          .attr("font-family", fontFamily)
+          .style('font-size', fontSize)
+          .style("font-weight", fontWeight)
+        }
 
-        //Create a color legend:
-        svg.selectAll("circle")
-        .data(colorScale.range())
-        .enter()
-        .append("circle")
-        .attr("cx", 50)
-        .attr("cy", function(d, i) { 
-          return 50 + i * 15})
-        .attr("r", 5)
-        .style("fill", function(d) { 
-          return d})
-
-        svg.selectAll("colorLabels")
-        .data(colorScale.domain())
-        .enter()
-        .append("text")
-        .attr("font-family", "Helvetica Neue, Arial")
-        .style('font-size', "12px")
-        .attr("x", 70)
-        .attr("y", function(d, i) { 
-          return 50 + i * 15})
-        .style("fill", "black")
-        .text(function(d) { 
-          return d})
-        .attr("text-anchor", "start") //start of the text string is at the current text position.
-        .attr("alignment-baseline", "middle") //The alignment-baseline attribute specifies how an object is aligned with respect to its parent. This property specifies which baseline of this element is to be aligned with the corresponding baseline of the parent.
-        //Aligns the vertical midpoint of the box with the baseline of the parent box plus half the x-height of the parent.
-
-        //Create a size legend:
-        sampleSizeData.forEach(function(d, i) {
-          svg.append("circle").attr("cx", 50).attr("cy", 110 + (i * 15)).attr("r", (d.size / 6)).style("fill", d.fillColor)
-          svg.append("text").attr("x", 70).attr("y", 110 + (i * 15)).text(d.size).attr("font-family", "Helvetica Neue, Arial").style("font-size", "12px").attr("text-anchor", "start").attr("alignment-baseline", "middle")
-        })
+        let tooltip = generateTooltip("black", "Helvetica Neue, Arial", "13px", "bold")
+        let xScale = createXScale(xAxisMinimumValue, xAxisMaximumValue, 0, width)
+        let yScale = createYScale(yAxisMinimumValue, yAxisMaximumValue, height, 0)
+        let xAxisBuilder = createXAxisBuilder(xScale, 7, [170, 180, 190, 200, 210, 220, 230], 0)
+        let yAxisBuilder = createYAxisBuilder(yScale, 4, [3000, 4000, 5000, 6000], 0)
         
+        attachTitle(title, (0 + (width / 20)), 0, "Helvetica Neue, Arial", "16px")
+        attachXAxis(xAxisBuilder, 0, height)
+        attachYAxis(yAxisBuilder, 0, 0)
+        setXAxisLabel("Flipper Length (mm)", (width / 2), (height + (margin.bottom - 20)), "middle", "Helvetica Neue, Arial", "15px")
+        setYAxisLabel("Body Mass (g)", -45, (0 - (height / 2)), "middle", "Helvetica Neue, Arial", "15px")
+        
+        svg.append("text").attr("font-family", "Helvetica Neue, Arial").style('font-size', "12px").attr("x", 40).attr("y", 35).text(colorLegendTitle)  
+        svg.selectAll("circle")
+          .data(colorScale.range())
+          .enter()
+          .append("circle")
+          .attr("cx", 50)
+          .attr("cy", function(d, i) { 
+            return 50 + i * 15})
+          .attr("r", 5)
+          .style("fill", function(d) { 
+            return d})
+        svg.selectAll("colorLabels")
+          .data(colorScale.domain())
+          .enter()
+          .append("text")
+          .attr("font-family", "Helvetica Neue, Arial")
+          .style('font-size', "12px")
+          .attr("x", 70)
+          .attr("y", function(d, i) { 
+            return 50 + i * 15})
+          .style("fill", "black")
+          .text(function(d) { 
+            return d})
+          .attr("text-anchor", "start") //start of the text string is at the current text position.
+          .attr("alignment-baseline", "middle") //The alignment-baseline attribute specifies how an object is aligned with respect to its parent. This property specifies which baseline of this element is to be aligned with the corresponding baseline of the parent.
+          //Aligns the vertical midpoint of the box with the baseline of the parent box plus half the x-height of the parent.
+
+        svg.append("text").attr("font-family", "Helvetica Neue, Arial").style('font-size', "12px").attr("x", 40).attr("y", 110).text(sizeLegendTitle)
+          sampleSizeData.forEach(function(d, i) { //i acts as a counter variable starting at 0.
+          svg.append("circle").attr("cx", 50).attr("cy", 125 + (i * 20)).attr("r", (d.size / 6)).style("fill", d.fillColor)
+          svg.append("text").attr("x", 70).attr("y", 125 + (i * 20)).text(d.size).attr("font-family", "Helvetica Neue, Arial").style("font-size", "12px").attr("text-anchor", "start").attr("alignment-baseline", "middle")
+          })
+
         //Join the penguins.csv dataset to SVG circles (make it so that there is one circle selected for each row of data in penguins.csv).
         //Also, use the D3 enter function to return an enter selection that represents the elements that need to be appended to the DOM.
         svg.selectAll("circle") //No circles appended to DOM yet.
-        .data(data)
-        .enter() //return an enter selection for the joined dataset (one circle for each datapoint) that represents the SVG elements that have not been appended to the DOM yet.
-        .append("circle") //We append one circle per datapoint that is returned from the data function call chained to the selectAll function call.
-        .attr("fill", function (d) {
-          return colorScale(d.homeSpecies)
-        })
-        .attr("cx", function (d) {
-          return xScale(parseFloat(d.flipperLength)) //We need to pass in the raw x-coordinate of each data point into the xScale to accurately place the data point on the scatter plot.
-        })
-        .attr("cy", function (d) {
-          return yScale(parseFloat(d.bodyMass)) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
-        })
-        .attr("r", function (d) {
-          return parseFloat(d.billLength) / 6.0 //I have divided tbe billLength by 6.0 here so that the sizes of the circles that appear on the screen match the way the circles appear in the original scatter plot image as closely as possible. 
-        })
-        .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
-        .on('mouseover', (event, d) => { //Add an interactive tooltip for each circle.
-          const [mouseX, mouseY] = d3.pointer(event)
-          infoText = `Species: ${d.homeSpecies}, Flipper Length (mm): ${d.flipperLength}, Body Mass (g): ${d.bodyMass}, Bill Length: ${d.billLength}`
-          tooltip
-          .raise()
-          .attr("x", mouseX)
-          .attr("y", mouseY)
-          .transition()
-          .duration(100)
-          .text(infoText)
-        })
-        .on('mouseout', function() {
-          tooltip.text("")
-        })
-        }).catch(function(error) {
-          console.error(error)
-        })
+          .data(data)
+          .enter() //return an enter selection for the joined dataset (one circle for each datapoint) that represents the SVG elements that have not been appended to the DOM yet.
+          .append("circle") //We append one circle per datapoint that is returned from the data function call chained to the selectAll function call.
+          .attr("fill", function (d) {
+            return colorScale(d.homeSpecies)
+          })
+          .attr("cx", function (d) {
+            return xScale(parseFloat(d.flipperLength)) //We need to pass in the raw x-coordinate of each data point into the xScale to accurately place the data point on the scatter plot.
+          })
+          .attr("cy", function (d) {
+            return yScale(parseFloat(d.bodyMass)) //We need to pass in the raw y-coordinate of each data point into the yScale to accurately place the data point on the scatter plot.
+          })
+          .attr("r", function (d) {
+            return parseFloat(d.billLength) / 6.0 //I have divided tbe billLength by 6.0 here so that the sizes of the circles that appear on the screen match the way the circles appear in the original scatter plot image as closely as possible. 
+          })
+          .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
+          .on('mouseover', (event, d) => { //Add an interactive tooltip for each circle.
+            const [mouseX, mouseY] = d3.pointer(event)
+            infoText = `Species: ${d.homeSpecies}, Flipper Length (mm): ${d.flipperLength}, Body Mass (g): ${d.bodyMass}, Bill Length: ${d.billLength}`
+            tooltip
+            .raise()
+            .attr("x", mouseX)
+            .attr("y", mouseY)
+            .transition()
+            .duration(100)
+            .text(infoText)
+          })
+          .on('mouseout', function() {
+            tooltip.text("")
+          })
+      }).catch(function(error) {
+        console.error(error)
+      })
     }
+
     loadDataAndGeneratePlot()
   </script>
 </html>

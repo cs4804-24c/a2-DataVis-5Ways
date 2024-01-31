@@ -110,29 +110,7 @@ Adjusting the dot colors to the colors to the template on the Dot styles section
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+===============================================================================
 ===============================================================================
 Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
 

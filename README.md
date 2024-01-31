@@ -1,6 +1,14 @@
 
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
 
+
+# Google Sheets
+
+![Google Sheet](/googlesheets/google_sheets.png)
+Google sheets provides a simple way to take a CSV of data and plot it on a graph with no programming experience. I found it very simple to create the graph. I first selected the range and pressed insert -> chart. I had to modify a few settings, as certain columns were used for wrong parts of the graph. Once selecting the correct column, the graph was almost complete. I then changed the styling of each series to match the colors in the README example, and ensured they had 80% opacity. I then added in labels and a legend. Unfortunately, it was not possible to have Google Sheets generate a size legend for the bubbles, which represent the bill length. Additionally, I was not able to scale the bubbles down. Currently, they are to large to make out the actual bill size of each bubble because of the large amount of overlapping. 
+
+
+
 # 02-DataVis-5ways
 
 Assignment 2 - Data Visualization, 5 Ways  

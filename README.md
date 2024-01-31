@@ -68,3 +68,28 @@ After upload, it will generate a picture.
 In the picture, the chart include flipper length and body mass.
 Use different colors to distinguish three populations.
 
+## 5. DataWrapper
+![](img/penglings_DataWrapper(1).png)
+![](img/penglings_DataWrapper(2).png)
+
+Link: https://datawrapper.dwcdn.net/J2UuF/1/
+
+### Ease of Use:
+One of the main advantages of DataWrapper is its simple data entry process. 
+Users can easily upload CSV files or even copy and paste data directly into the tool. 
+Unlike D3.js or Python libraries, DataWrapper requires no coding, making it easily accessible to non-programmers. 
+Creating a scatter plot is just a matter of selecting the appropriate chart type and configuring it via the user-friendly interface.
+
+### Challenges:
+While DataWrapper offers a range of customization options, 
+such as adjusting colors, labels, and axes, 
+it may not provide the same level of detailed control as programming-based tools.
+
+### Function:
+When the mouse is hovering over dot, other species will be temporarily invisible, making it easier for users to view the current species. 
+When you click on the label above, the selected species can be highlighted.
+The chart include flipper length and body mass.
+Use different colors to distinguish three populations.
+
+# Addition Notices
+## When running the Altair and Python methods, remember to replace the path to the data!!!

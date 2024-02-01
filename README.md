@@ -8,3 +8,7 @@ python in jupyter
 
 r in rstudio with library tidyverse
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/8f0effbe-defe-4726-a061-dac155481e99)
+
+Tableau Graph
+![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/19b61145-0814-4f98-b1c0-deb926380792)
+

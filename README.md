@@ -153,8 +153,14 @@ While it takes time to find the correct documentation, these functions made the 
 
 ![altair](img/altair.png)
 
+# tableau
+
+~
+
+![tableau](img/tableau.png)
+
 ## Technical Achievements
-- added mouse hover functionality for individual datapoints (altair)
+- added mouse hover functionality for individual datapoints (altair, tableau)
 - added interactive zoom in/out (altair)
 
 ### Design Achievements

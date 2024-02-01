@@ -1,21 +1,13 @@
 # RStudio + ggplot2
 
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
+RStudio is an IDE that allows the user to write programs in R.
+For this graph, I used the ggplot2 library to create a scatterplot using the penglings data. I also used
+pandas and plotly libraries to read the csv file and print out the graph respectively.
+The coding was short and easy but the IDE itself caused me some problems such as running each line of code
+individually. RStudio seems nice for data visualization graphs as it is very customizable and fast to 
+understand the functions.
 
-To visualize the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort of creating this chart minimal.
-
-ADD IMAGE HERE
-
-## Technical Achievements
-- **
-- **
-
-### Design Achievements
-- **
+![caption](img/Altair:Python.png)
 
 
 
@@ -26,12 +18,6 @@ ADD DESCRIPTION
 
 ADD IMAGE HERE
 
-## Technical Achievements
-- **
-- **
-
-### Design Achievements
-- **
 
 
 # Python + Altair
@@ -40,13 +26,6 @@ ADD DESCRIPTION
 
 ADD IMAGE HERE
 
-## Technical Achievements
-- **
-- **
-
-### Design Achievements
-- **
-
 
 # Flourish
 
@@ -54,12 +33,6 @@ ADD DESCRIPTION
 
 ADD IMAGE HERE
 
-## Technical Achievements
-- **
-- **
-
-### Design Achievements
-- **
 
 
 # DataWrapper
@@ -69,8 +42,7 @@ ADD DESCRIPTION
 ADD IMAGE HERE
 
 ## Technical Achievements
-- **
-- **
+- I was able to utilize a function that allows the user to hover over a data point with their mouse and view information such as sex, species, bill length, etc. This was made using functions like tooltip to create these hoverable tables over each data point. This was applied to every graph for every tool.
 
 ### Design Achievements
-- **
+- For all graphs from every tool, I was able to change the data points' colors and shapes according to their species. Some graphs have specific shapes such as squares, triangles, plus signs, etc. Along with that colors were changed to make the data points more visible between species.

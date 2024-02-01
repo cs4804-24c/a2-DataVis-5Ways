@@ -2,6 +2,8 @@ import altair as alt
 # from vega_datasets import data
 url = '../penglings.csv'
 
+#Idea: show transition of penguin species over time
+
 options = ['Adelie', 'Chinstrap', 'Gentoo']
 labels = [option + ' ' for option in options]
 
@@ -24,12 +26,12 @@ chart = alt.Chart(url).transform_calculate(
 
 ).mark_circle().encode(
     # set x-axis scale limits
-    x=alt.X('flipper_length_mm:Q', scale=alt.Scale(domain=(170, 235))),
-    y=alt.Y('body_mass_g:Q', scale=alt.Scale(domain=(2500, 6500))),
-    # radius porportional to bill_length_mm
-    size=alt.Size('bill_length_mm:Q', scale=alt.Scale(range=[10, 200], domain=[30, 55])),
+    x=alt.X('flipper_length_mm:Q', scale=alt.Scale(domain=(170, 235)), axis=alt.Axis(title='Flipper Length (mm)')),
+    y=alt.Y('body_mass_g:Q', scale=alt.Scale(domain=(2500, 6500)), axis=alt.Axis(title='Body Mass (g)')),
+    # size porportional to bill_length_mm
+    size=alt.Size('bill_length_mm:Q', scale=alt.Scale(range=[10, 200], domain=[30, 55]), title='Bill Length (mm)'),
     # color corresponds to species
-    color=alt.Color('species:N').scale(domain=options, range=['#ff8d05', '#9934cc', '#048b8c']),
+    color=alt.Color('species:N', title="Sepcies").scale(domain=options, range=['#ff8d05', '#9934cc', '#048b8c']),
     tooltip=['species:N', 'bill_length_mm:Q', 'body_mass_g:Q', 'flipper_length_mm:Q'],
     href='url:N',
 ).interactive().add_params(
@@ -45,7 +47,7 @@ chart = alt.Chart(url).transform_calculate(
 )
 
 timeline = alt.Chart(url).mark_line().encode(
-    x='year:O',
+    x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y='count()',
 ).properties(
     height=50,

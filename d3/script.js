@@ -16,6 +16,11 @@ let svg = d3.select("#svg-holder")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+let colors = {
+    'Adelie': '#f8a452',
+    'Gentoo': '#4ea0a1',
+    'Chinstrap': '#b056cf'
+}
 
 d3.csv("penglings.csv").then( (inputData) => {
 
@@ -36,7 +41,7 @@ d3.csv("penglings.csv").then( (inputData) => {
 
     let z = d3.scaleLinear()
         .domain([Math.min(...billLengthList), Math.max(...billLengthList)])
-        .range([ 1, 20]);
+        .range([ 5, 20]);
 
     svg.append('g')
     .selectAll("dot")
@@ -45,5 +50,5 @@ d3.csv("penglings.csv").then( (inputData) => {
         .attr("cx", d => x(d.flipper_length_mm))
         .attr("cy", d => y(d.body_mass_g))
         .attr("r", d => z(d.bill_length_mm))
-        .style("fill", "#69b3a2")
+        .style("fill", d => colors[d.species])
 })

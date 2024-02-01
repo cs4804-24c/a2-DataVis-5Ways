@@ -6,48 +6,12 @@
 Assignment 2 - Data Visualization, 5 Ways  
 ===
 
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
 GitHub Details
 ---
 
 - Fork the GitHub Repository. You now have a copy associated with your username.
 - Make changes to fulfill the project requirements. 
 - To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
 
 # Altair + Python (JupyterNotebook)
 
@@ -72,7 +36,7 @@ This visualization was not that hard to create. After loading the data it was ju
 
 # d3
 
-This visualization was a bit trickier to create. I had to learn how to host a local server from the command line and how to properly load data into the .html from another source (which I think I am doing correctly). Ultimately I turned to ChatGPT 3.5 to give me a code framework to work from rather than spending an exhaustive amount of time trying to find the correct commands and syntax necessary. After that everything progressed fairly quickly, with writing a small function to handle the different colors, writing an equation to manipulate the circles' size, adding an opacity feature, and some other small changes to get the axis and axis titles looking better. Overall d3 took the most amount of code so far, but also seemed like the tool I had the most control over. If I was trying to make a visualization with a very specific feel, I would likely turn to it for the control that it gives.
+This visualization was a bit trickier to create. I had to learn how to host a local server from the command line and how to properly load data into the .html from another source (which I think I am doing correctly). Ultimately I turned to ChatGPT 3.5 to give me a code framework to work from rather than spending an exhaustive amount of time trying to find the correct commands and syntax necessary. After that everything progressed fairly quickly, with writing a small function to handle the different colors, writing an equation to manipulate the circles' size, adding an opacity feature, and some other small changes to get the axis and axis titles looking better. Overall d3 took the most amount of code so far, but also seemed like the tool I had the most control over. If I was trying to make a visualization with a very specific feel, I would likely turn to it for the control that it gives. I do believe the data is misaligned on the x-axis, but I have no idea why that is the case.
 
 ![d3_viz_1](img/d3_viz_1.png)
 
@@ -83,8 +47,6 @@ Technical Achievements
 - Added basic legend
 - Got additional information to pop up as a tooltip beneath the graph when scatter plot points are moused over
 
-Add legend and make colors better later. Maybe add interactivity later for gender/island. Maybe choose different fonts as well. Graph x axis is wrong, make sure it aligns properly with the data
-
 # matplotlib + Python (Spyder)
 
 This visualization was not too difficult to create, though it did take more code than the Altair version did. I had to extract the values from the data frame to effectively manipulate the scatter points sizes and colors. The circles by default plotted small and telling the size difference was difficult, so I went about exaggerating the difference so it could be observed by cubing the size then dividing by 500 to get the circles back down to a reasonable size. Mostly I was using plt.scatter for the first time, as directly creating the circles using plt.circle and plt.add_patch resulted in the circle flattening to horizontal lines when created due to the y axis scaling. I also think the matplotlib graph does not look as good as the Altair version. I do see myself using matplotlib in the future, but only due to ease of use and certainly not for professional or final product visualizations.
@@ -94,18 +56,11 @@ This visualization was not too difficult to create, though it did take more code
 Design Achievement
 - Managed to get the bill_length_mm scatter point size relationship to provide a reasonable visual scale
 
-Add legend, grid, unify colors? Remove top and right sides of the box if I can
-
-(And so on...)
-
 # Excel
 
 This visualization was not that difficult to create, but surprisingly not that much easier to create either. This may have been due to the fact that Excel for some reason seemed to be sluggish with this data set. I separated the data into three different sets based on the species, then had to manually remove the two entries that had 'Na' data entries for the values I was trying to graph. I made a scatter plot, plotting each species as a different set. Adding axis titles and a legend was very simple, just using the attached graph modification options. Changing the color and transparency just required going into the graph options sidebar. Unfortunately, it does not appear that Excel gives you the option to link scatter point size to data, so the points remain the same size for this graph. I do see myself using Excel in the future, but mostly only for data exploration. This is due to the ease with which the data can be manipulated from within the program. Making graphs then is more about searching for trends than it is about nice readable and usable finished products.
 
 ![excel_viz_1](img/excel_viz_1.png)
-
-Maybe unify colors? See if I can manipulate the top and right axis to remove them.
-
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...
 - **Solved AI Forever**: ...

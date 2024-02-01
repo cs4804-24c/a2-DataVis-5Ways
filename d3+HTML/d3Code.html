@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+  
+// source
+// https://d3-graph-gallery.com/graph/scatter_basic.html
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 50, left: 60},
+    width = 500;
+    height = 500;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([170, 250])
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([2500, 6500])
+    .range([ height, 0]);
+  svg.append("g")
+    .call(d3.axisLeft(y));
+  
+  //x label
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/2 + margin.left)
+      .attr("y", height + margin.top + 30)
+      .text("Flipper Length (mm)");
+  
+  //y label
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left + 15)
+      .attr("x", -margin.top - height/2 + 20)
+      .text("Body Mass (g)")
+
+  //color
+  var color = d3.scaleOrdinal()
+    .range([ "red", "blue", "green"])
+  
+  // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+  // Its opacity is set to 0: we don't see it by default.
+  var tooltip = d3.select("#my_dataviz")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+
+
+  // A function that change this tooltip when the user hover a point.
+  // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+  var mouseover = function(d) {
+    tooltip
+      .style("opacity", 1)
+  }
+
+  var mousemove = function(d) {
+    tooltip
+      .html("<b>Body Mass: " + d.body_mass_g + " g" +
+            "<br>Flipper length: " + d.flipper_length_mm + " mm" +
+            "<br>bill length: " + d.bill_length_mm + " mm" +
+            "<br>Species: " + d.species +
+            "<br>Sex: " + d.sex
+           )
+      .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+
+  // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+  var mouseleave = function(d) {
+    tooltip
+      .transition()
+      .duration(200)
+      .style("opacity", 0)
+  }
+  
+  // Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", function (d) { return x(d.flipper_length_mm); })
+      .attr("cy", function (d) { return y(d.body_mass_g); })
+      .attr("r", function(d) { return (d.bill_length_mm/10); })
+      .style("fill", function(d){return color(d.species)})
+      .style("opacity", 0.8)
+      .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+
+})
+
+</script>

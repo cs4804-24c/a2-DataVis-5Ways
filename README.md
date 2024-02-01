@@ -1,148 +1,50 @@
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
-
-# 02-DataVis-5ways
-
-Assignment 2 - Data Visualization, 5 Ways  
+Assignment 2 Patrick Salisbury - Data Visualization, 5 Ways  
 ===
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+# d3
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+![d3 visualization with tooltip in bottom left](img/d3_tooltip.png)
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
+D3 is a JavaScript visualization library that is somewhat low-level, meaning that you can often make more "custom" visualizations in d3 than other visualization/charting libraries. Of course, having this level of customizability comes with the tradeoff of more code to write and additional considerations compared to a higher-level graphing library.
 
-Your goal is to use 5 different tools to make the following chart:
+To make this graph, I started by looking at some basic d3 scatterplot examples (https://d3-graph-gallery.com/graph/scatter_basic.html) to understand the basic workflow of making a scatterplot in d3. After this, I added a function to the "r" attribute of the d3 circles to make the size of each circle vary according to bill length. To match the color scheme of the example, I used d3.scaleordinal() to map each species to a color (even though the species isn't really ordinal, the order in relation to the order of the colors I define does matter). Finally, I adjusted the x and y scales manually, added axis labels (a pain in d3!), and added a legend and tooltips as technical and design achievements.
 
-![](img/ggplot2.png)
+To me, d3 felt hard to use for setting up basic graphs, but once you get into more advanced and custom visualizations I think it gets easier to use than some of the other more fleshed out graphing libraries. Some of the other libraries I used tended to force me into specific layouts, where in d3 this does not really happen since there is no predefined layout in the first place. The most hacky part of the entire experience for me was getting the y-axis label correct, since most of the ways to do this end up flipping the x and y axes during the transform when you rotate the text in the correct direction. This makes aligning the text here quite difficult if you do not use a method that applies the transform before the rotation.
 
-These features should be preserved as much as possible in your replication:
+# seaborn / matplotlib
 
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
+![seaborn / matplotlib visualization](img/seaborn.png)
 
-Other features are not required. This includes:
+Seaborn is a high-level visualization library for Python built on top of matplotlib. The default theme of the library makes plots that are R/ggplot2-like in style, as can be seen in the visualization I made above. Overall, I found working with this library to be very simple, and I was able to do most of the chart configuration in a single line of code with only a couple other lines required for chart setup. The drawback of this library is that configuration is somewhat limited without going in a fully custom route like d3. As an example, the circle outlines in my visualization are black, and I could not find an easy way to make the outline color match the circle's fill color like I was able to do easily in d3.
 
-- The background grid.
-- The legends.
+# vega-altair
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
+![vega-altair visualization](img/vega-altair.png)
 
-Improvements are also welcome as part of Technical and Design achievements.
+Altair is a very popular Python visualization library. As opposed to Seaborn, which is built on matplotlib, Altair is built on top of Vega-lite, which is a high-level grammar for visualization based on using JSON objects. Overall, I think Altair is probably my favorite viz library (for charts like this) out of the three I used in this assignment, as I felt like it provided a good balance between ease of use and capabilites. One thing I did not like about the library however is what it does to colors. As you can see in the image above, the color palette is slightly different from every other graph that I generated even though I used the exact same hex color codes as every other visualization library / tool. I assume that this is because there is something going on under the hood that slightly changes the colors, but I was unable to figure it out and thought that it might be good to leave it as-is anyways and point out that this library might not be a good choice for color accuracy.
 
-Libraries, Tools, Languages
----
+# DataWrapper
 
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
+![DataWrapper visualization](img/datawrapper.png)
 
-Otherwise, you should seek tools and libraries to fill out your 5.
+DataWrapper is a popular online tool for creating visualizations out of data that you supply. For this visualization, I chose the "scatter plot" template and then customized the chart to meet the requirements of the assignment. Due to the limitations of this being an online tool, I took screenshots of the chart setup I used for this tool and included them in the "datawrapper" named folder. I was quite impressed by the capabilites of this tool given how easy it was to use, but I did find that the legend was somewhat just decided for you and there wasn't a lot you could do to change the legend layout. Additionally, I didn't really like how the tool decided to scale circle size (not enough variation), and I struggled for a bit trying to fix this but could not figure it out. Overall, I think this is a nice tool, but I would personally pretty much always use something else (Google Sheets for something super simple or dive into a code library). I do see the appeal of this library for someone without any coding experience, but if you are comfortable with code I feel like there is not much this tool offers compared to using something like altair or seaborn.
 
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
+# Google Sheets
 
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
+![Google Sheets visualization](img/googlesheets.png)
 
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
+Instead of excel, I chose to use Google Sheets because I use a Linux machine, and additionally I think the Google Sheets charting has came a long way and wanted to see if it could make a good intermediate-level visualization for this assignment. I found that it was surprisingly effective for this type of scatter plot, and it actually did some things even better than some of the coding libraries that I used. The biggest drawback to Google Sheets is that when exporting to an excel format (.xlsx), the chart styling is lost, so when you open my .xlsx that I provided all of the styling is lost. The other huge drawback is that the circle size is defined exactly from the field found in the sheets, so to make the circle sizing look better here I would have had to derive another column where I normalized the bill length to something that looked better for circle size in the chart. Besides these drawbacks, I think this chart looks decent for just being Google Sheets, and I think for the average user making a quick chart with a small to medium dataset Google Sheets is hard to beat nowadays.
 
 
 ## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+
+- As mentioned in the d3 section (and seen in the screenshot), I added a tooltip functionality where the circle that is currently being hovered over displays more information about that data point. I chose to put this tooltip in the bottom left instead of overlaid with the graph like a traditional tooltip so that the entire graph would stay visible while viewing specific pieces of data. Although this tooltip is functional, it does have the drawback of not being able to view circles in very cluttered areas of the graph due to the circles stacking on top of each other. This could potentially be fixed by adding a click to cycle through different layers of circles or just displaying all the circles being currently hovered over at once. You can test my d3 tooltips at the github page https://pjsalisbury.github.io/a2-DataVis-5Ways/d3/index.html
 
 ### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+
+- Throughout all my visualizations, I consistently used the exact color scheme used in the R + ggplot2 example visualization. To do this, I first found a listing of all the R colors at http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf, and then I used a color picker tool to grab the hex codes for the colors used in the original R visualization. Note that Altair does mess up this color consistency across all charts.
+
+- In my d3 visualization, I created a custom legend by creating and positioning the svg elements accordingly. Although this is somewhat annoying to do, I do like how this allows you to make a completely custom legend without having to worry about templating that the library does for you. In fact, a lot of the libraries I used did not provide any design choices at all regarding the legend and I had to essentially use whatever they gave me as a result.
+
+

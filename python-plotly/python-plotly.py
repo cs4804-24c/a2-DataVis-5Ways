@@ -16,11 +16,12 @@ fig = px.scatter(df, x='flipper_length_mm', y='body_mass_g', size='bill_length_m
 
 #Label the chart
 fig.update_layout(
-    title='PENGLINGS!!',
+    title='Species of Penguins by Flipper Length, Body Mass and Bill Length',
     xaxis_title='Flipper Length (mm)',
     yaxis_title='Body Mass (g)',
     legend_title_text='Species'
 )
+
 
 #Customize tick values
 fig.update_xaxes(

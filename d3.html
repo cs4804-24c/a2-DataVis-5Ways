@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Scatter Plot</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+    <script>
+        var margin = {top: 10, right: 30, bottom: 40, left: 50},
+            width = 700 - margin.left - margin.right,
+            height = 520 - margin.top - margin.bottom;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right + 100)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("height", height)
+            .attr("width", width)
+            .style("fill", "#E5E5E5")
+
+        d3.csv("penglings.csv").then(data => {
+
+            // Add X axis
+            var x = d3.scaleLinear()
+                .domain([170, 240])
+                .range([10, width ])
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(10))
+                .select(".domain").remove()
+
+            // making the dots white
+            var y = d3.scaleLinear()
+                .domain([2500, 7000])
+                .range([ height, 0])
+                .nice()
+            svg.append("g")
+                .call(d3.axisLeft(y).tickSize(-width*1.3).ticks(7))
+                .select(".domain").remove()
+
+            // Customization
+            svg.selectAll(".tick line").attr("stroke", "white")
+
+            // creating the label for the x axis
+            svg.append("text")
+                .attr("text-anchor", "end")
+                .attr("x", width/2 + margin.left)
+                .attr("y", height + margin.top + 20)
+                .text("Flipper Length (mm)");
+
+            // creating the label for the y axis
+            svg.append("text")
+                .attr("text-anchor", "end")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -margin.left + 20)
+                .attr("x", -margin.top - height/2 + 20)
+                .text("Body Mass (g)");
+
+            // changes the color of the dots depending on the species
+            var color = d3.scaleOrdinal()
+                .domain(["Adelie", "Gentoo", "Chinstrap" ])
+                .range(["#FF8C00", "#9932CC", "#008B8B"]);
+
+            // changes the size of the dots
+            var radius = d3.scaleLinear()
+                .domain([30, 70])
+                .range([3, 15]);
+
+
+            // create a tooltip
+            var tooltip = d3.select("body")
+                .append("div")
+                .style("opacity", 0)
+                .style("position", "absolute")
+                .attr("class", "tooltip")
+                .style("background-color", "white")
+                .style("border", "solid")
+                .style("border-width", "1px")
+                .style("padding", "10px")
+
+
+
+            // Three function that change the tooltip when user hover / move / leave a cell
+            var mouseover = function(d) {
+                tooltip.style("opacity", 1)
+            }
+
+            var mousemove = function(d) {
+                tooltip
+                    .html("Flipper Length: " + d.flipper_length_mm + "mm<br>Body Mass: " + d.body_mass_g + "g<br>Species: " + d.species + "<br>Bill Length: " + d.bill_length_mm + "mm<br>Island: " + d.island + "<br>Sex: " + d.sex + "<br>Year: " + d.year)
+                    .style("left", (d3.mouse(this)[0]+70) + "px")
+                    .style("top", (d3.mouse(this)[1]) + "px")
+            }
+
+            var mouseleave = function(d) {
+                tooltip
+                .style("opacity", 0)
+            }
+
+            // adding the dots to the graph
+            svg.append('g')
+                .selectAll("dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx",d => x(d.flipper_length_mm))
+                .attr("cy", d => y(d.body_mass_g))
+                .attr("r", d => radius(d.bill_length_mm))
+                .style("fill", d => color(d.species))
+                .style("opacity", 0.8)
+                .on("mouseover", mouseover)
+                .on("mousemove", mousemove)
+                .on("mouseleave", mouseleave);
+
+            svg.append("text")
+                .attr("text-anchor", "start")
+                .attr("x", width - 200)
+                .attr("y", height)
+                .attr("fill", "black")
+                .attr("font-size", 20)
+                .text()
+
+            var legend = svg.append("g")
+
+            legend.append("text").attr("x", 640).attr("y", 120).text('Species').style("font-weight", "bold")
+            legend.append("circle").attr("cx", 650).attr("cy", 150).attr("r", 6).style("fill", "#FF8C00")
+            legend.append("circle").attr("cx", 650).attr("cy", 180).attr("r", 6).style("fill", "#9932CC")
+            legend.append("circle").attr("cx", 650).attr("cy", 210).attr("r", 6).style("fill", "#008B8B")
+            legend.append("text").attr("x", 660).attr("y", 155).text('Adelie')
+            legend.append("text").attr("x", 660).attr("y", 185).text('Gentoo')
+            legend.append("text").attr("x", 660).attr("y", 215).text('Chinstrap')
+
+            legend.append("text").attr("x", 640).attr("y", 280).text('bill_length_mm').style("font-weight", "bold")
+            legend.append("circle").attr("cx", 650).attr("cy", 300).attr("r", radius(40))
+            legend.append("circle").attr("cx", 650).attr("cy", 330).attr("r", radius(50))
+            legend.append("text").attr("x", 660).attr("y", 305).text('40')
+            legend.append("text").attr("x", 660).attr("y", 335).text('50')
+            
+        });
+
+    </script>
+
+</body>
+</html>

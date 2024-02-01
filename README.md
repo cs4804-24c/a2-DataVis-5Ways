@@ -12,3 +12,5 @@ r in rstudio with library tidyverse
 Tableau Graph
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/19b61145-0814-4f98-b1c0-deb926380792)
 
+Datawrapper Graph
+![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/a3d65785-f631-4850-90ba-29040305f015)

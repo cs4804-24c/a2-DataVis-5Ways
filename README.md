@@ -159,6 +159,12 @@ While it takes time to find the correct documentation, these functions made the 
 
 ![tableau](img/tableau.png)
 
+# matlab
+
+~
+
+![matlab](img/matlab.png)
+
 ## Technical Achievements
 - added mouse hover functionality for individual datapoints (altair, tableau)
 - added interactive zoom in/out (altair)

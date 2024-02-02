@@ -1,0 +1,25 @@
+---
+title: "penglings"
+format: html
+editor: visual
+---
+
+## Quarto
+
+let's load the penguin dataset
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+
+```{r}
+
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, size = bill_length_mm, shape = island), alpha = 0.8) +
+  scale_color_manual(values = c("white", "darkgray", "lightblue")) +
+  labs(
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)"
+  )
+```

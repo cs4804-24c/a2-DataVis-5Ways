@@ -10,6 +10,8 @@ can be useful for data visualizations
 To visualized the penguins dataset, I made used d3 scale functions along with svg functions and more to accuratley display the data. Learning how to do this took time however in the future it would be much simpler.
 ![caption](img/D3.png)
 
+You can check out git page for interactivity https://mattkiszla.github.io/a2-DataVis-5Ways/index.html 
+
 The following sources helped accomplish the task
 https://d3-graph-gallery.com/graph/scatter_grouped.html Referenced this tutorial. Then looked into
 min function:https://www.geeksforgeeks.org/d3-js-d3-min-function/

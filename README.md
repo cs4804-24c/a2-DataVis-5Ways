@@ -6,9 +6,9 @@
 
 d3 was one of the more annoying libraries to use, mainly because it feels like all of the tools it gives to make things easier are half-finished. Why does it have an `axisBottom` and `axisLeft` function that don't draw axis labels? Why is there nothing built in for legends, when 90% of data visualizations are probably some form of chart with a generic legend? It could at least position legend elements for you and leave the actual component rendering to the user. My main complaint here is that without these tools to make rendering easier, d3 is pretty much just a wrapper library for jQuery that inserts svg elements for you.
 
-I say a wrapper library for jQuery because they automatically import jQuery as part of d3, and the main thing I like about d3 `.attr` working with `.data` and function definitions of the attributes, but all of that is from jQuery, not d3. The only code actually unique to d3 in this graph is the code that generates the axes, everything else is just jQuery editing svg tags.
+I say a wrapper library for jQuery because d3 automatically imports jQuery, and the main thing I like about d3 is `.attr` working with `.data` and accepting functions for attribute values, but all of that is from jQuery, not d3. The only code actually unique to d3 in this graph is the code that generates the axes, everything else is just jQuery editing svg tags.
 
-I would use d3 for more complex data visualizations online, where I want to do complex animations or diagrams that take advantage of the tools provided by the library.
+I would use d3 for more complex data visualizations online, where I want to do complex animations or diagrams that actually take advantage of the tools provided by the library.
 ## C# ##
 ![alt text](./img/csharp.png)
 

@@ -6,3 +6,6 @@
 .idea/inspectionProfiles/profiles_settings.xml
 *.iml
 .idea/workspace.xml
+C\#/.vs/
+C\#/obj/
+C\#/bin/

@@ -29,7 +29,7 @@ Design Achievements:
 ![altairPlot](img/altair.png)
 ![altairInteractive1](img/altair-interactive1.png)
 ![altairInteractive2](img/altair-interactive2.png)
-![altairInteractive3](img/img/altair-interactive3.png)
+![altairInteractive3](img/altair-interactive3.png)
 
 # d3
 Link: https://azzhang3.github.io/a2-DataVis-5Ways/

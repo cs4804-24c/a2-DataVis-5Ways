@@ -51,6 +51,9 @@ Surpringly, I really enjoyed using vega-lite, after learning how to set it up, i
 
 ### Refrences
 Professor for R
+
 https://d3-graph-gallery.com/graph/scatter_basic.html for d3
+
 https://www.geeksforgeeks.org/python-altair-scatter-plot/ for altair
+
 https://vega.github.io/vega/examples/scatter-plot/ for vega-lite

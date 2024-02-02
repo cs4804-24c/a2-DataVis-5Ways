@@ -53,7 +53,6 @@
             .call(d3.axisLeft(yScale).tickValues(d3.range(2000, 7001, 1000)))
             .selectAll(".tick")
             .append("line")
-            .attr("class", "grid-line")
             .attr("x1", 0)
             .attr("x2", 900)
             .attr("stroke", "#ddd");

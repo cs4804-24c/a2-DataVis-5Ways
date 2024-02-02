@@ -9,15 +9,17 @@ of what the process was.
 _Python in Jupyter_
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/e375066d-14ff-4811-acac-24c516a208f4)
 
-
-R in RStudio with library tidyverse.
+I've worked with R a fair amount in the past, I used the library tidyverse. Tidyverse is just another package with ggplot2 in it. It also offers readr and tidyr
+_R in RStudio with library tidyverse._
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/8f0effbe-defe-4726-a061-dac155481e99)
 
 I had never heard of Tableau before so I wanted to see what it was all about. I really liked this tool, it was really straightforward and had a drag and drop system. Once you upload your CSV it's all very simple from there. It allows you to add a ton of features to your graph like different shapes or outlining said shapes. 
-Tableau Graph
-![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/19b61145-0814-4f98-b1c0-deb926380792)
+
+_Tableau Graph_
+![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/3c6dde70-4eaf-443c-9a6b-57eee2cccde3)
 
 Datawrapper was similar to Tableau in the sense of simplicity. It's a free online data visualizer that has you upload your data and refine all your data to make the graph how you'd like. 
-Datawrapper Graph
+
+_Datawrapper Graph_
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/a392f79d-47e4-426a-833c-fb37b7ce5602)
 

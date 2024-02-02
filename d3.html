@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Scatter Plot</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/d3@7/+esm"></script>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script type="module">
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+    // Load CSV data
+    d3.csv("penglings.csv").then(function (data) {
+        console.log("Loaded data:", data);
+
+        // Remove rows with NaN values in the 'bill_length_mm' column
+        data = data.filter(d => !isNaN(d.bill_length_mm));
+
+        // Set up margin, width, and height
+        var margin = { top: 20, right: 20, bottom: 50, left: 70 };
+        var width = 600 - margin.left - margin.right;
+        var height = 400 - margin.top - margin.bottom;
+
+        // Create SVG container
+        var svg = d3.select("#container").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Define specific colors for the color mapping
+        var colorMapping = { 'Adelie': 'orange', 'Chinstrap': 'purple', 'Gentoo': 'blue' };
+
+        // Create scales
+        var xScale = d3.scaleLinear().range([0, width]).domain([d3.min(data, d => +d.flipper_length_mm), d3.max(data, d => +d.flipper_length_mm)]);
+        var yScale = d3.scaleLinear().range([height, 0]).domain([d3.min(data, d => +d.body_mass_g), d3.max(data, d => +d.body_mass_g)]);
+        var sizeScale = d3.scaleLinear().range([5, 15]).domain([d3.min(data, d => +d.bill_length_mm), d3.max(data, d => +d.bill_length_mm)]);
+
+        // Create axes
+        var xAxis = d3.axisBottom().scale(xScale);
+        var yAxis = d3.axisLeft().scale(yScale);
+
+        // Add axes to the SVG
+        svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+
+        svg.append("text") // x-axis label
+            .attr("class", "axis-label")
+            .attr("x", width / 2)
+            .attr("y", height + margin.top + 20)
+            .style("text-anchor", "middle")
+            .text("Flipper Length (mm)");
+
+        svg.append("g")
+            .attr("class", "y-axis")
+            .call(yAxis);
+
+        svg.append("text") // y-axis label
+            .attr("class", "axis-label")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 15)
+            .style("text-anchor", "middle")
+            .text("Body Mass (g)");
+
+        // Create scatter plot points
+        var circles = svg.selectAll("circle")
+            .data(data)
+            .enter().append("circle")
+            .attr("cx", d => xScale(+d.flipper_length_mm))
+            .attr("cy", d => yScale(+d.body_mass_g))
+            .attr("r", d => sizeScale(+d.bill_length_mm))
+            .attr("fill", d => colorMapping[d.species])
+            .attr("opacity", 0.6)
+            .on("mouseover", function (d) {
+                // Add tooltip or other interactions as needed
+                console.log("Mouseover:", d);
+            });
+
+        // Legend
+        var legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", "translate(" + (width + margin.legend) + ",20)");
+
+        var legendSize = legend.append("g")
+            .attr("class", "legend-size");
+
+        legendSize.append("circle")
+            .attr("cx", 10)
+            .attr("cy", 10)
+            .attr("r", sizeScale(40))
+            .attr("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-dasharray", "2,2");
+
+        legendSize.append("text")
+            .attr("x", 30)
+            .attr("y", 15)
+            .text("Bill Length (mm)");
+
+        var legendColor = legend.append("g")
+            .attr("class", "legend-color")
+            .attr("transform", "translate(0,30)");
+
+        legendColor.selectAll("rect")
+            .data(Object.entries(colorMapping))
+            .enter().append("rect")
+            .attr("x", 10)
+            .attr("y", (d, i) => i * 20)
+            .attr("width", 15)
+            .attr("height", 15)
+            .attr("fill", d => d[1]);
+
+        legendColor.selectAll("text")
+            .data(Object.entries(colorMapping))
+            .enter().append("text")
+            .attr("x", 30)
+            .attr("y", (d, i) => i * 20 + 12)
+            .text(d => d[0]);
+
+        // Interactive features
+        d3.select("#size-toggle").on("change", function () {
+            var sizeMappingActive = this.checked;
+            circles.transition().duration(500)
+                .attr("r", d => sizeMappingActive ? sizeScale(+d.bill_length_mm) : 5);
+        });
+
+        d3.select("#color-toggle").on("change", function () {
+            var colorMappingActive = this.checked;
+            circles.transition().duration(500)
+                .attr("fill", d => colorMappingActive ? colorMapping[d.species] : "black");
+        });
+
+    });
+</script>
+
+<label for="size-toggle">Toggle Size Mapping</label>
+<input type="checkbox" id="size-toggle" checked>
+
+<label for="color-toggle">Toggle Color Mapping</label>
+<input type="checkbox" id="color-toggle" checked>
+
+</body>
+</html>
+
+

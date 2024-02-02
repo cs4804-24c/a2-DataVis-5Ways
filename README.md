@@ -31,12 +31,6 @@ Other features are not required. This includes:
 - The background grid.
 - The legends.
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
-
-Improvements are also welcome as part of Technical and Design achievements.
-
-Libraries, Tools, Languages
 ---
 
 You are required to use 5 different tools or libraries.
@@ -135,14 +129,32 @@ While it takes time to find the correct documentation, these functions made the 
 
 ![ggplot2](img/ggplot2.png)
 
-# d3...
+# d3
+Using this tool was a bit trickier than altair or r (although easier than j5 - i attempted it but could not figure out why my table failed to load). I definitely had more range to customize my graph how I pleased, but getting there took more steps and thinking.
+![d3-penguin](img/d3-penguin.png)
 
-(And so on...)
+# datawrapper
+I'm not sure if it was just me, but I found the datawrapper website to run slow. Even though it loaded slowly, it was easy to manipulate the data and get the graph I wanted.
+![datawrapper](img/datawrapper.png)
+
+# excel
+Although I am familiar with excel and creatting graphs using this tool, I found it more tricky to replicate the graph using it. Customizing the graph like changing the colors of the dots took more clicks than prefered. The size feature on the scatterplot that would change the size of the dots according to a data point would become disabled when I added differnt series (differentiating between the species by color). To move around this I ended up creating a scatterplot using the bubble chart option, which allowed me to be able to replicate the graph fully.
+![excel](img/excel.png)
+
+# flourish
+Out of the tools I used that did not require code, I found this one to be the one of the easier ones to use without having to Google "how to...". A downside was that I couldn't manipulate the legends as much as I would have liked to replicate the chart totally.
+![flourish](img/flourish.png)
+
+# tableau
+It was tricky getting the hang of tableau at first. At first I was confused why my scatterplot was only displaying 3 dots. 
+![tableau](img/tableau.png)
+
+# altair
+I used Colaboratory Google to run my altair program. It was a short program although at first I was having issues with the imports.
+![altair](img/altair.png)
+
+# r + ggplot2
+I used the professor's code as a starting point. As a design achievement, I decided to go with a "cool blue" color palette and used white, gray and blue. For a technical achievement I decided to also change the shape of the points based on what island the penguin was from.
+![r-penguin](img/r-penguin.png)
 
 
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
-
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...

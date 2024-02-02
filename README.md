@@ -111,42 +111,26 @@ GitHub Details
 - Make changes to fulfill the project requirements. 
 - To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
 
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
 
 # d3...
 Used [this](https://www.youtube.com/watch?v=X2_apg4CIRA) video to host site/parse csv
 
-
 Used [this](https://www.youtube.com/watch?v=M2s2jowLkUo) to start the plot
 
-
-(And so on...)
-
-
+## Technical Achievements
+- **Grid**
+### Design Achievements
+- **Legend**
 # Altair
 Used [this](https://altair-viz.github.io/gallery/scatter_tooltips.html) to create a scatter plot
+
+# Vega-Lite
+
+# Flourish
+
+# Data Wrapper
+
+
 
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...

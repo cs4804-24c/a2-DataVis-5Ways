@@ -165,7 +165,7 @@ const render = data => {
   .text("Gentoo");
 };
 
-d3.csv('penglings.csv')
+d3.csv('../penglings.csv')
   .then(data => {
     data.forEach(d => {
       d.flipper_length_mm = +d.flipper_length_mm;

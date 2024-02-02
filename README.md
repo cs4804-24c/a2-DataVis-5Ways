@@ -33,5 +33,5 @@ Flourish is an online data visualization software. To recreate this chart, I upl
 - **Tooltip**: I added a tooltip for the D3.js, Python/Matplotlib, Python/Plotly, Tableau and Flourish charts that shows the data of a point. I had to manually add code in to create a tooltips for the D3.js and Python/Matplotlib. I used the Mplcursors library to do so for the Python/Matplotlib chart.
 
 ### Design Achievements
-- **WCAG Complex Images Accessibility Guidelines**: I studied and utilized the WCAG guidelines on complex images to make my charts more accessible. I added alternative text to my Tableau, Flourish and D3.js charts to make them more accessible to those using screen readers. The captions and alternative text explain the purpose of the charts.
+- **WCAG Complex Images Accessibility Guidelines**: I studied and utilized the WCAG guidelines on complex images to make my charts more accessible. I added alternative text to my Tableau, Flourish and D3.js charts to make them more accessible to those using screen readers (<figurecaptions> etc). The captions and alternative text explain the purpose of the charts.
 

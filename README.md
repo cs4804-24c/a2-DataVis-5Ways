@@ -3,7 +3,7 @@ Design Achievements:
 I made this visualization to tell a story and show some of the data and statistics.
 The idea is that the penguins got separated on different islands because of an iceberg which drifted apart. (Note the bottom of the iceberg is still intact, but the top isn't). This caused them to develop populations on those islands of Biscoe, Dream, and Torgersen. Some of the islands had two species while others only had one. One interesting fact is that the Adelie Penguins appear on all the islands. Maybe they are better swimmers?
 
-![visual](img/<visual.png>)
+![](img/<visual.png>)
 
 
 # Altair

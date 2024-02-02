@@ -44,6 +44,7 @@ What was easy?
 ## Technical Achievements
 - added mouse hover functionality for individual datapoints (altair)
 - added interactive zoom in/out (altair)
+- added background grid and legends
 - challenged myself to learn as many new tools/libraries as I could within the scope of this assignment
   - like avoiding ggplot2 (for now) to not get too close to the example
   - and not doubling up on languages

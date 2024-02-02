@@ -8,7 +8,9 @@ For design achievemnts, I kept the color of the dots consistent throughout all v
 
 
 Sources:
+
 https://d3-graph-gallery.com/graph/custom_theme.html. I used this sourse to learn the basics of creating scatterplots in d3.
+
 https://d3-graph-gallery.com/graph/scatter_tooltip.html. I used this source to learn how to create tooltips.
 
 # Excel + VBA
@@ -20,6 +22,7 @@ VBA (Visual Basic for Applications) is Microsoft's programming language used in 
 As a design acheivement for this graph, I divided the size variable within my code to ensure that the dots were not too large and that the user could see a difference between the size of each dot. I also added a title, changed the background color, and added a legend for color. As a techical achievement, I created Macros with the VBA code, which is a way of automating the procedures of changing color based on the species variable and the size based on the bill length. This can save time in the future if I wanted to create scatterplots comparing other variables.
 
 Sources: 
+
 https://www.youtube.com/watch?v=0kQ23byr71c. I used this source to learn how to create a Macro and write in VBA.
 
 # Altair
@@ -31,7 +34,9 @@ Altair is a Python library used for statistical visualization. Altair's pro is t
 Some design acheivements for this graph were that I changed the background color, added a title and changed the font size and font of the titles, and I kept the colors consistent with the other graphs. The technical achievements are that I added the clamp to allow the user to zoom in and scroll around, and I added a tooltip, which contains the same infromation as the other tooltips in the other graphs.
 
 Sources:
+
 https://altair-viz.github.io/altair-tutorial/notebooks/08-Configuration.html. I used this source to understand Altair basics and clamps.
+
 https://altair-viz.github.io/gallery/scatter_tooltips.html. I used this source to understand tooltips.
 
 # R + ggplot2
@@ -43,7 +48,9 @@ ggplot2 is an open-source data visualization package used in the programming lan
 Some design achievements I attempted with this visualization were making the colors consistent with the other graphs, importing Times New Roman to use it as the font for the visualization, and editing the title of the color legend to just say 'Species' instead of 'bill_length_mm species,' which is what automatically happened when I converted to plotly for the tooltip. Some technical achievments include adding a tooltip and customizig it to include what each value is and a label for that value (ex. mm, g, etc.).
 
 Sources:
+
 https://r-graph-gallery.com/272-basic-scatterplot-with-ggplot2.html. I used this source to learn the basics of R and creating scatterplots.
+
 I also used ChatGPT to figure out how to add a tooltip and debug my code when trying to change the title font.
 
 # Datawrapper
@@ -65,6 +72,7 @@ I am adding tableau as a sixth version of this visualization because I was reall
 Some design achievements for this visualization include using colors consistent with the rest of the graphs, changing the background color, and adjusting the number format on the legends so that bill length did not contain any decimals. Some techical achievements include adding filters for year and island and customizing the tooltip to include all information that is included in the tooltips of other graphs for this assignment.
 
 Sources:
+
 https://www.youtube.com/watch?v=qKxEhW6tPyA&t=19s. I used this video to understand how to create a scatterplot in Tableau initially.
 
 

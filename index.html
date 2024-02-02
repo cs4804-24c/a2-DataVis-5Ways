@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Visualization with D3 and Vega-Lite</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  </head>
+  <body>
+    <h1>Data Visualization with D3</h1>
+
+    <!-- D3 Visualization -->
+    <div id="d3-chart"></div>
+
+    <!-- made with the help of ChatGPT -->
+    <script>
+      const dataset = d3.csv("penglings.csv").then((data) => {
+        console.log(data);
+
+        // Access the required columns
+        const flipperLength = data.map((d) => +d.flipper_length_mm);
+        const bodyMass = data.map((d) => +d.body_mass_g);
+        // Set up color scale based on species
+        const customColors = ["#f0a658", "#609fa0", "#a15ece"];
+
+        const colorScale = d3
+          .scaleOrdinal()
+          .domain(data.map((d) => d.species))
+          .range(customColors);
+
+        // Create the SVG container
+        const svg = d3
+          .select("#d3-chart")
+          .append("svg")
+          .attr("width", 1100)
+          .attr("height", 1000)
+          .append("g")
+          .attr("transform", "translate(80, 60)");
+
+        // Set the scales for x and y axes
+        const xScale = d3
+          .scaleLinear()
+          .domain([d3.min(flipperLength) - 5, d3.max(flipperLength)])
+          .range([0, 800]);
+
+        const yScale = d3
+          .scaleLinear()
+          .domain([d3.min(bodyMass) - 200, d3.max(bodyMass)])
+          .range([500, 0]);
+
+        // Create the circles representing the data points
+        svg
+          .selectAll("circle")
+          .data(data)
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => xScale(+d.flipper_length_mm))
+          .attr("cy", (d) => yScale(+d.body_mass_g))
+          .attr("r", (d) => +d.bill_length_mm / 5)
+          .attr("fill", (d) => colorScale(d.species))
+          .attr("opacity", 0.8);
+
+        // Add x-axis
+        svg
+          .append("g")
+          .attr("transform", "translate(0, 500)")
+          .call(d3.axisBottom(xScale));
+
+        // Add y-axis
+        svg.append("g").call(d3.axisLeft(yScale));
+
+        // Add x-axis label
+        svg
+          .append("text")
+          .attr("x", 500)
+          .attr("y", 550)
+          .style("text-anchor", "middle")
+          .text("Flipper Length (mm)");
+
+        // Add y-axis label
+        svg
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("x", -200)
+          .attr("y", -45)
+          .style("text-anchor", "middle")
+          .text("Body Mass (g)");
+      });
+    </script>
+
+    <h1>Data Visualization with Vega-Lite</h1>
+
+    <!-- Vega-Lite Visualization -->
+    <div id="vega-lite-chart"></div>
+
+    <!-- made with the help of ChatGPT -->
+    <script>
+      const spec = {
+        data: { url: "penglings.csv" },
+        mark: "circle",
+        encoding: {
+          x: {
+            field: "flipper_length_mm",
+            type: "quantitative",
+            scale: { zero: false },
+          },
+          y: {
+            field: "body_mass_g",
+            type: "quantitative",
+            scale: { zero: false },
+          },
+          size: {
+            field: "bill_length_mm",
+            type: "quantitative",
+            scale: { zero: false },
+            title: "Bill Length (mm)",
+          },
+          color: {
+            field: "species",
+            type: "nominal",
+            scale: { range: ["#f0a658", "#a15ece", "#609fa0"] },
+          },
+        },
+        width: 800,
+        height: 600,
+        title: "Penguin Data Scatter Plot",
+        config: {
+          axis: {
+            labelFontSize: 12,
+            titleFontSize: 14,
+          },
+        },
+      };
+
+      // Embed the Vega-Lite visualization
+      vegaEmbed("#vega-lite-chart", spec);
+    </script>
+  </body>
+</html>

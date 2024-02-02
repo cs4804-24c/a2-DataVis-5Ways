@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penguins Scatter Plot</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<script>
+  // This loads the penguins data
+  d3.csv("penglings.csv").then(function(data) {
+
+    // Filter data 
+    const filteredData = data.filter(d => {
+      const flipperLength = parseFloat(d.flipper_length_mm);
+      return flipperLength >= 170;
+    });
+
+    //SVG dimensions
+    const width = 600;
+    const height = 400;
+    const margin = { top: 20, right: 40, bottom: 40, left: 100 }; 
+
+    //SVG container
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right + 100) 
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // The columns being used
+    const flipperLength = filteredData.map(d => parseFloat(d.flipper_length_mm));
+    const bodyMass = filteredData.map(d => parseFloat(d.body_mass_g));
+    const species = filteredData.map(d => d.species);
+    const billLength = filteredData.map(d => parseFloat(d.bill_length_mm));
+
+    const xScale = d3.scaleLinear()
+      .domain([d3.min(flipperLength) - 5, d3.max(flipperLength) + 5])
+      .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+      .domain([d3.min(bodyMass) - 50, d3.max(bodyMass) + 50])
+      .range([height, 0]);
+
+    const sizeScale = d3.scaleLinear()
+      .domain([d3.min(billLength), d3.max(billLength)])
+      .range([5, 5]);
+
+    // Color scale for species
+    const colorScale = d3.scaleOrdinal()
+      .domain([...new Set(species)])
+      .range(d3.schemeCategory10);
+
+    // Circles
+    svg.selectAll("circle")
+      .data(filteredData)
+      .enter().append("circle")
+      .attr("cx", d => xScale(parseFloat(d.flipper_length_mm)))
+      .attr("cy", d => yScale(parseFloat(d.body_mass_g)))
+      .attr("r", d => sizeScale(parseFloat(d.bill_length_mm)))
+      .attr("fill", d => colorScale(d.species))
+      .attr("opacity", 0.8);
+
+    //x-axis
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(xScale).ticks(5));
+
+    //y-axis
+    svg.append("g")
+      .call(d3.axisLeft(yScale).ticks(5));
+
+    svg.append("text")
+      .attr("x", width / 2)
+      .attr("y", height + margin.top + 10)
+      .style("text-anchor", "middle")
+      .text("Flipper Length (mm)");
+
+
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -height / 2)
+      .attr("y", -margin.left)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Body Mass (g)");
+
+    //legend for species
+    const speciesLegend = svg.selectAll(".species-legend")
+      .data([...new Set(species)])
+      .enter().append("g")
+      .attr("class", "species-legend")
+      .attr("transform", (d, i) => "translate(0," + i * 20 + ")");
+
+    speciesLegend.append("rect")
+      .attr("x", width + margin.right - 17)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", d => colorScale(d));
+
+    speciesLegend.append("text")
+      .attr("x", width + margin.right - 18)
+      .attr("y", 10)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(d => d);
+
+    //legend for bill length
+    const billLengthLegend = svg.append("g")
+      .attr("class", "bill-length-legend")
+      .attr("transform", "translate(" + (width + margin.right + 20) + "," + 0 + ")");
+
+   
+    const legendRadius40 = sizeScale(40) + 1;
+    const legendRadius50 = sizeScale(50) + 3; 
+
+    billLengthLegend.append("circle")
+      .attr("cx", 10)
+      .attr("cy", 15)
+      .attr("r", legendRadius40)
+      .style("fill", "black");
+
+    billLengthLegend.append("circle")
+      .attr("cx", 10)
+      .attr("cy", 43)
+      .attr("r", legendRadius50)
+      .style("fill", "black");
+
+    billLengthLegend.append("text")
+      .attr("x", 2)
+      .attr("y", -5) 
+      .attr("dy", ".35em")
+      .style("font-weight", "bold")
+      .text("Bill-Length");
+
+    billLengthLegend.append("text")
+      .attr("x", 25)
+      .attr("y", 14) 
+      .attr("dy", ".35em")
+      .text("40");
+
+    billLengthLegend.append("text")
+      .attr("x", 25)
+      .attr("y", 44)
+      .attr("dy", ".35em")
+      .text("50");
+
+  });
+</script>
+
+</body>
+</html>
+

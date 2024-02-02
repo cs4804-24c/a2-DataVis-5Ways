@@ -1,0 +1,6 @@
+Here is a link to my public Tableau scatter plot visualization of the Penguins dataset:
+
+https://public.tableau.com/app/profile/matthew.mcalarney/viz/PenguinsDataScatterPlot/Sheet1?publish=yes
+
+Tableau workbooks are not accessible in Visual Studio Code, so use the link above to view my Tableau replication.
+I also have included an image of my Tableau workbook showing the replication as well for further reference.

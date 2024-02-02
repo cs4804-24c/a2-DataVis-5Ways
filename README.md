@@ -3,7 +3,7 @@ Design Achievements:
 I made this visualization to tell a story and show some of the data and statistics.
 The idea is that the penguins got separated on different islands because of an iceberg which drifted apart. (Note the bottom of the iceberg is still intact, but the top isn't). This caused them to develop populations on those islands of Biscoe, Dream, and Torgersen. Some of the islands had two species while others only had one. One interesting fact is that the Adelie Penguins appear on all the islands. Maybe they are better swimmers?
 
-![](img/<visual.png>)
+![visual](img/visual.png)
 
 
 # Altair
@@ -26,10 +26,10 @@ Design Achievements:
 - A legend was added to help the reader understand the plot.
 - The species selection functionality allows the user to focus in on one particular species when trying to analyze the graph. 
 
-![altairPlot](img/<altair.png>)
-![altairInteractive1](img/<altair-interactive1.png>)
-![altairInteractive2](img/<altair-interactive2.png>)
-![altairInteractive3](img/<img/altair-interactive3.png>)
+![altairPlot](img/altair.png)
+![altairInteractive1](img/altair-interactive1.png)
+![altairInteractive2](img/altair-interactive2.png)
+![altairInteractive3](img/img/altair-interactive3.png)
 
 # d3
 Link:
@@ -52,8 +52,8 @@ Design Achievements:
 - A legend was added to help the reader understand the plot.
 - The species selection functionality allows the user to focus in on one particular species when trying to analyze the graph, while the other species are less apparent in the background.
 
-![d3Plot](img/<d3.png>)
-![d3Interactive](img/<d3-interactive.png>)
+![d3Plot](img/d3.png)
+![d3Interactive](img/d3-interactive.png)
 
 # MATLAB
 MATLAB is a programming  language and numerical computing environment widely used in engineering, science, etc.
@@ -70,7 +70,7 @@ Design Achievements:
 - Again, colors for the points on the scatterplot was thoroughly discussed with my girlfriend who specializes in illustration and graphic design. We want the color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
 - A legend was added to help the reader understand the plot.
 
-![matlabPlot](img/<matlab.png>)
+![matlabPlot](img/matlab.png)
 
 # R-ggplot2
 The R programming language is a powerful and widely-used statistical computing and graphics language.
@@ -88,7 +88,7 @@ Design Achievements:
 - I opted for the Times New Roman font for better readability. In addition, bolding the title will help the reader easily identify what they are looking at. Also, the sizes of the axis titles and legend titles are a little larger than the axis labels for better readability.
 - A legend was added to help the reader understand the plot.
 
-![r-ggplot2Plot](img/<r-ggplot2.png>)
+![r-ggplot2Plot](img/r-ggplot2.png)
 
 # Tableau
 Tableau is powerful data visualization and business software that allows users to transform raw data into visually appealing and interactive dashboards.
@@ -106,4 +106,4 @@ Design Achievements:
 - I was unable to figure out how to use hex codes, so I tried matching it to the rest of my graphs with the colors they have. Again, I wanted a color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
 - A legend was added to help the reader understand the plot.
 
-![tableauPlot](img/<tableau.png>)
+![tableauPlot](img/tableau.png)

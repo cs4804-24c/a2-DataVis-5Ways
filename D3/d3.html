@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <style>
+
+    /* allowing svg container to be next to form container*/
+    body {
+      display: flex;
+    }
+
+    /* form container addind boarder*/
+    .form {
+      border: 2px solid black;
+      margin-top : 75px;
+      padding: 25px;
+      width: 150px;
+      height: 200px;
+    }
+
+    
+   
+    /*I added this  in order to update button */
+    .button {
+      background-color: #2196F3;
+      border-radius: 5px;
+
+    }
+    
+     /*from checkbox tutorial only change padding and margin */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 45px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /*from checkbox tutorial nothing to change since it is getting rid of original check box*/
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    /* from checkbox tutorial changed height and width and added border radius to make more pill shaped
+    also mad it blue which will makw sence later on*/
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      border-radius: 8px;
+      width: 40px;
+      background-color: #2196F3;
+    }
+
+    /*from checkbox tutorial changed it to a darker blue*/
+    .container:hover input~.checkmark {
+      background-color: #2079c1;
+    }
+
+    
+    /*from checkbox tutorial nothing to change since I liked it how it was*/
+    .container input:checked~.checkmark {
+      background-color: #2196F3;
+    }
+
+    
+    /*from checkbox tutorial nothing as this is needed to display check mark or whatever is used properly*/
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    
+    /*from checkbox tutorial nothing as this is needed to display check mark or whatever is used properly*/
+    .container input:checked~.checkmark:after {
+      display: block;
+    }
+
+    
+    /*from checkbox tutorial change the check to be a smaller pill then the one above for the check box shape*/
+    .container .checkmark:after {
+      left: 10px;
+      top: 5px;
+      height: 10px;
+      border-radius: 4px;
+      width: 20px;
+      background-color: #FFFFFF
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form">
+    <form>Species Select<p></p>
+      <label class="container">Adelie
+        <input type="checkbox" id="adelieCheckbox" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Gentoo
+        <input type="checkbox" id="gentooCheckbox" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Chinstrap
+        <input type="checkbox" id="chinstrapCheckbox" checked>
+        <span class="checkmark"></span>
+      </label>
+      <input class="button" type="button" value="Update" onclick="loadData()">
+    </form>
+
+    <p></p>
+    <label class="container">Rescale
+      <input type="checkbox" id="rescale">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+  <div id="svgcontainer"></div>
+
+    <script>
+
+        
+        
+        var margin = { top: 75, right: 150, bottom: 150, left: 150 },
+            width = 800 - margin.left - margin.right,
+            height = 700 - margin.top - margin.bottom;
+
+        var svg = d3.select("#svgcontainer") 
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+            
+            async function loadData() {
+              svg.selectAll("circle").remove();
+              svg.selectAll(".legend").remove();
+              svg.selectAll("lines").remove();
+              svg.selectAll("text").remove();
+              svg.selectAll('.grid-lines').remove();
+              svg.selectAll('g').remove();
+              const data = await d3.csv("penglings.csv");
+             
+              
+
+              // get data for each species that was selected otherwise set it to an empty arrray
+              const adelieData = document.getElementById("adelieCheckbox").checked ? data.filter(d => d.species == "Adelie") : [];
+              const gentooData = document.getElementById("gentooCheckbox").checked ? data.filter(d => d.species == "Gentoo") : [];
+              const chinstrapData = document.getElementById("chinstrapCheckbox").checked ? data.filter(d => d.species == "Chinstrap") : [];
+
+              var speciesData
+                
+              // set the species data used
+              if (document.getElementById("rescale").checked){
+              speciesData = adelieData.concat(gentooData, chinstrapData);
+
+              }else{
+                speciesData = data;
+
+              }
+              
+
+
+              
+
+
+              var x = d3.scaleLinear()
+                .domain([d3.min(speciesData, function(d) { return +d.flipper_length_mm; }) - 0.05*d3.min(speciesData, function(d) { return +d.flipper_length_mm; }), 
+                d3.max(speciesData, function(d) { return +d.flipper_length_mm; }) + 0.05*d3.max(speciesData, function(d) { return +d.flipper_length_mm; })])
+                .range([ 0, width ]);
+              svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+             
+              var y = d3.scaleLinear()
+              .domain([d3.min(data, function(d) { return +d.body_mass_g; }) - 0.05*d3.min(speciesData, function(d) { return +d.body_mass_g; }), 
+                d3.max(speciesData, function(d) { return +d.body_mass_g; }) + 0.05*d3.max(speciesData, function(d) { return +d.body_mass_g; })])
+                .range([ height, 0 ]);
+              svg.append("g")
+                .call(d3.axisLeft(y));
+
+              var size = d3.scaleLinear()
+              .domain([d3.min(data, d => +d.bill_length_mm), d3.max(data, d => +d.bill_length_mm)])
+              .range([4, 8]);
+
+              xGrid = (g) => g
+                .attr('class', 'grid-lines')
+                .selectAll('line')
+                .data(x.ticks())
+                .join('line')
+                .attr('x1', d => x(d))
+                .attr('x2', d => x(d))
+                .attr('y1', 0)
+                .attr('y2', height)
+                .attr('stroke', 'grey')  
+                .attr('stroke-width', 1) 
+
+
+              
+              yGrid = (g) => g
+                .attr('class', 'grid-lines')
+                .selectAll('line')
+                .data(y.ticks())
+                .join('line')
+                .attr('x1', 0)
+                .attr('x2', width )
+                .attr('y1', d => y(d))
+                .attr('y2', d => y(d))
+                .attr('stroke', 'grey')  
+                .attr('stroke-width', 1) 
+
+                console.log("x ticks:", x.ticks());
+                console.log("y ticks:", y.ticks());
+
+              svg.append("g")
+                .call(xGrid)
+
+              svg.append("g")
+                .call(yGrid)
+
+              svg.append("text")
+              .attr("text-anchor", "middle")
+              .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom/2) + ")")
+              .text("Flipper Length (mm)");
+
+              svg.append("text")
+              .attr("text-anchor", "middle")
+              .attr("transform", "rotate(-90) translate(" + (- (height / 2)) + "," + (-  margin.left/2) + ")")
+              .text("Body Mass (g)");
+
+
+              
+
+              svg.append('g')
+                .selectAll("dot")
+                .data(adelieData)
+                .enter()
+                .append("circle")
+                  .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+                  .attr("cy", function (d) { return y(d.body_mass_g); } )
+                  .attr("r",  function (d) { return size(d.bill_length_mm); })
+                  .attr("opacity", 0.8)
+                  .style("fill", "darkorange" );
+
+              svg.append('g')
+              .selectAll("dot")
+              .data(gentooData)
+              .enter()
+              .append("circle")
+                .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+                .attr("cy", function (d) { return y(d.body_mass_g); } )
+                .attr("r",  function (d) { return size(d.bill_length_mm); })
+                .attr("opacity", 0.8)
+                .style("fill", "cyan" );
+
+              svg.append('g')
+              .selectAll("dot")
+              .data(chinstrapData)
+              .enter()
+              .append("circle")
+                .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+                .attr("cy", function (d) { return y(d.body_mass_g); } )
+                .attr("r",  function (d) { return size(d.bill_length_mm); })
+                .attr("opacity", 0.8)
+                .style("fill", "purple" );
+
+
+
+              // group for species legend and put it on right side
+              var legendSpecies = svg.append("g")
+                .attr("transform", "translate(" + (width  ) + "," + (3*height/4) + ")");
+
+              //title
+              legendSpecies.append("text")
+              .attr("x", 30)
+              .attr("y", -10)
+              .text("species")
+              .style("font-size", "18px");
+              
+              //labels and circles
+              legendSpecies.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 10)
+                .attr("r", 5)
+                .style("fill", "darkorange");
+              legendSpecies.append("text")
+                .attr("x", 30)
+                .attr("y", 10)
+                .text("Adelie");
+              
+              
+              legendSpecies.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 30)
+                .attr("r", 5)
+                .style("fill", "cyan");
+              legendSpecies.append("text")
+                .attr("x", 30)
+                .attr("y", 30)
+                .text("Gentoo");
+              
+              legendSpecies.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 50)
+                .attr("r", 5)
+                .style("fill", "purple");
+              
+              legendSpecies.append("text")
+                .attr("x", 30)
+                .attr("y", 50)
+                .text("Chinstrap");
+
+
+              // group for bill length legend
+              var billLegend = svg.append("g")
+                .attr("transform", "translate(" + (width  ) + "," + (2*height/4) + ")");
+
+              //title
+              billLegend.append("text")
+              .attr("x", 30)
+              .attr("y", -10)
+              .text("bill_length_mm")
+              .style("font-size", "18px");
+              
+              //labels and circles
+              billLegend.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 5)
+                .attr("r", size(40))
+                .attr("opacity", 0.8)
+                .style("fill", "black");
+                billLegend.append("text")
+                .attr("x", 30)
+                .attr("y", 10)
+                .text("40mm");
+              
+              
+                billLegend.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 25)
+                .attr("r", size(50))
+                .attr("opacity", 0.8)
+                .style("fill", "black");
+                billLegend.append("text")
+                .attr("x", 30)
+                .attr("y", 30)
+                .text("50mm");
+              
+            
+
+
+            }
+
+  
+  
+              
+  
+        loadData();
+
+    </script>
+</body>
+
+</html>

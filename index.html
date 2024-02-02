@@ -68,7 +68,7 @@ d3.csv('imputed_data.csv', function(data){
         .text("Body Mass (g)")
 
     
-        // GridLines
+    // GridLines
     svg.selectAll(".tick line").attr("stroke", "white")
 
     // Color map
@@ -86,7 +86,7 @@ d3.csv('imputed_data.csv', function(data){
             .attr("cy", function (d) { return y(d.body_mass_g); } )
             .attr("r", function (d) { return d.bill_length_mm/6; })
             .style("fill", function(d) {return color(d.species)})
-            .style('opacity', .7)
+            .style('opacity', .8)
 
     // Legend
     var legend = svg.append('g')

@@ -80,9 +80,7 @@ DataWrapper is a very interesting and alternative-esque data visualization softw
 
   3. Implemented different data imputation strategies to handle NA values in csv file (implemented in D3, Atlair, Matplotlib, Tableau)
     a. In Atlair and Matplotlib, after loading the csv data, I handled NA values by replacing each NA value in the flipper length, body mass, and bill length columns with the current mean flipper length, body mass, and bill lengths respectively. I replaced all NA values in the species column with the current mode species (most frequently occurring species).
-    
     b. In D3, during the process of loading csv data, I handled all NA values by filtering out any data row that contained an NA value in the species, flipper length, body mass, and/or bill length columns. This data imputation strategy operates under the motivation to only plot complete data in the scatter plot. No incomplete data rows are plotted in D3.
-    
     c. In Tableau, I applied a data imputation filter for the flipper length column. This filter ensures that no incomplete data rows are represented in the Tableau replication.
 
   4. Implemented an interactive tooltip for every data point (implemented in D3, Atlair, Tableau, DataWrapper)
@@ -103,5 +101,4 @@ DataWrapper is a very interesting and alternative-esque data visualization softw
 
   3. Configured specific font families, font sizes, and font weights for visualization text (implemented in D3 and Atlair)
     a. In D3, I specified font families and font sizes for the scatter plot title, axis labels, legend text, and tooltip text. I also specified font weight for the scatter plot title and tooltip text as well.
-    
     b. In Atlair, I specified font sizes for the scatter plot title, axis labels, and legend text.

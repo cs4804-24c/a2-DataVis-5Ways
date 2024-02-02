@@ -1,6 +1,6 @@
 # Python + Seaborn
 I have experience working with python and seabon specifically, so working with this specific 
-![Seaborn](img/<seaborn.png>)
+![Seaborn](img/seaborn.png)
 
 
 # Python + Altair

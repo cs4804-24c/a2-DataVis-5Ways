@@ -1,10 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#Load the data
+
 data = pd.read_csv('./penglings.csv')
 
-#Define color
+
 species_color = {
     'Adelie': 'darkorange',
     'Chinstrap': 'purple',

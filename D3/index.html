@@ -232,7 +232,7 @@
           .style("opacity", 0.8) //Set the opacity of each circle to 0.8.
           .on('mouseover', (event, d) => { //Add an interactive tooltip for each circle.
             const [mouseX, mouseY] = d3.pointer(event)
-            infoText = `Species: ${d.homeSpecies}, Flipper Length (mm): ${d.flipperLength}, Body Mass (g): ${d.bodyMass}, Bill Length: ${d.billLength}`
+            infoText = `Species: ${d.homeSpecies}, Flipper Length (mm): ${d.flipperLength}, Body Mass (g): ${d.bodyMass}, Bill Length (mm): ${d.billLength}`
             tooltip
             .raise()
             .attr("x", mouseX)

@@ -5,11 +5,14 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/Rob-hub-lang/a2-DataVis-5Ways/main/penglings.csv'
 df = pd.read_csv(url)
 
+# Define custom colors for each species
+species_colors = {'Adelie': 'darkorange', 'Chinstrap': 'darkorchid', 'Gentoo': 'darkgreen'}
+
 # Create scatter plot
 scatter_plot = alt.Chart(df).mark_circle(opacity=0.8).encode(
     x=alt.X('flipper_length_mm:Q', scale=alt.Scale(zero=False)),
     y=alt.Y('body_mass_g:Q', scale=alt.Scale(zero=False)),
-    color='species:N',
+    color=alt.Color('species:N', scale=alt.Scale(domain=list(species_colors.keys()), range=list(species_colors.values()))),
     size=alt.Size('bill_length_mm:Q'),
     tooltip=['species:N', 'flipper_length_mm:Q', 'body_mass_g:Q', 'bill_length_mm:Q']
 ).properties(

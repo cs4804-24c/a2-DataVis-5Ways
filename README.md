@@ -1,11 +1,11 @@
 # Python + Seaborn
-I have experience working with python and seabon specifically, so working with this specific package was simple for me. But I also did learn how to use specific features like
+I have experience working with python and seabon specifically, so working with this specific package was simple for me. But I also did learn how to use specific features like the interactions that can be done through python
 (Found in Python folder)
 ![Seaborn](img/seaborn.png)
 
 
 # Python + Altair
-I have experience with python but
+I have experience with python but not altair. It was not too difficult to understand the mechanics of it but it was still something new that I learned.
 (found in Python folder) 
 ![Altair](img/altair.png)
 
@@ -19,7 +19,7 @@ This was my first time using this and it was similar to datawrapper, but if I ha
 ![Flourish](img/flourish.png)
 
 # D3
-Personally I had the most trouble with d3 since it is something I needed to work through
+Personally I had the most trouble with d3 since it is something I needed to work through the mechanics. I would personally not use d3 since there is too many manual features that I would have to add and not have the luxuary to autopoulate. But this is a good platform for specific feature manuplation. For the data manuiplation I wrote a single line of code so that it would ignore and not mess withe the graph. Of all the methods this was the most time consuming and it was difficult to understand was could be the errors. 
 (found in the d3 folder)
 ![d3](img/d3.png)
 

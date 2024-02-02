@@ -9,7 +9,7 @@ of what the process was.
 _Python in Jupyter_
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/e375066d-14ff-4811-acac-24c516a208f4)
 
-I've worked with R a fair amount in the past, I used the library tidyverse. Tidyverse is just another package with ggplot2 in it. It also offers readr and tidyr
+I've worked with R a fair amount in the past, I used the library tidyverse. Tidyverse is just another library with ggplot2 in it. It's worked for me in the past so I figured I'd use it here too.  
 _R in RStudio with library tidyverse._
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/8f0effbe-defe-4726-a061-dac155481e99)
 

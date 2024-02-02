@@ -136,9 +136,17 @@ While it takes time to find the correct documentation, these functions made the 
 ![ggplot2](img/ggplot2.png)
 
 # d3...
+Used [this](https://www.youtube.com/watch?v=X2_apg4CIRA) video to host site/parse csv
+
+
+Used [this](https://www.youtube.com/watch?v=M2s2jowLkUo) to start the plot
+
 
 (And so on...)
 
+
+# Altair
+Used [this](https://altair-viz.github.io/gallery/scatter_tooltips.html) to create a scatter plot
 
 ## Technical Achievements
 - **Proved P=NP**: Using a combination of...

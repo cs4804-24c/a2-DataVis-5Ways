@@ -4,7 +4,7 @@ Alessandra Giovenco (anavi16) - CS4804 A2
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/fb3e1670-19b2-41f4-a597-e5776b4d61f3)
 I started with JS/d3, I haven't worked with JS much but I was determined to get it right. Once I did, it was fun to play around with and learing to use the localhost (as I'd never used one before). I used the d3 website the most to help me through the process of all the functions. (https://d3js.org/ and https://stackoverflow.com/questions/15417437/d3-js-loading-local-data-file-from-file just to try to get it explained to me)
 
-_Python in Jupyter_
+# Python in Jupyter
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/e375066d-14ff-4811-acac-24c516a208f4)
 I've only coded in Python a handful of times, and thankfully during one of my classes last year we made a similar graph so I had a pretty good idea of how to do this one. I used Jupyter Notebook (provided by WPI) to compile everything. 
 of what the process was. 

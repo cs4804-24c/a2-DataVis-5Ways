@@ -1,148 +1,49 @@
+## Original image
+![Alt text](./img/ggplot2.png)
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
+## d3 ##
+![alt text](./img/d3.png)
 
-# 02-DataVis-5ways
+d3 was one of the more annoying libraries to use, mainly because it feels like all of the tools it gives to make things easier are half-finished. Why does it have an `axisBottom` and `axisLeft` function that don't draw axis labels? Why is there nothing built in for legends, when 90% of data visualizations are probably some form of chart with a generic legend? It could at least position legend elements for you and leave the actual component rendering to the user. My main complaint here is that without these tools to make rendering easier, d3 is pretty much just a wrapper library for jQuery that inserts svg elements for you.
 
-Assignment 2 - Data Visualization, 5 Ways  
-===
+I say a wrapper library for jQuery because d3 automatically imports jQuery, and the main thing I like about d3 is `.attr` working with `.data` and accepting functions for attribute values, but all of that is from jQuery, not d3. The only code actually unique to d3 in this graph is the code that generates the axes, everything else is just jQuery editing svg tags.
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+I would use d3 for more complex data visualizations online, where I want to do complex animations or diagrams that actually take advantage of the tools provided by the library.
+## C# ##
+![alt text](./img/csharp.png)
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+C# was one of the easier languages to design in. Apparently Visual Basic has a built-in CSV reader, so getting data into the program was easy. C# also apparently has an entire charting library `System.Windows.Forms.DataVisualization`, so most of the graph setup was also easy. It doesn't seem like there's a way to set a number of gridlines, only specifying the gap between two gridlines. That isn't too difficult to work with, but I couldn't be bothered. The only other problem was that the legends limit the marker size to a maximum pixel size for some reason, so I couldn't scale the `bill_length_mm` legend to match the actual graph.
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
+I would probably not use C# for data visualization, since it is better as a back-end language. The scatter plot here is easy to make, but trying to do anything more complex than a basic 2-3 axis chart requires manually writing the rendering. There are also very few libraries for C# for data-vis.
+## Python ##
+![alt text](./img/python.png)
 
-Your goal is to use 5 different tools to make the following chart:
+Python is probably the easiest of the languages here. Since it's used so often in data science, there are a lot of strong tools for visualization, and Python itself is a simpler language to code in. The only difficulty was modifying the legend to include the `bill_length_mm` sizes, but it was still the easiest of all of the languages and tools used.
 
-![](img/ggplot2.png)
+I would use Python for visualizations that require large amounts of data, scientific data, or for data that is not being rendered online. Unlike C#, Python has many strong data visualization libraries (including `matplotlib` which I used). However, many of these libraries are more data science focused, and so focus more on functionality over visual customization.
+## JS (not d3) ##
+![alt text](./img/js.png)
 
-These features should be preserved as much as possible in your replication:
+As proof that d3 adds very little when doing simple charts, I present virtually the same chart but without d3. Drawing the chart required a little bit more work to draw the axes, but otherwise was pretty much the same process. To differentiate the code, I drew on a `<canvas>` tag instead of creating an `<svg>` tag + subtags. The width of the gridlines and the scale of the points are slightly different, but you have to set those manually in d3, so it would just be tweaking the values to match. As was implied in the d3 section, the axes are the only thing I really used d3 for, and so they are the only major difference here. The main difficulty was actually with loading the csv, because I had the wrong link for the online `papaparse.min.js` and it took a while to realize that.
 
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
+Realistically, I would be using Highcharts/Plotly/etc. for simple visualizations like this, and d3 for a more complex visualization. 
+## Excel ##
+![alt text](./img/excel.png)
 
-Other features are not required. This includes:
+Excel is probably the easiest tool to access the data with, since I currently have my computer set to open `.csv` directly in Excel. However, actually plotting is kind of a pain. They have a bubble chart, which I used to plot the data. However, in order to color by species, I had to create a copy of the data filtered by species, since there's no way to filter directly in the graph. Also, unlike the other graphs, where I created the `bill_length_mm` legend programatically, here I had to add circle shapes and scale them based on the existing data by hand. Basically, that part of the legend is a complete hack and also is slightly inaccurate to the actual sizes.
 
-- The background grid.
-- The legends.
+I would use Excel when I want to do heavy data manipulation quickly or when I am working with people who don't know how to code, since I can email someone an Excel file but shouldn't be emailing people raw code files.
+## Addendum ##
+Overall, none of these tools supported directly adding the scale of the datapoints to the legend. Also, they all required data manipulation to remove the two datapoints with "NA" for most of their values, or at the very least replacing "NA" with the equivalent null value.
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
+d3 and regular js both require being run in a server (I used VSCode's LiveShare extension, but any server should work)
 
-Improvements are also welcome as part of Technical and Design achievements.
+# Technical Achievements #
+I wrote a graphics renderer for a graph in Javascript that looks better then most of the other graphs shown.
 
-Libraries, Tools, Languages
----
+# Design Achievements #
+All of the tools use the same color & transparency (except for Excel, since it looked bad to use 80% opacity), have the same axis ranges, and have all of the features from the original graph. The color used for each species is directly sampled from the original graph, and the border of the points is opaque like the original graph.
 
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
+I had the number of gridlines match when possible, and used light gray gridlines (again, where possible) on a white background because that looks better.
 
-Otherwise, you should seek tools and libraries to fill out your 5.
-
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
-
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
-
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
-
-
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
-
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+All of the points are very similar sizes, although they all used applied the radius of a point differently, so it wasn't possible to make them the exact same.

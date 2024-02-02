@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<figure>
+  <!-- Create a div where the graph will take place -->
+  <div id="my_dataviz"></div>
+
+  <!-- Figure caption -->
+  <figcaption>
+    Scatter plot showing a data set of penguins by their flipper length (m) and body mass (g). Points on the scatter plot are categorized by penguin species. Points on the scatter plot are sized relative to their bill length (mm).
+  </figcaption>
+</figure>
+
+<head>
+<!-- A bit of CSS: change stroke color of circle on hover (white -> black) -->
+<style>
+  .bubbles {
+    stroke-width: 1px;
+    stroke: black;
+    opacity: .8
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
+</style>
+
+
+<script>
+// set the dimensions and margins of the graph
+  var margin = {top: 100, right: 30, bottom: 90, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// svg
+  var svg = d3.select("#my_dataviz")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+  d3.csv("data/penglings.csv").then( function(data) {
+
+  //clean data for NaN in bill_depth_mm
+    data = data.filter(function(d) {
+      return !isNaN(parseFloat(d.bill_depth_mm));
+    });
+
+  //title 
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Species of Penguins by Flipper Length, Body Mass and Bill Length");
+
+  // Add X axis
+    var x = d3.scaleLinear()
+    .domain([170, 235])
+    .range([ 0, width ]);
+    svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+    
+    //x axis title
+    svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width - 120)
+    .attr("y", height + 40)
+    .text("Flipper Length (mm)");
+
+
+  // Add Y axis
+    var y = d3.scaleLinear()
+    .domain([2500, 6000])
+    .range([ height, 0]);
+    svg.append("g")
+    .call(d3.axisLeft(y));
+
+
+    //y axis title
+    svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", - 60)
+    .attr("x", - 70)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .text("Body Mass (g)");
+
+    //create legend
+    svg.append("circle").attr("cx",260).attr("cy",height + 70).attr("r", 6).style("fill", "#FF8D07")
+    svg.append("text").attr("x", 270).attr("y", height + 70).text("Adelie").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("circle").attr("cx",160).attr("cy",height + 70).attr("r", 6).style("fill", "#9A35CC")
+    svg.append("text").attr("x", 170).attr("y", height + 70).text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg.append("circle").attr("cx",60).attr("cy",height + 70).attr("r", 6).style("fill", "#088B8C")
+    svg.append("text").attr("x", 70).attr("y", height + 70).text("Gentoo").style("font-size", "15px").attr("alignment-baseline","middle")
+
+    //fix radius scale
+    var z = d3.scaleLinear()
+    .domain([d3.min(data, d => d.bill_length_mm), d3.max(data, d => d.bill_length_mm)])
+    .range([1, 5]);
+
+    var tooltip = d3.select("#my_dataviz")
+  .append("div")
+  .style("opacity", 0)
+  .attr("class", "tooltip")
+  .style("background-color", "white")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px")
+
+
+
+// A function that change this tooltip when the user hover a point.
+// Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+var mouseover = function(d) {
+  tooltip
+    .style("opacity", 1)
+}
+
+var mousemove = function(event, d) {
+  tooltip
+  .html("Species: " + d.species + "<br/>" +
+        "Flipper Length: " + d.flipper_length_mm + " mm<br/>" +
+        "Body Mass: " + d.body_mass_g + " g<br/>" +
+        "Bill Length: " + d.bill_length_mm + " mm")
+    .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+    .style("top", (d3.mouse(this)[1]) + "px")
+}
+
+// A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+var mouseleave = function(d) {
+  tooltip
+    .transition()
+    .duration(200)
+    .style("opacity", 0)
+}
+  
+  
+  // map species to colors
+  var color = d3.scaleOrdinal()
+    .domain(["Adelie", "Chinstrap", "Gentoo" ])
+    .range([ "#FF8D07", "#9A35CC", "#088B8C"])
+
+
+  // add points
+  svg.append('g')
+    .selectAll("dot")
+    .data(data)
+    .enter()
+    .append("circle")
+      .attr("cx", d => x(d.flipper_length_mm))
+      .attr("cy", d => y(d.body_mass_g))
+      .attr("r", d => z(d.bill_length_mm))
+      .style("fill", d => color(d.species) )
+      .style("opacity", 0.8)
+      .on("mouseover", mouseover )
+  .on("mousemove", mousemove )
+  .on("mouseleave", mouseleave)
+    
+  
+
+  
+
+})
+
+  
+</script>
+</head>

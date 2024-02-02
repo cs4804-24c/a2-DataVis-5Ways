@@ -18,10 +18,10 @@ I had never heard of Tableau before so I wanted to see what it was all about. I 
 
 # Datawrapper
 ![image](https://github.com/anavi16/a2-DataVis-5Ways/assets/114020191/a392f79d-47e4-426a-833c-fb37b7ce5602)
-Datawrapper was similar to Tableau in the sense of simplicity. It's a free online data visualizer that has you upload your data and refine all your data to make the plot how you'd like. It was more 'difficult' to learn than Tableau, so I went through their website to learn a little more about it. 
+Datawrapper was similar to Tableau in the sense of simplicity. It's a free online data visualizer that has you upload your data and refine all your data to make the plot how you'd like. It was more 'difficult' to learn than Tableau, so I went through their website to learn a little more about it. I added tooltips when you hover over each data point and the same color pallette using HEX codes. 
 
 # Technical Achievements
-* I implemented the brush function in my d3 and python examples so the user can see the data of each point summarized.
+* I implemented the brush function in my d3, python, and Datawrapper examples so the user can see the data of each point summarized.
 * I used the ggplot2 library in my R+ggplot example rather than tidyverse
 
 # Design Achievements

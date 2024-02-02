@@ -8,7 +8,7 @@ x_min, x_max = df['flipper_length_mm'].min(), df['flipper_length_mm'].max()
 y_min, y_max = df['body_mass_g'].min(), df['body_mass_g'].max()
 
 domain = ['Adelie', "Gentoo", "Chinstrap"]
-range_ = ['orange', 'purple', 'aqua']
+range_ = ['orange', 'aqua', 'purple']
 
 alt.Chart(df).mark_point(filled=True).encode(
     alt.X('flipper_length_mm:Q', scale=alt.Scale(domain=[x_min*.95, x_max*1.05])),

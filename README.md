@@ -1,6 +1,6 @@
 # Altair + Python (PyCharm)
 
-![Altair Visualization](img/<Altair.png>)
+![Altair Visualization](img/<PythonAltair.png>)
 
 For this visualization, we utilized Altair, a declarative statistical visualization library in Python. Altair's concise and expressive syntax allowed us to create insightful visualizations with minimal code. Its seamless integration with Pandas made data manipulation and plotting straightforward. Altair is particularly beneficial for projects requiring quick and effective exploration of data through visualizations. No major challenges were faced during implementation, and Altair's simplicity positions it as a valuable tool for data visualization in Python.
 

@@ -22,6 +22,7 @@
 
         // x and y axes
         const xScale = d3.scaleLinear()
+            .domain([d3.min(data, d => d.flipper_length_mm), d3.max(data, d => d.flipper_length_mm)])
             .range([0, width]);
 
         const yScale = d3.scaleLinear()

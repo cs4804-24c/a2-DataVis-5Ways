@@ -1,11 +1,11 @@
 # Python + Seaborn
-I have experience working with python and seabon specifically, so working with this specific package was simple for me. But I also did learn how to use specific features like the interactions that can be done through python
+I have experience working with python and seabon specifically, so working with this specific package was simple for me. But I also did learn how to use specific features like the interactions that can be done through python. I would be using python for my career, so it is nice to utilize the language and packe in a way that is different from what I usually do. There are many things that can be done with python which I am slowly starting to understand.  
 (Found in Python folder)
 ![Seaborn](img/seaborn.png)
 
 
 # Python + Altair
-I have experience with python but not altair. It was not too difficult to understand the mechanics of it but it was still something new that I learned.
+I have experience with python but not altair. It was not too difficult to understand the mechanics of it but it was still something new that I learned. It was easy to customize the code to do what I want and create something that is exactly the same as the seaborn package. i was able to make the same size mapping between the two visual. I personally would use this platform in the future.
 (found in Python folder) 
 ![Altair](img/altair.png)
 

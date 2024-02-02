@@ -1,148 +1,53 @@
+# Google Sheets
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
+  I started off with Sheets just to get it out of the way. This is pretty much the only way I've ever graphed anything, with the exception of some Python and Matlab over the past couple years. It's been my go-to tool since I was in middle school. I wanted to start off with a baseline, something I knew I was comfortable with and wouldn't have to teach myself. Creating this visualization in Sheets was a very simple process.
+  I'm not sure if I can call any part of the process difficult, maybe more like frustrating. The limited features and the whole spreadsheet aspect of Sheets made it a pain to get some details right. The bubble size in particular was a bit of a pain, and with the lack of customization I was left with something I knew I could improve on.
+  I think there's always going to be a place for Sheets for making quick and easy graphs. It got me through my IQP. I think it's a very efficient way to whip up a bunch of figures based off a spreadsheet. I'd say it's probably better suited for more casual applications or for the user to boost their own understanding of the data they're working with. But for making something perfect, with specific requirements, it's definitely not ideal.
+  Fortunately, as part of this I was able to get the data set all nice and clean by removing the rows that had NA's for all the relevant fields. I used the same cleaned csv for all my other visualizations.
 
-# 02-DataVis-5ways
+![sheets](img/sheets.png)
 
-Assignment 2 - Data Visualization, 5 Ways  
-===
+# d3
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+What was easy?
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+  This one wasn't what I would call easy. d3 is very, very new to me, as is the whole process of working in that language and dealing with async functions and webservers and such. I was glad to have a starting point from a1, but this task was obviously much more substantial. I spent a lot of time going back and forth between learning and working, but I will say I got into a rhythm towards the end, since there was a lot of repetition between x and y and a lot of the final tweaks were about perfecting the positions of certain elements.
+   What I found most difficult was the sheer number of steps involved in doing something so simple. I'm sure the more I do it the easier it'll get, but it took a while to build up the visualization from a collection of circles on the page. I would reach points where I thought I was finished, but there was another thing I forgot to add or tweak that normally I'd expect the tool to take care of for me. There's a lot of attention to detail required for this kind of stuff, and it definitely makes me appreciate the more complex things people are able to create using d3.
+  I think this was a good one to do right after using Sheets. The two are so incredibly different, and both of them frustrated me in different ways, but they definitely both have their place. The level of control is both a blessing and a curse. I spent a while just tinkering around with where I thought the axis labels looked best, and little things like that, when in another tool I might not even think about the labels since they're done for me and they're "good enough". They definitely have it right on their site, this is perfect for bespoke data visualization.
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
+![d3](img/d3.png)
 
-Your goal is to use 5 different tools to make the following chart:
+# altair
 
-![](img/ggplot2.png)
+  This one was definitely my favorite, because I still had to write code for it to work. I like Python. I'm not as used to it as other languages, but I enjoy its forgiving simplicity. Altair made it super straightforward to create what took hours longer in d3. After I completed the basic requirements, I felt compelled to explore a bit more before moving on, knowing that I'll definitely come back to this library at some point. I poked around some more tutorials and found the tooltip thing, which was neat, as well as the interactive zoom in/out feature. I was surprised at how achievable these things were, and how much was built in to just a simple chart. It did a lot of the work for me, which I can always appreciate. 
+  I'm not exactly sure why, but for me the hardest bit, or at least the part that took the most time was actually importing my data. I'm not a pro at Jupyter notebooks yet, but even past that I got stuck on trying to import my csv using only Altair. I ended up going with pandas to help me out there, since that's what I remember from my previous experiences, and the rest of the Altair stuff went smoothly. 
+  I think this would be incredibly useful for a whole lot of different visualization applications. And there's still so much more for me to learn about it. It was as simple and fast as I needed it to be, and it also left room for me to customize things and play around with different aspects without too much headache. I can see why it's so popular.
 
-These features should be preserved as much as possible in your replication:
+![altair](img/altair.png)
 
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
+# tableau
 
-Other features are not required. This includes:
+  Once I figured out how to get set up with Tableau and import the data, this was incredibly simple to use. It basically did everything for me once I chose rows and columns. It was almost like it knew what I wanted to make. I did have to fiddle around with the scales and change the data types to dimensions, but that was pretty much it. Having a dedicated tool with sliders and tabs and explanations all organized in one place made it a very different experience from writing code. With other solutions, I had to spend a ton of time searching for examples or tutorials to try and get my bearings and understand the options at my disposal. With Tableau, I didn't leave the site once. I was able to figure out everything I wanted to do, either through trial and error or just plain intuition. It's a very pleasant tool to engage with and I'd love to use it again.
+  The only things I can think of that presented any significant difficulty were the setup process, as I mentioned, as well as just the quantity of information on my screen at any given time. This layout definitely improves productivity and contributes to the power of the tool, but as a first-time user I was definitely a little lost at first. It was easy to wrap my head around it after spending some time, but I suppose this might just be a disadvantage of this type of tool. Everything is there on display to tinker with, it's not limited by what you need for your specific case. I think the differences between this and a code-based solution would become much less significant with time and experience.
+  I think Tableau is especially nice for people who want to create clean, informative visualizations, who might not know how to code or are at least less comfortable with it. I'm pretty sure most people who can use a computer for typical productivity purposes could get started with Tableau without much hassle. Compared with something like Google Sheets, this brings similar simplicity and ease of use, but makes the power to change and improve the visualization much more accessible to the user. It kept up with everything else I used, and required much less investment.
 
-- The background grid.
-- The legends.
+![tableau](img/tableau.png)
 
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
+# matlab
 
-Improvements are also welcome as part of Technical and Design achievements.
+  Matlab was another pretty challenging one for me in this assignment. I will give it credit for being extremely powerful and requiring very few lines of code to accomplish this task. I also find the tutorials and examples from MathWorks to be some of the most helpful of any tool I've used. I had to go back and forth a lot, but reading those help pages saved me a lot of time and stress.
+  Not all though, since Matlab is still a pain for me to work with. The interface is not something I'm eager to engage with again. Too much info, in strange and sometimes hidden spots, made the experience much less smooth than some of the other tools and libraries I used. For the most part, I tried to stick to the code editor tab once I had my data imported, since that's what made the most sense to me. I actually went through two versions of this visualization. The first, failed attempt was when I tried to use Matlab's bubblechart instead of a scatterplot. I was unable to properly map the colors I wanted to the species. I considered leaving it as it was and writing about the difficulty here, but through some additional investigation I found I could use a scatterplot and achieve a similar effect. This was a much easier solution and allowed me to move on to adding important details like labels, gridlines, and a colorbar. The finishing touch stage was actually smoother than d3, thanks to only needing one line of code per addition. It came together nicely and actually left me with a slightly more positive opinion of Matlab. 
+  I know Matlab can be used for a ton of things, much more than creating the visualization for this assignment. So I think it might be better to let Matlab do its thing and use other tools and libraries to visualize data. I don't really see any advantages it has compared to anything else I used. But it's getting easier to use it the more I try, so maybe I can do other things with it in the future.
 
-Libraries, Tools, Languages
----
-
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
-
-Otherwise, you should seek tools and libraries to fill out your 5.
-
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
-
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
-
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
-
+![matlab](img/matlab.png)
 
 ## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
-
+- added mouse hover functionality for individual datapoints (altair)
+- added interactive zoom in/out (altair)
+- added background grid and legends
+- challenged myself to learn as many new tools/libraries as I could within the scope of this assignment
+  - like avoiding ggplot2 (for now) to not get too close to the example
+  - and not doubling up on languages
+ 
 ### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+- I decided to do some research into the 3 species of penguins included in this dataset. I found out that Jules Dumont d'Urville discovered the Adélie penguin. Also, both the Gentoo and the Chinstrap penguin were discovered by Johann Reinhold Forster. I decided to incorporate this information into my color scheme. Jules was French and Johann was German, but since Johann discovered two of these species, I gave the Chinstraps to Graham Turbott of New Zealand (who transferred the species to a different genus) and left the Gentoos to Johann. When considering the flags of each of these countries, only one viable color scheme emerged: blue for Chinstrap, red for Adélie, and yellow for Gentoo. I considered using the exact color values of the official flags, but that would have looked AWFUL. So I mellowed it out a bit. This process not only left me with a consistent color scheme for this dataset, it also left me with more knowledge about penguins and taxonomy than I ever knew I needed. I feel more connected to this dataset.

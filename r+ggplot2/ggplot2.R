@@ -1,26 +1,7 @@
----
-title: "penglings"
-format: html
-editor: visual
----
-
-## Quarto
-
-let's load the penguin dataset
-
-```{r}
 library(palmerpenguins)
 library(tidyverse)
 
-
-penguins 
-```
-
-now let's do a data wrangle, and vis it
-
-```{r}
-
-penguins %>% 
+penguins %>%
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color = species, size=bill_length_mm), alpha=0.8) +
   scale_color_manual(values = c("darkorange","darkorchid","cyan4")) +
@@ -28,4 +9,3 @@ penguins %>%
     x="Flipper Length (mm)",
     y="Body Mass (g)"
   )
-```

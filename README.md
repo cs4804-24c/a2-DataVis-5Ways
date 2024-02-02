@@ -17,7 +17,7 @@ Python is a general-purpose programming language that can be used for data visua
 # D3.js
 D3.js is a Javascript library for data visualization. To read my data, I used the csv() function in the library. I then built my visualization using an SVG and appending elements to the SVG, this included appending all the data points. Creating a visualization in D3 definitely took more effort than the Python libraries. The Python libraries had charts with a lot of built in features, but with D3 you have to add all of that in manually. I will say that this definitely makes D3 more customizable though.
 
-![](d3js/PenglingsD3jsScreenshot.png)
+![](d3js/PenglingsD3JS.png)
 
 # Tableau
 Tableau is a business intelligence and analytics software. To recreate this chart, I uploaded my CSV data file into Tableau and it created a workspace for me. I then created a sheet and created a scatter plot on the sheet to replicate the chart. Using Tableau was very easy, I could drag and drop data columns to set the axes, point sizes and point colors. There was minimal effort required to do so. I was able to easily add filters and extra features.

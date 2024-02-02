@@ -30,7 +30,7 @@
             .style("fill", "#E5E5E5");
 
         // loading in the data
-        d3.csv("penglings.csv").then(data => {
+        d3.csv("../penglings.csv").then(data => {
 
             // adding the x axis marks
             var x = d3.scaleLinear()
@@ -72,7 +72,7 @@
             svg.append("text")
                 .attr("x", 220)
                 .attr("y", -20)
-                .text('Flipper Length vs Body Mass')
+                .text('Penguin Flipper Length vs Body Mass')
                 .style("font-weight", "bold")
 
             // changes the color of the dots depending on the species

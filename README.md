@@ -16,7 +16,7 @@ This was my first time using it and it was very simple to interact with however 
 # Flourish
 This was my first time using this and it was similar to datawrapper, but if I had to choose it would be a more compatability platform than datawrapper since there were certain customability that I liked in this platoform. There is an interacive dropdown but it groups by species and not the kind of interactivity I was attemping. Also the filter is limited so for static view and simple interactions can be done. Major visual would be difficult to be used. I would use this in the future but not for major visualizations. 
 (need premium for access to customization --> image in image folder)
-![Flourish](imag/flourish.png)
+![Flourish](img/flourish.png)
 
 # D3
 Personally I had the most trouble with d3 since it is something I needed to work through

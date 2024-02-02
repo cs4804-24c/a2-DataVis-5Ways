@@ -32,7 +32,8 @@ Design Achievements:
 ![altairInteractive3](img/img/altair-interactive3.png)
 
 # d3
-Link:
+Link: https://azzhang3.github.io/a2-DataVis-5Ways/
+NOTE: index.html is the same file as d3Penguin.html in d3 folder
 
 d3 is a javascript library that focuses on the creation of dynamic and interactive data visualizations in web browsers.
 d3 has a lot of built in frameworks and documentations that can help you get started. 

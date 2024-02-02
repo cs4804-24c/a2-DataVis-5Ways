@@ -34,4 +34,6 @@ Flourish is an online data visualization software. To recreate this chart, I upl
 
 ### Design Achievements
 - **WCAG Complex Images Accessibility Guidelines**: I studied and utilized the WCAG guidelines on complex images to make my charts more accessible. I added alternative text to my Tableau, Flourish and D3.js charts to make them more accessible to those using screen readers (<figurecaptions> etc). The captions and alternative text explain the purpose of the charts.
+- **Color**: I used a color picker to ensure that the colors were consistent across all my visualizations and were identical to the original reference graph.
+- **Fonts**: I made sure to use legible fonts to ensure accessibility and usability.
 

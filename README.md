@@ -7,12 +7,12 @@ README
 
 Python is a general-purpose programming language that can be used for data visualization. Plotly is a popular graphing library for Python. Pandas is a popular data analyzation libary. To use the data set, I used Pandas to read and extract the data from the CSV. I then used Plotly's scatter() function to feed in data columns from the CSV for the X, Y, radius and color. I made use of Plotly's update() funtions to customize the chart layouts and axes. There was a lot of documentation and examples for this library, making the length of the program and effort minimal. Plotly has a lot of things that are automatically built into their charts (tooltips, filtering, etc.) that is not automatically built into Matplotlib charts.
 
-[img]
+![](python-plotly/PenglingsPlotly.png)
 
 # Python + Matplotlib + Pandas + Mplcursors
 Python is a general-purpose programming language that can be used for data visualization. Matplotlib is a popular graphing library for Python. Pandas is a popular data analyzation libary. To use the data set, I used Pandas to read and extract the data from the CSV. Unlike Plotly, Matplotlib doesn't have a parameter in their scatter() function that automatically maps a data column to a color. To achieve the species categorization, I had to assign a color for every species type manually. There are a lot more individual functions used to update and customize the layout/styling of the chart instead of a general update() function like in Plotly where you just feed in parameters. I definitely favored Plotly more than Matplotlib as it took less effort to achieve the same or more features.
 
-[img]
+
 
 # D3.js
 D3.js is a Javascript library for data visualization. To read my data, I used the csv() function in the library. I then built my visualization using an SVG and appending elements to the SVG, this included appending all the data points. Creating a visualization in D3 definitely took more effort than the Python libraries. The Python libraries had charts with a lot of built in features, but with D3 you have to add all of that in manually. I will say that this definitely makes D3 more customizable though.
@@ -31,7 +31,7 @@ Flourish is an online data visualization software. To recreate this chart, I upl
 
 ## Technical Achievements
 - **Tooltip**: I added a tooltip for the D3.js, Python/Matplotlib, Python/Plotly, Tableau and Flourish charts that shows the data of a point. I had to manually add code in to create a tooltips for the D3.js and Python/Matplotlib. I used the Mplcursors library to do so for the Python/Matplotlib chart.
-- 
+
 ### Design Achievements
 - **WCAG Complex Images Accessibility Guidelines**: I studied and utilized the WCAG guidelines on complex images to make my charts more accessible. I added alternative text to my Tableau, Flourish and D3.js charts to make them more accessible to those using screen readers. The captions and alternative text explain the purpose of the charts.
 

@@ -3,15 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Visualization with D3</title>
+    <title>Data Visualization with D3 and Vega-Lite</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   </head>
   <body>
     <h1>Data Visualization with D3</h1>
-    <div id="chart"></div>
 
+    <!-- D3 Visualization -->
+    <div id="d3-chart"></div>
+
+    <!-- made with the help of ChatGPT -->
     <script>
-      // Your D3 code goes here
       const dataset = d3.csv("penglings.csv").then((data) => {
         console.log(data);
 
@@ -28,7 +34,7 @@
 
         // Create the SVG container
         const svg = d3
-          .select("#chart")
+          .select("#d3-chart")
           .append("svg")
           .attr("width", 1100)
           .attr("height", 1000)
@@ -84,6 +90,54 @@
           .style("text-anchor", "middle")
           .text("Body Mass (g)");
       });
+    </script>
+
+    <h1>Data Visualization with Vega-Lite</h1>
+
+    <!-- Vega-Lite Visualization -->
+    <div id="vega-lite-chart"></div>
+
+    <!-- made with the help of ChatGPT -->
+    <script>
+      const spec = {
+        data: { url: "penglings.csv" },
+        mark: "circle",
+        encoding: {
+          x: {
+            field: "flipper_length_mm",
+            type: "quantitative",
+            scale: { zero: false },
+          },
+          y: {
+            field: "body_mass_g",
+            type: "quantitative",
+            scale: { zero: false },
+          },
+          size: {
+            field: "bill_length_mm",
+            type: "quantitative",
+            scale: { zero: false },
+            title: "Bill Length (mm)",
+          },
+          color: {
+            field: "species",
+            type: "nominal",
+            scale: { range: ["#f0a658", "#a15ece", "#609fa0"] },
+          },
+        },
+        width: 800,
+        height: 600,
+        title: "Penguin Data Scatter Plot",
+        config: {
+          axis: {
+            labelFontSize: 12,
+            titleFontSize: 14,
+          },
+        },
+      };
+
+      // Embed the Vega-Lite visualization
+      vegaEmbed("#vega-lite-chart", spec);
     </script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 ### D3
 
-Visit my Github pages site to observe the D3 interactive features: 
+Suggested to open a live server of index.html to observe the interactive scatter plot features. The user interaction features can also be seen in the code.
 
 I used the following resources to guide my coding experience in D3:
 
@@ -29,7 +29,7 @@ Run the Atlair Jupyter notebook to observe the interative features.
 I used the following resources to guide my coding experience in Atlair:
 
   https://nextjournal.com/sdanisch/scales-axes-and-legends
-  
+
   https://python.plainenglish.io/library-of-the-week-15-altair-073598250420
 
 Atlair is a popular Python data visualization library with high-quality built-in capabilities. I found Atlair to be a very accessable data visualization library as it does not require as much code and up-front detail as D3 to accomplish the same replication. The tasks of configuring the inital plot axes, scattering the data, setting up color and size legends, and configuring user interaction features were relatively easy to find documentation for and implement in code. The one coding task that was difficult to implement was actually reversing the direction of values on the y-axis. For whatever reason, when I originally plotted the csv data with the inital axes configurations, the y-axis values were increasing from top to bottom, which significantly changed the shape of the scattered data. It took a good amount of time researching this particular issue as there were a few different proposed solutions that I came across; I settled on a hack that uses the EncodingSortField function to set the y-axis values to descending (from top to bottom). I also used the EncodingSortField function to set the x-axis values to ascending (from bottom to top). Overall, Atlair is a fantastic library that is best used when data scientists and engineers want to produce high-quality data visualizations with a minimal amount of code and easy-to-configure legends and user interaction features.

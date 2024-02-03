@@ -51,7 +51,7 @@ legend_elements = [Line2D([0], [0], marker='o', color='w', label='Adelie',
 # Add legend
 plt.legend(handles=legend_elements, loc='upper left')
 
-# Add radio buttons for island
+# Add radio buttons
 axcolor = 'lightgoldenrodyellow'
 bounding_box = [0.75, 0.11, 0.15, 0.15]
 radio_island = RadioButtons(plt.axes(bounding_box), ('Biscoe', 'Dream', 'Torgersen', 'All'))

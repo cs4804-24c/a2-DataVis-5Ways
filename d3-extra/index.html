@@ -20,7 +20,12 @@
 
 <script>
 
-    let circleSizeMultipler = 1/8;
+    // Accounts for the fact that increasing the radius of a circle by 1 increases the area non-linearly.
+    // Multiplying by 3 makes the difference in circle area more visually apparent.
+    // Taking the square root allows for the area difference to be noticeable while keeping the circles from being too large.
+    function circleSizeMultipler(r) {
+        return Math.sqrt(r)*3;
+    }
 
     // set style of body to be flex-box row
     d3.select("body").style("display", "flex").style("flex-direction", "row");
@@ -40,8 +45,8 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data (go one folder up)
-    d3.csv("../penglings.csv", function(data) {
-    
+    d3.csv("../penglingsScaled.csv", function(data) {
+
       // Add X axis (altered the domain)
       var x = d3.scaleLinear()
         .domain([170, 240])
@@ -89,8 +94,8 @@
                             }
                         } )
           .attr("r", function(d) {
-                            if(d.body_mass_g != "NA") {
-                                return (d.bill_length_mm*circleSizeMultipler); 
+                            if(d.scaled_bill_length != "#VALUE!") {
+                                return (circleSizeMultipler(d.scaled_bill_length)); 
                             }
                         })
           .style("fill", function(d) {
@@ -133,9 +138,10 @@
 
     bodySvg.append("text").attr("x", 15).attr("y", 15).text("Legend").style("font-size", "20px").attr("alignment-baseline","middle")
 
-    let baseY = 40;
+    let baseY = 55;
 
-    // Color Legend 
+    // Color Legend
+    bodySvg.append("text").attr("x", 15).attr("y", baseY - 15).text("Species").style("font-size", "13px").attr("alignment-baseline","middle") 
     bodySvg.append("circle").attr("cx",20).attr("cy",baseY).attr("r", 6).style("fill", "#048b8c")
     bodySvg.append("circle").attr("cx",20).attr("cy",baseY + 20).attr("r", 6).style("fill", "#ff8d05")
     bodySvg.append("circle").attr("cx",20).attr("cy",baseY + 40).attr("r", 6).style("fill", "#9934cc")
@@ -144,8 +150,9 @@
     bodySvg.append("text").attr("x", 30).attr("y", baseY + 40).text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
 
     // Size Legend
-    bodySvg.append("circle").attr("cx",100).attr("cy",baseY).attr("r", 40*circleSizeMultipler).style("fill", "#000000")
-    bodySvg.append("circle").attr("cx",100).attr("cy",baseY + 20).attr("r", 50*circleSizeMultipler).style("fill", "#000000")
+    bodySvg.append("text").attr("x", 80).attr("y", baseY - 15).text("Bill Length").style("font-size", "13px").attr("alignment-baseline","middle")
+    bodySvg.append("circle").attr("cx",100).attr("cy",baseY).attr("r", circleSizeMultipler(2.872727273)).style("fill", "#000000")
+    bodySvg.append("circle").attr("cx",100).attr("cy",baseY + 20).attr("r", circleSizeMultipler(6.509090909)).style("fill", "#000000")
     bodySvg.append("text").attr("x", 110).attr("y", baseY).text("40").style("font-size", "15px").attr("alignment-baseline","middle")
     bodySvg.append("text").attr("x", 110).attr("y", baseY + 20).text("50").style("font-size", "15px").attr("alignment-baseline","middle")
 

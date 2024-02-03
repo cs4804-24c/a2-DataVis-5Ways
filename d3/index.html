@@ -36,7 +36,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
     //Read the data (go one folder up)
-    d3.csv("../penglings.csv", function(data) {
+    d3.csv("../penglingsScaled.csv", function(data) {
     
       // Add X axis (altered the domain)
       var x = d3.scaleLinear()
@@ -85,8 +85,8 @@
                             }
                         } )
           .attr("r", function(d) {
-                            if(d.body_mass_g != "NA") {
-                                return (d.bill_length_mm/8); 
+                            if(d.scaled_bill_length != "#VALUE!") {
+                                return (Math.sqrt(d.scaled_bill_length) * 3); 
                             }
                         })
           .style("fill", function(d) {

@@ -56,3 +56,5 @@ I still don't understand why there's a 'c' in front of every array thing, but I 
 I decided to put Slides to the ultimate test adn see if it could reach the same level as the example graph. In my humble opinion, this plot is probably the best. 
 
 Although there's not much automated in this process, There's something about placing every data point yourself. You get to decide how accurate the plot should be in every moment. You don't need to tell it how to do something as you just add the shapes in yourself. It's dumb logic, but there's no debugging to be done. Please take some time to flip through the slides to compare with the original. 
+
+It's also fun to compare this method to others because it was by far, not the longest, or even most boring to accomplish. The big difference comes in once you learn a framwork really well, you can become much more efficient and speedy, while this will continue around the same constant pace as the first time. 

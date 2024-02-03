@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Scatter Plot</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <script type="module">
+        import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        d3.csv('../penglings.csv').then(data => {
+            data = data.filter(d => !isNaN(d.flipper_length_mm) && !isNaN(d.body_mass_g) && !isNaN(d.bill_length_mm));
+
+            const colors = {
+                'Adelie': '#f8a452',
+                'Gentoo': '#4ea0a1',
+                'Chinstrap': '#b056cf'
+            };
+
+            // Set up SVG container
+            const margin = { top: 20, right: 20, bottom: 60, left: 60 };
+            const width = 1000 - margin.left - margin.right;
+            const height = 700 - margin.top - margin.bottom;
+
+            const svg = d3.select('body')
+                .append('svg')
+                .attr('width', width + margin.left + margin.right + 100)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+
+            // Create scales
+            const xScale = d3.scaleLinear()
+                .domain([170, 240])
+                .range([0, width]);
+
+            const yScale = d3.scaleLinear()
+                .domain([2500, 6500])
+                .range([height, 0]);
+
+            const sizeScale = d3.scaleLinear()
+                .domain([d3.min(data, d => +d.bill_length_mm), d3.max(data, d => +d.bill_length_mm)])
+                .range([7, 13]);
+
+            function make_x_gridlines() {
+                return d3.axisBottom(xScale).ticks(5);
+            }
+
+            function make_y_gridlines() {
+                return d3.axisLeft(yScale).ticks(5);
+            }
+
+            svg.append('g')
+                .attr('class', 'grid')
+                .attr('transform', `translate(0, ${height})`)
+                .call(make_x_gridlines()
+                    .tickSize(-height)
+                    .tickFormat('')
+                );
+
+            svg.append('g')
+                .attr('class', 'grid')
+                .call(make_y_gridlines()
+                    .tickSize(-width)
+                    .tickFormat('')
+                )
+
+            d3.selectAll('.grid line')
+                .style('stroke', '#ccc')
+
+            // Create circles with mouseover and mouseout events
+            svg.selectAll('circle')
+                .data(data)
+                .enter()
+                .append('circle')
+                .attr('cx', d => xScale(+d.flipper_length_mm))
+                .attr('cy', d => yScale(+d.body_mass_g))
+                .attr('r', d => sizeScale(+d.bill_length_mm))
+                .attr('fill', d => colors[d.species])
+                .attr('opacity', 0.8)
+                .on('mouseover', (event, d) => mouseOverEventHandler(event, d))
+                .on('mouseout', () => mouseOutEventHandler());
+
+            // Create axes
+            const xAxis = d3.axisBottom(xScale).tickValues(d3.range(170, 241, 10));
+            const yAxis = d3.axisLeft(yScale).tickValues(d3.range(2500, 6501, 500));
+
+            svg.append('g')
+                .attr('transform', `translate(0, ${height})`)
+                .call(xAxis);
+
+            // Add x-axis label
+            svg.append('text')
+                .style('font-family', 'Roboto')
+                .attr('x', width / 2)
+                .attr('y', height + margin.top + 20) // Adjust the vertical position of the label
+                .attr('text-anchor', 'middle')
+                .text('Flipper Length (mm)');
+
+            svg.append('g')
+                .call(yAxis);
+
+            // Add y-axis label
+            svg.append('text')
+                .style('font-family', 'Roboto')
+                .attr('transform', 'rotate(-90)')
+                .attr('x', -height / 2)
+                .attr('y', -margin.left + 13) // Adjust the vertical position of the label
+                .attr('text-anchor', 'middle')
+                .text('Body Mass (g)')
+
+
+            // Create legend
+            const legendContainer = svg.append('g')
+                .attr('class', 'legend')
+                .attr('transform', `translate(${width + 10},${margin.top})`); // Adjust the position for the right side
+
+            const legend = legendContainer.selectAll('.legend-item')
+                .data(Object.keys(colors))
+                .enter().append('g')
+                .attr('class', 'legend-item')
+                .attr('transform', (d, i) => `translate(0,${i * 20})`);
+
+            legend.append('circle')
+                .attr('cx', 10)
+                .attr('cy', 10)
+                .attr('r', 8)
+                .attr('fill', d => colors[d]);
+
+            legend.append('text')
+                .attr('x', 25)
+                .attr('y', 15)
+                .text(d => d)
+                .style('font-family', 'Roboto');
+
+
+            // Hover event handler
+            function mouseOverEventHandler(event, d) {
+                const selectedCircle = d3.select(event.target);
+
+                const originalColor = selectedCircle.attr('fill');
+
+                selectedCircle.raise();
+
+                selectedCircle
+                    .attr('r', d => sizeScale(+d.bill_length_mm) * 1.2) // Increase size by 20%
+                    .attr('filter', 'url(#shadow)') // Add a shadow
+                    .attr('fill', 'red')
+                    .attr('stroke', 'black')
+                    .attr('stroke-width', 1.5)
+                    .attr('opacity', 0.85)
+
+                selectedCircle.transition()
+                    .duration(200)
+
+                selectedCircle
+                    .on('mouseout', () => mouseOutEventHandler(selectedCircle, originalColor)); // Pass the selected circle and original color
+
+
+                const infoDiv = d3.select('body').append('div')
+                    .attr('class', 'infoDiv')
+                    .style('font-family', 'Roboto')
+                    .style('position', 'absolute')
+                    .style('left', event.x + 10 + 'px')
+                    .style('top', event.y - 50 + 'px')
+                    .style('background-color', 'white')
+                    .style('border', '1.5px solid black')
+                    .style('border-radius', '5px')
+                    .style('padding', '5px');
+
+
+                infoDiv.html(`<div>Flipper Length: ${d.flipper_length_mm}mm</div>
+                  <div>Body Mass: ${d.body_mass_g}g</div>
+                  <div>Bill length: ${d.bill_length_mm}mm</div>`);
+            }
+
+            // Mouse out event handler
+            function mouseOutEventHandler(selectedCircle, originalColor) {
+                // Restore the original color and remove the outline
+                selectedCircle
+                    .attr('r', d => sizeScale(+d.bill_length_mm))
+                    .attr('filter', null) // Remove the shadow
+                    .attr('fill', originalColor)
+                    .attr('stroke', 'none')
+                    .transition()
+                    .duration(200);
+
+                d3.select('.infoDiv').remove();
+            }
+        });
+    </script>
+</body>
+
+</html>

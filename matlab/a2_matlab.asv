@@ -1,0 +1,13 @@
+penguins = readtable("penglings.csv")
+flipLength = penguins.flipper_length_mm
+bodyMass = penguins.body_mass_g
+species = penguins.species
+uniqueSpecies = unique(species)
+cmap = containers.Map({'Adelie','Chinstrap','Gentoo'},{'#EDB120','#7E2F8E','#4DBEEE'})
+
+for i = 1:length(species)
+
+    
+    chart = scatter(flipLength,bodyMass,[],cmap(species[i]),"filled",MarkerFaceAlpha=0.8)
+    
+end

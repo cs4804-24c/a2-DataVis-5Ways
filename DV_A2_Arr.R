@@ -1,8 +1,8 @@
 # define 2 vectors
-penguins=read.csv('/Users/Ned/Documents/CS Dava Vis. A2/penglings.csv') # change path if you run it yourself
+penguins=read.csv('/Users/Ned/Documents/CS Dava Vis. A2/penglings.csv')
 
 # create a vector of colours based on species
-species_colours <- c("Adelie" = "red", "Chinstrap" = "green", "Gentoo" = "blue")
+species_colours <- c("Adelie" = "#479f9f", "Chinstrap" = "#aa58d2", "Gentoo" = "#fba044")
 colours <- species_colours[penguins$species]
 
 # calculate size of plots based on bill length

@@ -18,13 +18,13 @@ d3 was a bit more of a struggle for me. I spent lining up all the grid lines and
 
 ![d3](img/d3.png)
 
-# matlab
+# Matlab
 
 Matlab felt very similar to R but with some of it simplified to make it more straightforward. I used `scatter` to create the chart with surprisingly did not need much tinkering to work. I simply had to prepare some of the data because creating the chart. The only issue that I ran into with that was the color option for the chart would only accept numbers so I made a new array assigning each species to a number and I got it to work.
 
 ![matlab](img/matlab.png)
 
-# excel
+# Excel
 
 Since excel is primarily for raw data and numbers, I had to manipulate the data a bit to make sure that it produce the chart I wanted. I separated the species into three different columns, only keeping the weight for the specifally species. I then used this to make three different series in the chart which could have different colors. To do the different sizes I used a bubble chart.
 
@@ -32,7 +32,7 @@ Excel was my least favorite to work with for creating the chart. Although it was
 
 ![excel](img/excel.png)
 
-# tableau
+# Tableau
 
 Tableau was by far my favorite to work with. It did not take long for me to get the chart created once I started to understand the basics of the program. I simply uploaded the data, selected the scatter plot, and chose the axis. Then I dragged the corresponding tables onto color and size and was down after a bit of touch up.
 

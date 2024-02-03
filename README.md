@@ -8,6 +8,8 @@ To visualized the cars dataset, I made use of ggplot2's `geom_jitter()` layer, w
 
 It took some time to get used to all the syntax and figure out an approach to creating the chart by this was the easiest of the languages for me to pick up.
 
+In order for it to pull the correct data, the path to `penglings.csv` will need to be adjusted since it is a global path for my personal laptop at the moment.
+
 ![ggplot2](img/ggplot2.png)
 
 # d3

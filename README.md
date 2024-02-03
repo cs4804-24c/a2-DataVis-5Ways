@@ -1,148 +1,150 @@
+# Python + Altair
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
+Python is a popular language for data analysis and visualization. It is useful for quick prototyping and readable code.</br>
+Altair is a very popular data visualization library for Python.</br></br>
 
-# 02-DataVis-5ways
+To visualize the Penglings dataset, the Chart(url) function. From here I was able to add a chain of function calls including </br>
+.mark_circle() to specify that I want my makers for the scatter plot to be circles.</br>
+.encode( parameters ) to specify parameters like, what data to use for the x and y axes, what data to use to control the size marker, and more.</br>
+.interactive() to make the the plot click-and-draggable as well as give it the ability to zoom in and out</br>
+.transform_filter() to interface with the linked count of records vs year graph.</br>
+and more</br></br>
 
-Assignment 2 - Data Visualization, 5 Ways  
-===
+Technical Achievements: </br>
+- Ability to control the years that are included the scatter plot through the linked count of records vs year graph</br>
+- Ability to filter the results by species using the radio buttons in combination with the above</br>
+- Ability to click and drag and zoom in and out of the scatter plot</br>
+- Tooltip functionality
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+Design Achievements: </br>
+- I think the choice to control the scatter plot, with the linked count of records vs year graph is intuitive and useful for the viewer/user. While this data set did not have much granular data over time (all of the data points only had year information over only 3 years), I think for a different data set this linked control could be even more useful/intuitive</br>
+- Legends</br>
+- Consistent color scheme (throughout all graphs in this project)
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
-
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
-
-Your goal is to use 5 different tools to make the following chart:
-
-![](img/ggplot2.png)
-
-These features should be preserved as much as possible in your replication:
-
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
-
-Other features are not required. This includes:
-
-- The background grid.
-- The legends.
-
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
-
-Improvements are also welcome as part of Technical and Design achievements.
-
-Libraries, Tools, Languages
----
-
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
-
-Otherwise, you should seek tools and libraries to fill out your 5.
-
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
-
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
-
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
+Demo Video:</br>
 
 
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/be303680-2e24-4852-9025-034f452641f1
 
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+
+
+
+
+
+# Python + Matplotlib
+Python is a popular language for data analysis and visualization. It is useful for quick prototyping and readable code.</br>
+Matplotlib is a popular, Matlab-like library often used for more mathematical visualization but works for simple scatter plots as well</br></br>
+
+The main idea of this visualization was to use pandas, a very popular data analysis library, to structure, access, and modify the data, plt.scatter() for the main scatter plot, and RadioButtons() for the radio buttons in the bottom right corner. Pandas was very useful for accessing and modifying data. Specifically, it was useful for easily normalizing and scaling the bill_length data so that the sizes of the circles were acceptable. </br></br>
+
+### Difficulties
+- It was somewhat effort intensive to get used to matplotlib specific practices like calling plt.scatter() and then plt.xlabel() as a separate call. I assume after calling plt.scatter(), matplotlib internally keeps track of which plot you were working with last and applies the xlabel() to it, but this was an unfamiliar concept to me.
+- I also tried to alter the shape of the markers according to sex or island, but upon further investigation, it seems like this is relatively difficult to do in this library. The problem is that matplotlib is not designed to show multiple marker types in one plot so it would involve making a new plot for each marker type and combining them in some way.</br></br>
+
+Technical Achievements: </br>
+- Radio buttons to filter the data by island type
+- Utilizing matplotlib and its unfamiliar practices
+- Using pandas to alter the data
+  -  ```df['bill_length_mm'] = (df['bill_length_mm'] - df['bill_length_mm'].min()) / (df['bill_length_mm'].max() - df['bill_length_mm'].min())```</br>
+  -  ```df['bill_length_mm'] = df['bill_length_mm'] * 10  # Adjust the constant as needed```</br></br>
+- Matplotlib functionality of panning, zooming, and saving the figure
+  
+Design Achievements: </br>
+- Giving the user the option to filter by island type
+- Consistent color scheme (across all graph type)
+- Legend
+- Displaying the circle sizes such that they are noticeably different but not very large or small</br></br>
+
+Demo Video: </br>
+
+
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/56549879-b2b3-4e35-806a-cd7ca2859923
+
+
+
+# JavaScript + d3
+
+JavaScript is a popular programming language used for web development.</br>
+d3 is a popular JavaScript library used for data visualization at a relatively low level.</br></br>
+
+To visualize the dataset in d3, the main parts were:</br>
+- Asynchronously loading the data using d3.csv()
+- Structuring the document with calls like select(), and append()
+- Styling through .style() and changing attributes with .attr()
+- Structuring the scatter plot itself with scaleLinear() and .append()'ing circles
+- Using a label to act as a tooltip
+- Implementing interactivity using .on()
+
+Technical Achievements:
+- Using a label tag as a tooltip, showing and hiding as necessary (as well as moving out of the way because even a hidden label blocks mouseover events) upon mouseover and mouseover and mouseout events.
+- Scaling and square rooting bill_lengths so that the radius attribute does not vary too wildly (since adjusting the radius adjusts circle area non-linearly)
+- Creating a legend for both species and bill length
+</br></br>
+
+Design Achievements:
+- Color of the tooltip flows well with the other colors
+- Consistent fonts
+- Scaling the circle sizes so that they don't change too drastically
+- Outlining the circle that currently has the tooltip
+- Using the same color for the circle outline as the tooltip background</br></br>
+
+Demo Video:</br>
+
+
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/a6674b80-39ca-4d57-94c9-34e078faf364
+
+# Power BI
+
+The motivation for choosing Power BI came from multiple internship positions that I wanted to apply for, but required some form of Power BI or Microsoft Power Platform experience. It wasn't all that often that I saw this requirement, but it was often enough that this felt worth-while. I did not know what Power BI was at the time and this class introduced me to it with near perfect timing.</br>
+
+It is a popular data visualization tool that does not require coding.</br></br>
+
+The main idea for this was to simply upload the csv file and design a visualization from their default scatter plot.
+
+### Difficulties
+This got me pretty far very quickly in the beginning, but, like with both of the no-code tools I used, got much more difficult as I wanted to make small, specific changes. In both Flourish and Power BI, I found it very difficult to edit the data in any meaningful way within the software itself. This led to me creating a new csv with the proper scaled bill_lengths as I did for the previous visualizations using excel and re-uploading my data. Power BI seems to also have some other way of displaying transparent objects and so there a higher-degree of overlapping than desired.</br></br>
+
+Technical Achievements:
+- Scaleable x- and y-axis
+- Linked, body mass by year visualization
+- Scaling the bill_length data
+
+Design Achievements:
+- Color of body mass by year bars flow with other colors
+- Thicker dashed tick marks to get a sense of the dimensions (the default tick marks were barely visible)
+- Scaleable x- and y-axis
+- Consistent color scheme (throughout all visualizations)</br></br>
+
+Demo Video:</br>
+
+
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/17fa5170-7ff3-4d72-a06f-8800330dd03d
+
+
+# Flourish
+
+
+Flourish a popular, online, no-code data visualization tool.</br>
+The idea for using Flourish was similar to the idea for using Power BI. Use the default scatter plot and tweak as needed.</br></br>
+
+Technical Achievements:
+- Normalizing and scaling the bill length so that the circle sizes in the visualization are reasonable
+- Automatic timeline slider
+- Creating three separate charts for each island
+- Species legend/filterer
+
+Design Achievements:
+- Allowing the user to toggle between 2007-2009 and all years combined (this was not default and took some doing)
+- Consistent color scheme (throughout all visualizations)
+- Three side-by-side charts for each island
+
+Demo Videos:</br>
+- Regular:
+
+  
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/54e49ef0-0040-411b-8798-76d3a353cc2c
+- Three Islands:
+
+
+https://github.com/cehrensperger/a2-DataVis-5Ways/assets/19954402/c1686715-3cda-437e-8de3-3d43c930b794
+

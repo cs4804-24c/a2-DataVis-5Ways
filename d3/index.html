@@ -1,0 +1,104 @@
+<!-- Started from: https://d3-graph-gallery.com/graph/scatter_basic.html -->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head></head>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<body>
+
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
+    
+
+</body>
+
+<script>
+
+    // set style of body to be flex-box row
+    d3.select("body").style("display", "flex").style("flex-direction", "row");
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right + 20) // Plus 20 to account for the yAxis label
+        .attr("height", height + margin.top + margin.bottom + 20) // Plus 20 to account for the xAxis label
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    //Read the data (go one folder up)
+    d3.csv("../penglingsScaled.csv", function(data) {
+    
+      // Add X axis (altered the domain)
+      var x = d3.scaleLinear()
+        .domain([170, 240])
+        .range([ 0, width ]);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+    
+      // Add Y axis (altered the domain)
+      var y = d3.scaleLinear()
+        .domain([2500, 7000])
+        .range([ height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      let xAxisLabel = svg.append("text")
+        .attr("x", width/2)
+        .attr("y", height + margin.top + 25)
+        .style("text-anchor", "middle")
+        .text("Flipper Length (mm)");
+
+      let yAxisLabel = svg.append("text")
+        .attr("x", -height/2)
+        .attr("y", -margin.left + 15)
+        .attr("transform", "rotate(-90)")
+        .style("text-anchor", "middle")
+        .text("Body Mass (g)");
+
+    
+      // Add dots (altered the attributes to correspond to the relevant data, set opacity to 0.8, 
+      // and set colors to correspond to the species)
+      svg.append('g')
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+          .attr("cx", function (d) { 
+                            if(d.flipper_length_mm != "NA") {
+                                return x(d.flipper_length_mm); 
+                            }
+                        } )
+          .attr("cy", function (d) {
+                            if(d.body_mass_g != "NA") {
+                                return y(d.body_mass_g);
+                            }
+                        } )
+          .attr("r", function(d) {
+                            if(d.scaled_bill_length != "#VALUE!") {
+                                return (Math.sqrt(d.scaled_bill_length) * 3); 
+                            }
+                        })
+          .style("fill", function(d) {
+             if(d.species == "Gentoo") {
+                return "#048b8c";
+             } else if(d.species == "Adelie") {
+                return "#ff8d05";
+             } else {
+                return "#9934cc";
+             }
+            })
+          .style("opacity", 0.8);
+    })
+    
+</script>

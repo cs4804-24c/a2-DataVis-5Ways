@@ -16,6 +16,8 @@ In order for it to pull the correct data, the path to `penglings.csv` will need 
 
 d3 was a bit more of a struggle for me. I spent lining up all the grid lines and doing the math with the margins to make sure everything lined up together. I used `d3.scaleLiner` to set up the chart axis. For the dots I used circles which were adjusted based on the data and placed within reference to the linear scale axis.
 
+`index.html` needs to be hosted in some regard in order to be visible.
+
 ![d3](img/d3.png)
 
 # Matlab

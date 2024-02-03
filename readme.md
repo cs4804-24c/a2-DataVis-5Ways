@@ -10,7 +10,7 @@ My 5 methods for created the plot are as follows.
 
 # Matlab
 
-![](img/Finished_PNGs/DV_A2_Matlab.png)
+![](Resources/Finished_PNGs/DV_A2_Matlab.png)
 
 This one was interesting. While the simple plot function could loop over the csv and plot the data on it's own, I ended up finding it easier to make my own for loop to "scatter" the points onto a figure. This seemed easier to build and maintain as I went on designing it. 
 
@@ -21,7 +21,7 @@ Biggest issue was second legend is said to be impossible without generating a se
 
 # Tablou
 
-![](img/Finished_PNGs/DV_A2_Tablou.png)
+![](Resources/Finished_PNGs/DV_A2_Tablou.png)
 
 I really dislike that the program is behind a paywall, but the results speak for themselves. It was the fastes and easiest plot to scatter, and I could intuitively plot everything without documentation (although it did take a few tries). 
 
@@ -39,12 +39,16 @@ This framework doesn't seem to scale as easily as other frameworks have.
 
 # R
 
+![](Resources/Finished_PNGs/DV_A2_Arr.png)
+
 I decided to design the graph in vanilla R. I don't have any good reasons for doing so, but everything still seemed very straightforward and reletively simple to put together. 
 
 I still don't understand why there's a 'c' in front of every array thing, but I put it there nonetheless. 
 
 
 # google slides (not sheets)
+
+![](Resources/Finished_PNGs/DV_A2_slides.png)
 
 I decided to put Slides to the ultimate test adn see if it could reach the same level as the example graph. In my humble opinion, this plot is probably the best. 
 

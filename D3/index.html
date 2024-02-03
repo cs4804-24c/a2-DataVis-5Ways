@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style></style>
+</head>
+
+<body>
+
+    <script type="module">
+
+        // Set up SVG dimensions
+        const margin = { top: 20, right: 20, bottom: 50, left: 50 };
+        const width = 1000 - margin.left - margin.right;
+        const height = 650 - margin.top - margin.bottom;
+
+        // Create SVG container
+        const svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Create scales
+        const xScale = d3.scaleLinear().domain([170, 240]).range([0, width]);
+        const yScale = d3.scaleLinear().domain([2000, 6500]).range([height, 0]);
+
+        // Create color scale
+        const colorScale = d3.scaleOrdinal().domain(["Adelie", "Chinstrap", "Gentoo"])
+            .range(["rgb(250, 167, 82)", "rgb(176, 100, 214)", "rgb(84, 166, 166)"]);
+
+        // Add x-axis
+        svg.append("g")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(xScale));
+
+        // Add y-axis
+        svg.append("g")
+            .call(d3.axisLeft(yScale));
+
+
+        // csv intake to object
+        // csvFilePath = "penglings.csv";
+        d3.csv("penglings.csv").then(function (data) {
+            svg.selectAll("dots")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return xScale(+d.flipper_length_mm); })
+                .attr("cy", function (d) { return yScale(+d.body_mass_g); })
+                .attr("r", function (d) { return +d.bill_length_mm / 5; })
+                .style("opacity", 0.8)
+                .style("fill", function (d) {
+                    if (d.species == "Gentoo") {
+                        return "#4da2a2";
+                    }
+                    else if (d.species == "Chinstrap") {
+                        return "#ad5ed4";
+                    } else {
+                        return "#faa44b";
+                    }
+                });
+            container.appendChild(svg.node());
+        });
+
+        /*
+                // Create scatter plot
+                svg.selectAll("circle")
+                    .data(data)
+                    .enter().append("circle")
+                    .attr("cx", d => xScale(d.flipper_length_mm))
+                    .attr("cy", d => yScale(d.body_mass_g))
+                    .attr("r", d => sizeScale(d.bill_length_mm))
+                    .attr("fill", d => colorScale(d.species))
+                    .attr("opacity", 0.8);
+        */
+        // Add legend for species
+        const legendSpecies = svg.selectAll(".legend-species")
+            .data(colorScale.domain())
+            .enter().append("g")
+            .attr("class", "legend-species")
+            .attr("transform", (d, i) => `translate(0,${i * 20})`);
+
+        legendSpecies.append("rect")
+            .attr("x", width - 18)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", colorScale);
+
+        legendSpecies.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(d => d);
+
+        // Add legend for size
+        const legendSize = svg.append("g")
+            .attr("transform", `translate(${width - 120}, ${height + 20})`);
+
+        legendSize.append("circle")
+            .attr("cx", 10)
+            .attr("cy", 10)
+            .attr("r", sizeScale(42))
+            .style("fill", "black");
+
+        legendSize.append("circle")
+            .attr("cx", 40)
+            .attr("cy", 10)
+            .attr("r", sizeScale(45))
+            .style("fill", "black");
+
+        legendSize.append("text")
+            .attr("x", 55)
+            .attr("y", 10)
+            .attr("dy", ".35em")
+            .style("text-anchor", "start")
+            .text("Size");
+
+    </script>
+</body>
+
+</html>

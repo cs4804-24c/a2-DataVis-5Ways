@@ -1,5 +1,5 @@
 # define 2 vectors
-penguins=read.csv('/Users/Ned/Documents/CS Dava Vis. A2/penglings.csv')
+penguins=read.csv('/Users/Ned/Documents/CS Dava Vis. A2/penglings.csv') # change path if you run it yourself
 
 # create a vector of colours based on species
 species_colours <- c("Adelie" = "red", "Chinstrap" = "green", "Gentoo" = "blue")

@@ -30,11 +30,14 @@ Changing colours was much more cumbersum than it should have been, but after suc
 
 # D3
 
+![](Resources/Finished_PNGs/DV_A2_Arr.png)
+
+
 This was my least favorite experience. While I created the graph and legend very quickly, importing any of the csv data was a long string of guesswork. I eventually got something working, but I feel like I understand that aspect the least. 
 
 Creating extra elements like two legends and whatnot is easy as you can just draw anything you want in if there's not already of function for it. 
 
-This framework doesn't seem to scale as easily as other frameworks have. 
+This framework also doesn't seem to scale as easily as other frameworks have. There's probably ways to configure it to scale easily, but I never ran into them like most the other methods here. 
 
 
 # R

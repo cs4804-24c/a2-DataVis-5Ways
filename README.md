@@ -7,6 +7,10 @@ Assignment 2 - Data Visualization, 5 Ways
 ===
 # Excel
 Excel is a powerful spreadsheet application used for organizing, formatting, and calculating data in a tabular format. To visualize this data, I needed to create a bubble chart with three series, one for each species of pengling, with the x values being the flipper length and the y values being the body mass. Also, I needed to add the bill length to each series to correspond to the size of the data points.
+Also, I kept the color of the circles similar to the original image, and also changed the opacity so that you could somewhat see the data points that overlapped each other.
+
+![Excel_Penglings_Image](https://github.com/joshj339/a2-DataVis-5Ways/assets/91641190/82880001-d232-49b7-bb70-5ba6353bb91a)
+
 
 # R + ggplot2 + R Markdown
 

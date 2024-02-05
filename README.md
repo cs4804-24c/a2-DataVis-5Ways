@@ -4,7 +4,7 @@
 Assignment 2 - Data Visualization, 5 Ways  
 ===
 link:
-https://github.com/pnarasimhan2021/a2-DataVis-5Ways.git
+https://github.com/pnarasimhan2021/a2-DataVis-5Ways
 
 # Tableau
 

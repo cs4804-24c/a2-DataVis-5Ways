@@ -1,0 +1,224 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Penguin Visualization</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    #my_dataviz {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #151541;
+    }
+
+    label {
+      margin-right: 15px;
+    }
+
+    select,
+    button {
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #151541;
+      color: #fff;
+      border: 1px solid white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #030379;
+    }
+  </style>
+</head>
+
+
+
+<body>
+
+  <h1>Penguin Visualization</h1>
+
+  <div id="my_dataviz">
+    <label>
+      <input type="checkbox" class="toggle-checkbox" id="adelieCheckbox" checked> Adelie
+    </label>
+    <label>
+      <input type="checkbox" class="toggle-checkbox" id="gentooCheckbox" checked> Gentoo
+    </label>
+    <label>
+      <input type="checkbox" class="toggle-checkbox" id="chinstrapCheckbox" checked> Chinstrap
+    </label>
+    <br>
+    <label for="yearDropdown">Select Year:</label>
+    <select id="yearDropdown"></select>
+    <br>
+    <button onclick="redirectWikipedia('Adelie')">Adelie Wikipedia</button>
+    <button onclick="redirectWikipedia('Gentoo')">Gentoo Wikipedia</button>
+    <button onclick="redirectWikipedia('Chinstrap')">Chinstrap Wikipedia</button>
+  </div>
+
+
+  <svg width="200" height="120" style="position: absolute; top: 400px; right: 460px;">
+    <circle cx="10" cy="20" r="6" fill="#402D54" />
+    <text x="25" y="25" dy="0.35em">Adelie</text>
+    <circle cx="10" cy="50" r="6" fill="#D18975" />
+    <text x="25" y="55" dy="0.35em">Gentoo</text>
+    <circle cx="10" cy="80" r="6" fill="#8FD175" />
+    <text x="25" y="85" dy="0.35em">Chinstrap</text>
+  </svg>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script>
+    // set the dimensions and margins of the graph
+    var margin = { top: 10, right: 20, bottom: 30, left: 100 },
+      width = 650 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3
+      .select("#my_dataviz")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Read the data
+    d3.csv(
+      "https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv",
+      function (data) {
+        // Extract unique years
+        var years = [...new Set(data.map(d => d.year))];
+        years.unshift("All"); // Add "All" option at the beginning
+
+        // Populate the dropdown menu with years
+        d3.select("#yearDropdown")
+          .selectAll("option")
+          .data(years)
+          .enter()
+          .append("option")
+          .text(d => d)
+          .attr("value", d => d);
+
+        // Add X axis
+        var x = d3.scaleLinear().domain([170, 235]).range([0, width]);
+        svg
+          .append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+
+        // Add Y axis
+        var y = d3.scaleLinear().domain([2500, 6500]).range([height, 0]);
+        svg.append("g").call(d3.axisLeft(y));
+
+        // Add a scale for bubble size
+        var z = d3.scaleLinear().domain([35, 55]).range([6, 10]);
+
+        // Add color
+        var bubblecolor = d3
+          .scaleOrdinal()
+          .domain(["Adelie", "Gentoo", "Chinstrap"])
+          .range(["#402D54", "#D18975", "#8FD175"]);
+
+        // Add dots for each species
+        var circles = svg
+          .append("g")
+          .selectAll("dot")
+          .data(data)
+          .enter()
+          .append("circle")
+          .attr("cx", function (d) { return x(d.flipper_length_mm); })
+          .attr("cy", function (d) { return y(d.body_mass_g); })
+          .attr("r", function (d) { return z(d.bill_length_mm); })
+          .style("fill", function (d) { return bubblecolor(d.species); })
+          .style("opacity", "0.6")
+          .attr("stroke", "black")
+          .style("stroke-width", "2px");
+
+        // X-axis label to the left
+        svg
+          .append("text")
+          .attr("class", "x label")
+          .attr("text-anchor", "start")
+          .attr("x", width - 400)
+          .attr("y", height + 30)
+          .text("Flipper Length (mm)");
+
+        // Y-axis label
+        svg
+          .append("text")
+          .attr("class", "y label")
+          .attr("text-anchor", "middle")
+          .attr("y", -50)
+          .attr("x", -height / 2)
+          .attr("transform", "rotate(-90)")
+          .text("Body Mass (g)");
+
+        // Add event listeners to toggle each species circle
+        d3.selectAll(".toggle-checkbox").on("change", updateCircles);
+
+        d3.select("#yearDropdown").on("change", updateCircles);
+
+        function updateCircles() {
+          var selectedYear = d3.select("#yearDropdown").node().value;
+          var displayAdelie = d3.select("#adelieCheckbox").node().checked;
+          var displayGentoo = d3.select("#gentooCheckbox").node().checked;
+          var displayChinstrap = d3.select("#chinstrapCheckbox").node().checked;
+
+          circles
+            .style("display", function (d) {
+              return (
+                (selectedYear === "All" || d.year === selectedYear) &&
+                ((d.species === "Adelie" && displayAdelie) ||
+                  (d.species === "Gentoo" && displayGentoo) ||
+                  (d.species === "Chinstrap" && displayChinstrap))
+              )
+                ? null
+                : "none";
+            });
+        }
+
+      }
+    );
+
+    // Function to redirect to Wikipedia page
+    function redirectWikipedia(species) {
+      var wikipediaLinks = {
+        "Adelie": "https://en.wikipedia.org/wiki/Ad%C3%A9lie_penguin",
+        "Gentoo": "https://en.wikipedia.org/wiki/Gentoo_penguin",
+        "Chinstrap": "https://en.wikipedia.org/wiki/Chinstrap_penguin"
+      };
+
+      window.open(wikipediaLinks[species], "_blank");
+    }
+
+  </script>
+
+</body>
+
+</html>

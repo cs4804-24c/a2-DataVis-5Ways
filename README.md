@@ -30,6 +30,8 @@ The code first loads the ggplot2 library, and then reads the data from the csv f
 
 # Altair
 
+Creating a scatter plot using Altair involves technical achievements like data manipulation and visualization design. Specifically, I adeptly handled data frames using pandas to prepare the dataset and then using Altair's syntax, mapped variables to visual properties, such as position, size, and color, for an insightful and interactive graphical representation.
+
 # D3
 
 d3.js is a powerful JavaScript library for creating complex and interactive data visualizations for web browsers.
@@ -38,9 +40,4 @@ I was able to use a CDN link to include the d3 library into my html file without
 First, I need to defined the SVG container where the scatter plot was be rendered. Then, using d3.js, I loaded my dataset Finally, you create circles (or other shapes) for each data point by appending SVG elements to the container, positioning them based on the flipper length and body mass, and their size determined by the bill size.
 
 ![d3_pengling_image](https://github.com/joshj339/a2-DataVis-5Ways/assets/91641190/98cc9db6-22a8-403f-9a49-52c44c00b83d)
-
-
-## Technical Achievements
-
-### Design Achievements
 

@@ -1,0 +1,10 @@
+After importing the .csv into Igor 8, the following code with the bullet points can be run
+
+•Display body_mass_g vs flipper_length_mm
+•ModifyGraph mode=3,marker=19,opaque=1
+•Label left "Body Mass (g)";DelayUpdate
+•Label bottom "Flipper Length (mm)"
+
+At this point I manually created a new column(wave0) that mapped each species to a number Adelie --> 0, Gentoo --> 1, Chinstrap --> 2. Then I performed one last modification of the graph
+
+•ModifyGraph zmrkSize(body_mass_g)={bill_length_mm,*,*,4,7},zColor(body_mass_g)={wave0,*,*,Rainbow256,0}

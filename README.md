@@ -1,148 +1,34 @@
+# Python + Seaborn
+I have experience working with python and seabon specifically, so working with this specific package was simple for me. But I also did learn how to use specific features like the interactions that can be done through python. I would be using python for my career, so it is nice to utilize the language and packe in a way that is different from what I usually do. There are many things that can be done with python which I am slowly starting to understand.  
+(Found in Python folder)
+![Seaborn](img/seaborn.png)
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
 
-# 02-DataVis-5ways
+# Python + Altair
+I have experience with python but not altair. It was not too difficult to understand the mechanics of it but it was still something new that I learned. It was easy to customize the code to do what I want and create something that is exactly the same as the seaborn package. i was able to make the same size mapping between the two visual. I personally would use this platform in the future.
+(found in Python folder) 
+![Altair](img/altair.png)
 
-Assignment 2 - Data Visualization, 5 Ways  
-===
+# DataWrapper
+This was my first time using it and it was very simple to interact with however the customability use was a bit difficult. Trying to incorporate all the custom features too some time but there is a spot for experiementaion. That requires a seperate level of skill. This platform would be useful for work that is static and does not need complex queries otherwise this tool may not be sufficient to fulfill all data visualization need. I personally did not have any trouble with would through this platform, especially for data manipulation. When I loaded the data all I had to do was to ignore the NA's in the data. I would use this in the future to work through simple visualizations. (need premium for access to customization --> image in image folder)
+![datawrapper](img/datawrapper.png)
 
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
+# Flourish
+This was my first time using this and it was similar to datawrapper, but if I had to choose it would be a more compatability platform than datawrapper since there were certain customability that I liked in this platoform. There is an interacive dropdown but it groups by species and not the kind of interactivity I was attemping. Also the filter is limited so for static view and simple interactions can be done. Major visual would be difficult to be used. I would use this in the future but not for major visualizations. 
+(need premium for access to customization --> image in image folder)
+![Flourish](img/flourish.png)
 
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
+# D3
+Personally I had the most trouble with d3 since it is something I needed to work through the mechanics. I would personally not use d3 since there is too many manual features that I would have to add and not have the luxuary to autopoulate. But this is a good platform for specific feature manuplation. For the data manuiplation I wrote a single line of code so that it would ignore and not mess withe the graph. Of all the methods this was the most time consuming and it was difficult to understand was could be the errors. 
+(found in the d3 folder)
+![d3](img/d3.png)
 
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
-
-Your goal is to use 5 different tools to make the following chart:
-
-![](img/ggplot2.png)
-
-These features should be preserved as much as possible in your replication:
-
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
-
-Other features are not required. This includes:
-
-- The background grid.
-- The legends.
-
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
-
-Improvements are also welcome as part of Technical and Design achievements.
-
-Libraries, Tools, Languages
----
-
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
-
-Otherwise, you should seek tools and libraries to fill out your 5.
-
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
-
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
-
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
 
 
 ## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+- **Python + Altair + Seaborn**: For both I added a feature that can turn on and off the color mapping and size maping. When the user wants to focus on a specific feature then it can be turn off to revert to a standard color or standard size this is included in the legend. 
+- **D3**: I added a feature that can turn on and off the color mapping and size maping. When the user wants to focus on a specific feature then it can be turn off to revert to a standard color or standard size. Also a tooltip for interactions. the legend had to be added manually.
+
 
 ### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+- **All**: I tried to maintain all the graphs to have the same color correlated to the same species name.

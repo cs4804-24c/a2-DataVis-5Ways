@@ -20,9 +20,9 @@
     d3.csv("https://raw.githubusercontent.com/thecoolerarjun/a2-DataVis-5Ways/gh-pages/penglings.csv").then(function(data) {
       var x = d3.scaleLinear()
         .domain([170, 240])
-        .range([0, 700]);
+        .range([0, 600]);
       svg.append("g")
-        .attr("transform", "translate(0, 700)")
+        .attr("transform", "translate(0, 600)")
           .call(d3.axisBottom(x).ticks(7));
       
       var y = d3.scaleLinear()
@@ -59,6 +59,8 @@
    <h1>Arjun Vyavaharkar</h1>
   
    <footer>CS4804-C24-C01 &copy; 2024</footer>
+   <!-- Though I didn't just copy and paste it, code from the sample bubble chart at 
+  https://d3-graph-gallery.com/graph/bubble_template.html was extremely helpful in helping me complete this assignment -->
     </div>
 </body>
 </html>

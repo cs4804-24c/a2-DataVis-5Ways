@@ -5,18 +5,13 @@
     <title> CS4804-C24-C01 </title>
 </head>
 <body>
-  <script>
-    console.log(d3); // test if d3 is loaded
-    // Add an SVG
-    var svg;
-  </script>
-
   <div id="canvas">
   </div>
 
   <script>
+    console.log(d3); // test if d3 is loaded
     // Add canvas
-    svg = d3.select('#canvas')
+    var svg = d3.select('#canvas')
       .append('svg')
         .attr('width', 800)
         .attr('height', 600)

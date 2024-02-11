@@ -12,49 +12,51 @@
   </script>
 
   <div id="canvas">
-    <script>
-      // Add canvas
-      svg = d3.select('#canvas')
-        .append('svg')
-          .attr('width', 800)
-          .attr('height', 600)
-            .append("g");
-
-      d3.csv("/workspaces/a2-DataVis-5Ways/penglings.csv").then(function(data) {
-        var x = d3.scaleLinear()
-          .domain([170, 240])
-          .range([0, 700]);
-        svg.append("g")
-          .attr("transform", "translate(0, 700)")
-            .call(d3.axisBottom(x).ticks(7));
-        
-        var y = d3.scaleLinear()
-          .domain([2000, 7000])
-          .range([500, 0]);
-        svg.append("g")
-          .call(d3.axisLeft(y).ticks(5));
-
-        var z = d3.scaleSqrt()
-          .domain([30, 60])
-          .range([1, 30]);
-
-        var myColor = d3.scaleOrdinal()
-          .domain(["Adelie", "Gentoo", "Chinstrap"])
-          .range(["#FF8C00", "#008B8B", "#9932CC"]);
-
-        svg.append('g')
-          .selectAll("dot")
-          .data(data)
-          .enter()
-          .append("circle")
-            .attr("class", function(d) { return "bubbles " + d.species; })
-            .attr("cx", function(d) { return x(d.flipper_length_mm); })
-            .attr("cy", function(d) { return y(d.body_mass_g); })
-            .attr("r", function(d) { return z(d.bill_length_mm); })
-            .style("fill", function(d) { return myColor(d.species); })
-      });
-    </script>
   </div>
+
+  <script>
+    // Add canvas
+    svg = d3.select('#canvas')
+      .append('svg')
+        .attr('width', 800)
+        .attr('height', 600)
+          .append("g");
+
+    d3.csv("/workspaces/a2-DataVis-5Ways/penglings.csv").then(function(data) {
+      var x = d3.scaleLinear()
+        .domain([170, 240])
+        .range([0, 700]);
+      svg.append("g")
+        .attr("transform", "translate(0, 700)")
+          .call(d3.axisBottom(x).ticks(7));
+      
+      var y = d3.scaleLinear()
+        .domain([2000, 7000])
+        .range([500, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y).ticks(5));
+
+      var z = d3.scaleSqrt()
+        .domain([30, 60])
+        .range([1, 30]);
+
+      var myColor = d3.scaleOrdinal()
+        .domain(["Adelie", "Gentoo", "Chinstrap"])
+        .range(["#FF8C00", "#008B8B", "#9932CC"]);
+
+      svg.append('g')
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+          .attr("class", function(d) { return "bubbles " + d.species; })
+          .attr("cx", function(d) { return x(d.flipper_length_mm); })
+          .attr("cy", function(d) { return y(d.body_mass_g); })
+          .attr("r", function(d) { return z(d.bill_length_mm); })
+          .style("fill", function(d) { return myColor(d.species); })
+    });
+  </script>
+
    <div id="content">
    
    <header>Assignment 1 - d3.js</header>

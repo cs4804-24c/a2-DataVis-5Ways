@@ -23,6 +23,8 @@
             .attr("transform",`translate(${margin},${margin})`);
 
     d3.csv("https://raw.githubusercontent.com/thecoolerarjun/a2-DataVis-5Ways/gh-pages/penglings.csv").then(function(data) {
+
+      // Axes and radii rules
       var x = d3.scaleLinear()
         .domain([170, 240])
         .range([0, width]);
@@ -40,10 +42,12 @@
         .domain([30, 60])
         .range([1, 30]);
 
+      // Color mapping ('darkorange', 'cyan4', and 'darkorchid' in R)
       var myColor = d3.scaleOrdinal()
         .domain(["Adelie", "Gentoo", "Chinstrap"])
         .range(["#FF8C00", "#008B8B", "#9932CC"]);
 
+      // Bubbles
       svg.append('g')
         .selectAll("dot")
         .data(data)
@@ -55,13 +59,28 @@
           .attr("r", function(d) { return z(d.bill_length_mm); })
           .style("fill", function(d) { return myColor(d.species); })
           .style("opacity", 0.8)
+
+      // x- and y-axis titles
+      svg.append("text")
+        .text("Flipper Length (mm)")
+          .attr("text-anchor", "end")
+          .attr("x", width/2 + margin)
+          .attr("y", height + 0.7*margin);
+      
+      svg.append("text")
+        .text("Body Mass (g)")
+          .attr("text-anchor", "start")
+          .attr("text-anchor", "end")
+          .attr("transform", `rotate(-90)`)
+          .attr("x", -height/2 - margin)
+          .attr("y", -0.7*margin);
     });
   </script>
 
    <br>
    <div id="content">
    
-   <header>Assignment 1 - d3.js</header>
+   <header>Assignment 2 - d3.js</header>
 
    <h1>Arjun Vyavaharkar</h1>
   

@@ -1,6 +1,8 @@
+# Python 3 with Matplotlib
 import matplotlib.pyplot as plt
 import csv
 
+# Parse CSV and translate it into dictionary
 pengdict = {
     'Adelie':{
         'bill_length_mm':[],
@@ -26,6 +28,7 @@ with open('penglings.csv', newline='') as file:
             pengdict[entry['species']]['flipper_length_mm'].append(float(entry['flipper_length_mm']))
             pengdict[entry['species']]['body_mass_g'].append(float(entry['body_mass_g']))
 
+# Create scatterplot
 fig = plt.figure(figsize=(14,8))
 plt.scatter(pengdict['Adelie']['flipper_length_mm'], pengdict['Adelie']['body_mass_g'], s=pengdict['Adelie']['bill_length_mm'], c='#FF8C00', alpha=0.8)
 plt.scatter(pengdict['Gentoo']['flipper_length_mm'], pengdict['Gentoo']['body_mass_g'], s=pengdict['Gentoo']['bill_length_mm'], c='#008B8B', alpha=0.8)
@@ -33,5 +36,6 @@ plt.scatter(pengdict['Chinstrap']['flipper_length_mm'], pengdict['Chinstrap']['b
 plt.xlabel("Flipper Length (mm)")
 plt.ylabel("Body Mass (g)")
 
+# Show and save graph
 plt.show()
-plt.savefig('pythonpenglings.png')
+plt.savefig('penglings.py.png')

@@ -25,3 +25,5 @@ bubblesize([1 30]);
 xlabel("Flipper Length (mm)");
 ylabel("Body Mass (g)");
 hold off;
+
+% saveas(figure,"penglings.m.png");

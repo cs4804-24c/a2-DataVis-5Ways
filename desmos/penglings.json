@@ -1,4 +1,5 @@
 {
+    "comment": "JSON-Formatted Desmos Graph State",
     "version": 11,
     "randomSeed": "439c4bbdf8ca80fe0ed3ebd44637855c",
     "graph": {

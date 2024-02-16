@@ -1,11 +1,53 @@
+# Nadav Konstantine CS4804 A2 DataVis 5 Ways Submission:
+# Google Sheets
+![](img/NadavGoogleSheets_Plot.png)
+Above is my completed version of my first and most time-consuming vis for this assignment; funnily enough, Google Sheets was the most difficult Vis to replicate. Yes, this is a non-coding-necessary method, but I struggled immensely with the concept of separating data on the plot to have all three species color-coded properly. Aside from this extremely lengthy hiccup, all I had to do was select the insert chart and select the necessary data points, separate the X and Y axes as necessary, and customize other configurations for colors and font sizes for the legends, etc. I couldn't figure out how to create a second legend for the bill length sizes for each bubble, but after the requirements and aesthetics were customized in the chart customization menu I made sure to meet all requirements necessary for this assignment. 
 
+**Technical and Design Achievements**
+
+For this Viz, My technical and design achievements were that I was able to implement size scaling for the bill lengths of each penguin, you can see that not every bubble is the same size, and that is because I was able to integrate proper sizing in the chart configurations in google sheets, also, another technical and design achievement as shown below is that I was able to include an interactive feature in the plot, where when I hover over a plot point there is a popup of the specific data stored within that point. Additionally, I precisely selected the colors for each species using the color select tool. All these achievements can be seen in the following image (apologies if it is slightly blurry I do not know how to fix that):
+![](img/NadavGoogleSheets_Demo1.png)
+
+# Flourish
+![](img/NadavFlourish_Plot.png)
+Above is the fully shown replication of the Penglings plot using the online data visualization tool: Flourish. Flourish was an extremely intuitive tool and I was able to complete this vis in an extremely short time. Upon creating an account with Flourish, I was introduced to the multitudes of different vis tables I could choose from, I chose the scatter plot option and all I had to do was upload my CSV file and customize data that was automatically categorized for me. I configured visual aesthetics according to assignment requirements and then played around with the other abilities Flourish had to offer. The online tool gave me a quick guide for how to navigate the different toggle points on the webpage, and all difficulties encountered in Google Sheets were virtually unnoticed in Flourish, while it may not be the most powerful tool out of the bunch I used, it was definitely one of the easiest.
+
+**Technical and Design Achievements**
+
+Below are examples of the technical and design achievements I reached with Flourish. Since the assignment minimum was achieved so quickly, I took more time to add some extra features to the graph, while these are mainly design achievements, I bent some technical limits of flourish by getting formatting exactly how I wanted them to, configuring bill length sizes to alter the bubble sizes, having hover-over popups just like Google sheets, and have a clickable legend that filters the data visualized on the graph by species. As mentioned, these achievements are seen in the images below.
+![](img/NadavFlourish_Demo1.png)
+![](img/NadavFlourish_Demo2.png)
+
+# MattPlotLib
+![](img/NadavMattPlotLib_Plot.png)
+The first coding library I used for this assignment was MattPlotLib, a powerful Python library that I was able to easily read, write, and document a replication of the assignment's plot with a consultation with chatGPT for the syntax of my query building (since I was less acquainted with that part). By reading my CSV file as a pandas dataframe I could then apply a color dictionary to specific iterations of the file's columns through the query. The for loop identified specific species, and then for each species the plt.scatter function plotted each point using the required x and y-axis titles and colors. The size of each bubble was determined through the s variable and then I adjusted the size to my liking. The gridlines and legend for the visuals of the graph were simple, using the plt.grid and plt.legend function calls respectively. I have not struggled too much with this method of visualizing the penglings, and the MattPlotLib documentation has plenty of other useful functions that add to the library's ability to make different types of graphs in Python. 
+
+**Technical and Design Achievements**
+
+The plt.grid function did more than just help me adjust tick marks and gridlines but also implemented an interactive interface that the user can change perspectives of the graph through sliding bars that change the graph view, as well as buttons to reset and reconfigure these changes. An example image of how this works is displayed in the image below.
+![](img/NadavMattPlotLib_Demo.png)
+
+# D3
+![](img/NadavD3_Plot.png)
+Above is the plot I was able to create using the D3 library. For the coding languages used, this one definitely took the longest out of the others I used. I consulted the D3 documentation, chatGPT, GitHub copilot, and stack overflow on numerous occasions for instructions on how I should approach building this plot. CS4804 is my first experience with HTML and JavaScript, so this also took me a considerable amount of time. The standard svg creation was fairly simple, however, I needed to readjust the sizes of the window margins to meet my aesthetic pleasure as well as meet the requirements for the assignment. ChatGPT led me in the right direction for parsing and iterating through the file to place each data point. Next, the D3 documentation provided a basic guide for setting domains, ranges, and labels for both axes. I also learned how to properly buffer the number labels and tick marks on the svg to help the design flow. The colors were simple, I also found a way to do that in the D3 documentation. Stack overflow provided the skeleton code for the 'query' building, plotting each point, adjusting sizes for each dot, setting the color according to each species, and the opacity, of the dots. The species legend took a few tries and a few different approaches that I am not fully sure which actually apply to the image or if they all do. As I write this I acknowledge that I believe the legend took me the longest to figure out during this approach for visualizing the penglings; I needed to create the legend and parse the data by specie on a separate smaller svg, and then append the colored circles and text to it as I saw fit. Meeting the assignment requirements feels like a technical achievement in of itself! 
+
+# Altair
+![](img/NadavAltair_Plot.png)
+Lastly, the easiest coding library approach I used was the Python library, Altair. Similarly to MattPlotLib, I consulted GitHub copilot to nudge me in the right direction for completing this part, but after parsing the file as a pandas dataframe I could encode the graph very simply. This library differs from MattPlotLib because it generates an HTML page shown via altairPlot.html (which I am not sure will work). In a few easy lines, I could quickly understand the patterns to build the grid, legend, and other assignment-required configurations, and read the dataframe as a parameter to plot each data point. Altair seems like a tool I'd like to read into more since I was interested in learning more about other patterns in the syntax to customize other visualizations, but I still think I would prefer to use MattPlotLib.
+
+**Technical and Design Achievements**
+
+ - Size legend based on bill length
+ - HTML file output upon running
+ - Gridlines, bolded titles
+
+===
 ![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
 
 # 02-DataVis-5ways
 
 Assignment 2 - Data Visualization, 5 Ways  
 ===
-
 Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
 
 The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.

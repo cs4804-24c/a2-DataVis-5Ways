@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nadav Konstantine CS4804 A2 D3</title>
+    <script src="https://d3js.org/d3.v6.js"></script>
+</head>
+<body>
+    <h1>Nadav Konstantine CS4804 A2 D3</h1>
+    <div id="a2_d3_viz"></div>
+    <script>
+            var margin = { top: 20, right: 15, bottom: 50, left: 75 },
+                width = window.innerWidth - margin.left - margin.right * 2.6,
+                height = window.innerHeight*0.85 - margin.top - margin.bottom;
+
+        var svg = d3.select("#a2_d3_viz")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        d3.csv("penglings.csv").then(function (data) {
+            // parse data
+            data.forEach(function (d) {
+                d.flipper_length_mm = +d.flipper_length_mm;
+                d.body_mass_g = +d.body_mass_g;
+                d.bill_length_mm = +d.bill_length_mm;
+            });
+
+            // Size scale
+            var size = d3.scaleLinear()
+                .domain([40, 60])
+                .range([10, 25]);
+
+            // Add X axis
+            var x = d3.scaleLinear()
+                .domain([170, 235]) // Adjust the domain to include a buffer
+                .range([0, width]);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(10));  // Adjust the number of ticks
+
+            // Add X axis label
+            svg.append("text")
+                .attr("text-anchor", "middle")
+                .attr("x", width / 2)
+                .attr("y", height + margin.top + 20)
+                .style("font-size", "20px")
+                .text("Flipper Length (mm)");
+
+            // Add Y axis
+            var y = d3.scaleLinear()
+                .domain([2500, 6500]) // Adjust the domain to include a buffer
+                .range([height, 0]);
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(10));  // Adjust the number of ticks
+
+            // Add Y axis label
+            svg.append("text")
+                .attr("text-anchor", "middle")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -margin.left + 20)
+                .attr("x", -margin.top - height / 2)
+                .style("font-size", "20px")
+                .text("Body Mass (g)")
+
+            // Color scale
+            var color = d3.scaleOrdinal()
+                .domain(["Adelie", "Chinstrap", "Gentoo"])
+                .range(["orange", "purple", "teal"]);
+
+            // Add dots
+            svg.append('g')
+                .selectAll("dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return x(d.flipper_length_mm); })
+                .attr("cy", function (d) { return y(d.body_mass_g); })
+                .attr("r", function (d) { return size(d.bill_length_mm); }) // Size of the dots
+                .style("fill", function (d) { return color(d.species); }) // Color of the dots
+                .style("opacity", 0.75);  // Set opacity
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        var legendSvg = d3.select("#a2_d3_viz").append("svg")
+            .attr("width", width)
+            .attr("height", 50);
+        // Define species and corresponding colors
+        var species = ["Adelie", "Chinstrap", "Gentoo"];
+        var colors = ["orange", "purple", "teal"];
+
+        // Create a group element for each species
+        var legend = svg.selectAll(".legend")
+            .data(species)
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function (d, i) { return "translate(0," + (height - i * 20 - 15) + ")"; });
+
+        // Add a colored circle for each species
+        legend.append("circle")
+            .attr("cx", width)
+            .attr("cy", 0)
+            .attr("r", 6)
+            .style("fill", function (d, i) { return colors[i]; });
+
+        // Add text label for each species
+        legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 4)
+            .style("text-anchor", "end")
+            .text(function (d) { return d; });
+
+    </script>
+</body>
+</html>

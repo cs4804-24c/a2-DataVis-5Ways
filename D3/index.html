@@ -14,7 +14,7 @@
             height: 550px;
             margin: 0 auto;
             /* Center the container horizontally */
-            position: relative;
+            position: static;
             /* Add relative positioning */
         }
 
@@ -53,7 +53,7 @@
             var markerSize = function (d) { return Math.sqrt(+d.bill_length_mm); }; // Adjust scaling factor as needed
 
             // Define SVG dimensions and margins
-            var margin = { top: 50, right: 300, bottom: 50, left: 50 }, // Increase right margin for legends
+            var margin = { top: 50, right: 300, bottom: 50, left: 100 }, // Increase right margin for legends
                 width = 1000 - margin.left - margin.right, // Decrease width to fit legends
                 height = 600 - margin.top - margin.bottom;
 
@@ -112,11 +112,68 @@
             svg.append("text")
                 .attr("class", "axis-title")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left - 10)
+                .attr("y", 0 - margin.left + 30)
                 .attr("x", 0 - (height / 2))
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
                 .text("Body Mass (g)");
+
+            // Legend for bill length
+            var legendBillLength = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + (width + 10) + ", 20)");
+
+            legendBillLength.append("text")
+                .attr("class", "legend-title")
+                .text("Bill Length Legend");
+
+            legendBillLength.selectAll("legend")
+                .data([40, 50]) // Adjust these values as needed
+                .enter()
+                .append("circle")
+                .attr("cx", 10)
+                .attr("cy", function (d, i) { return i * 20 + markerSize({ bill_length_mm: d }) + 18; })
+                .attr("r", function (d) { return markerSize({ bill_length_mm: d }); })
+                .style("fill", "none")
+                .style("stroke", "black")
+                .style("stroke-width", 2);
+
+            legendBillLength.selectAll("legend")
+                .data(["40", "50"])
+                .enter()
+                .append("text")
+                .attr("x", 30)
+                .attr("y", function (d, i) { return i * 20 + 30; })
+                .text(function (d) { return d; })
+                .attr("text-anchor", "start");
+
+
+            // Legend for species color
+            var legendColor = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + (width + 10) + ", 120)");
+
+            legendColor.append("text")
+                .attr("class", "legend-title")
+                .text("Species Color Legend");
+
+            legendColor.selectAll("legend")
+                .data(Object.keys(colorMap))
+                .enter()
+                .append("circle")
+                .attr("cx", 10)
+                .attr("cy", function (d, i) { return i * 20 + 25; })
+                .attr("r", 8)
+                .style("fill", function (d) { return colorMap[d]; });
+
+            legendColor.selectAll("legend")
+                .data(Object.keys(colorMap))
+                .enter()
+                .append("text")
+                .attr("x", 30)
+                .attr("y", function (d, i) { return i * 20 + 30; })
+                .text(function (d) { return d; })
+                .attr("text-anchor", "start");
         });
     </script>
 </body>

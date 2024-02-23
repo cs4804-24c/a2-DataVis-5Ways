@@ -1,148 +1,111 @@
+# General Visualization of Data and Statistics
+Design Achievements:
+I made this visualization to tell a story and show some of the data and statistics.
+The idea is that the penguins got separated on different islands because of an iceberg which drifted apart. (Note the bottom of the iceberg is still intact, but the top isn't). This caused them to develop populations on those islands of Biscoe, Dream, and Torgersen. Some of the islands had two species while others only had one. One interesting fact is that the Adelie Penguins appear on all the islands. Maybe they are better swimmers?
 
-![penguins](https://github.com/cs4804-24c/a2-DataVis-5Ways/assets/412089/accc5680-3c77-4d29-9502-d3ff8cd922af)
-
-# 02-DataVis-5ways
-
-Assignment 2 - Data Visualization, 5 Ways  
-===
-
-Now that you have successfully made a "visualization" of shapes and lines using d3, your next assignment is to successfully make a *actual visualization*... 5 times. 
-
-The goal of this project is to gain experience with as many data visualization libraries, languages, and tools as possible.
-
-I have provided a small dataset about penguins, `penglings.csv`.
-Each row contains a penguin observation and several variables about it, including bill length, flipper length, and more.
-
-Your goal is to use 5 different tools to make the following chart:
-
-![](img/ggplot2.png)
-
-These features should be preserved as much as possible in your replication:
-
-- Data positioning: it should be a upward-trending scatterplot as shown.  Flipper Length should be on the x-axis and Body Mass on the y-axis.
-- Scales: Note the scales do not start at 0.
-- Axis ticks and labels: both axes are labeled and there are tick marks at a reasonable interval, e.g 10, 20, 30, etc.
-- Color mapping to species.
-- Size mapping to Bill Length.
-- Opacity of circles set to 0.8 or similar for a semi-transparent effect.
-
-Other features are not required. This includes:
-
-- The background grid.
-- The legends.
-
-Note that some software packages will make it **impossible** to perfectly preserve the above requirements. 
-Be sure to note where these deviate as you reflect on what a tool is good for.
-
-Improvements are also welcome as part of Technical and Design achievements.
-
-Libraries, Tools, Languages
----
-
-You are required to use 5 different tools or libraries.
-Of the 5 tools, you must use at least 3 libraries (libraries require code of some kind).
-This could be `Python, R, Javascript`, or `Java, Javascript, Matlab` or any other combination.
-Dedicated tools (i.e. Excel) do not count towards the language requirement.
-
-Otherwise, you should seek tools and libraries to fill out your 5.
-
-Below are a few ideas. Do not limit yourself to this list!
-There are new tools coming out every year and we may not have an exhaustive list of the latest and greatest.
-
-Some may be difficult choices, like Matlab or SPSS, which require large installations, licenses, and occasionally difficult UIs.
-
-I have marked a few that are strongly suggested.
-
-- R + ggplot2 `<- definitely worth trying`
-- Excel
-- d3 `<- since the rest of the class uses this, we're requiring it`
-- Altair `<- hugely popular python library. highly recommended `
-- three.js `<- well, it's a 3d library. not really recommended, but could be interesting and fun`
-- p5js `<- good for playing around. not really a chart lib`
-- Tableau
-- PowerBI
-- Vega-lite <- `<- very interesting formal visualization model; might be the future of the field`
-- Flourish <- `<- popular in recent years`
-- DataWrapper <- `<- popular in recent years`
-- GNUplot `<- the former CS department head uses this all the time :)`
-- SAS/SPSS/Matlab
-
-You may write everything from scratch, or start with demo programs from books or the web. 
-If you do start with code that you found, please identify the source of the code in your README and, most importantly, make non-trivial changes to the code to make it your own so you really learn what you're doing. 
-
-Tips
----
-
-- If you're using d3, key to this assignment is knowing how to load data.
-You will likely use the [`d3.json` or `d3.csv` functions](https://d3js.org/d3-dsv) to load the data you found.
-
-**Beware that these functions are *asynchronous*, meaning it's possible to "build" an empty visualization before the data actually loads. Figuring out how to do this properly can be a major hiccup if you haven't used async functions before. If this means you, start part of this project early so you don't end up in a rush!**
-
-- *For web languages like d3* Don't forget to run a local webserver when you're debugging.
-See my a1 video or online tutorials for how to do this.
-Being able to host a local webserver is an essential web development skill and very common in visualization design as well.
-
-Readme Requirements
----
-
-A good readme with screenshots and structured documentation is required for this project. 
-It should be possible to scroll through your readme to get an overview of all the tools and visualizations you produced.
-
-- Each visualization should start with a top-level heading (e.g. `# d3`)
-- Each visualization should include a screenshot. Put these in an `img` folder and link through the readme (markdown command: `![caption](img/<imgname>)`.
-- Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
-
-Other Requirements
----
-
-0. Your code should be forked from the GitHub repo.
-1. Place all code, Excel sheets, etcetera in a named folder. For example, `r-ggplot, matlab, mathematica, excel` and so on.
-2. Your writeup (readme.md in the repo) should also contain the following:
-
-- Description of the Technical achievements you attempted with this visualization.
-  - Some ideas include interaction, such as mousing over to see more detail about the point selected.
-- Description of the Design achievements you attempted with this visualization.
-  - Some ideas include consistent color choice, font choice, element size (e.g. the size of the circles).
-
-GitHub Details
----
-
-- Fork the GitHub Repository. You now have a copy associated with your username.
-- Make changes to fulfill the project requirements. 
-- To submit, make a [Pull Request](https://help.github.com/articles/using-pull-requests/) on the original repository.
-
-Grading
----
-
-Grades on a 120 point scale. 
-24 points will be based on your Technical and Design achievements, as explained in your readme. 
-
-Make sure you include the files necessary to reproduce your plots.
-You should structure these in folders if helpful.
-We will choose some at random to run and test.
-
-**NOTE: THE BELOW IS A SAMPLE ENTRY TO GET YOU STARTED ON YOUR README. YOU MAY DELETE THE ABOVE.**
-
-# R + ggplot2 + R Markdown
-
-R is a language primarily focused on statistical computing.
-ggplot2 is a popular library for charting in R.
-R Markdown is a document format that compiles to HTML or PDF and allows you to include the output of R code directly in the document.
-
-To visualized the cars dataset, I made use of ggplot2's `geom_point()` layer, with aesthetics functions for the color and size.
-
-While it takes time to find the correct documentation, these functions made the effort creating this chart minimal.
-
-![ggplot2](img/ggplot2.png)
-
-# d3...
-
-(And so on...)
+![visual](img/visual.png)
 
 
-## Technical Achievements
-- **Proved P=NP**: Using a combination of...
-- **Solved AI Forever**: ...
+# Altair
+Altair is a python library that focuses on providing interactive and immersive data visualization experiences.
+I used Google Colaboratory for Altair, coding and displaying the plots.
+In addition to Altair, I also used the pandas library.
+To visualize the data set, I first had to set the dimensions for the plot and then I used chart = () to create the scatterplot, which has built in functions for color, size, and shape. Then chart at the end to display the plot.
+Overall, Altair is a great library for data visualization, and the customizability is great.
 
-### Design Achievements
-- **Re-vamped Apple's Design Philosophy**: As demonstrated in my colorscheme...
+Technical Achievements:
+- Added functionality where users are able to interact with the graph, They can zoom in and out of the graph, as well as pan around. 
+- Added functionality where users are able to select a species of Penguin by clicking on that particular species on the graph, which will cause all the other species to disappear.
+- Added functionality where users are able to hover over a point and it will give details for that specific penguin.
+- Added another element of shapes, which is determined by the island the penguin is from.
+- Added the Legend on the top right side.
+
+Design Achievements: 
+- Colors for the points on the scatterplot was thoroughly discussed with my girlfriend who specializes in illustration and graphic design. We want the color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
+- I want the scatterplot to be read easily which is why I went with the Times New Roman font. Bolding the titles and axis will help the reader easily identify what they are looking at. Also, the sizes of the axis titles are a little larger than the axis labels for better readability.
+- A legend was added to help the reader understand the plot.
+- The species selection functionality allows the user to focus in on one particular species when trying to analyze the graph. 
+
+![altairPlot](img/altair.png)
+![altairInteractive1](img/altair-interactive1.png)
+![altairInteractive2](img/altair-interactive2.png)
+![altairInteractive3](img/altair-interactive3.png)
+
+# d3
+Link: https://azzhang3.github.io/a2-DataVis-5Ways/
+
+NOTE: index.html is the same file as d3Penguin.html in d3 folder
+
+d3 is a javascript library that focuses on the creation of dynamic and interactive data visualizations in web browsers.
+d3 has a lot of built in frameworks and documentations that can help you get started. 
+I used the Template: https://d3-graph-gallery.com/graph/custom_theme.html#ggplot2, which is inspired by the ggplot2 from R Studio.
+To visualize the data set, I appended a svg, a rectangle, texts, circles, etc to create the scatterplot.
+Implementation of shapes is possible, but a lot harder than the other softwares/libraries that I used for this assignment.
+Overall, I think d3 has the most customizability out of all the softwares/libraries, but it's also the most time consuming. 
+
+Technical Achievements:
+- Added functionality where users are able to select a species of Penguin by hovering over that particular species on the graph, which will cause all the other species to decrease in opacity. In addition, the species you are currently hovering over will increase in opacity.
+- Added functionality where users are able to hover over a point and it will give details for that specific penguin, mainly their species, flipper length, and body mass.
+- Added the Legend on the top right side.
+
+Design Achievements: 
+- Again, colors for the points on the scatterplot was thoroughly discussed with my girlfriend who specializes in illustration and graphic design. We want the color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
+- I opted for the Times New Roman font for better readability. In addition, bolding the titles and axis will help the reader easily identify what they are looking at. Also, the sizes of the axis titles and legend titles are a little larger than the axis labels for better readability.
+- A legend was added to help the reader understand the plot.
+- The species selection functionality allows the user to focus in on one particular species when trying to analyze the graph, while the other species are less apparent in the background.
+
+![d3Plot](img/d3.png)
+![d3Interactive](img/d3-interactive.png)
+
+# MATLAB
+MATLAB is a programming  language and numerical computing environment widely used in engineering, science, etc.
+MATLAB comes equipped with a vast array of built-in functions and toolboxes for various applications.
+I tested the gscatter addon, while it was easy to use and helps when you have a group scatterplot (Ex. different colors for species). It limited my to customize the plots, which is why I opted not to use it.
+In addition, MATLAB, offers a lot of built in functionality like panning, zooming, and labels.
+To visualize the data set, I used three separate scatter functions, one for each species. 
+Overall, I think MATLAB is a great tool for getting a quick and basic graph, as it already has a lot of built-in functionalities to the graphs. The marketplace and addons also allows for more customizability and makes some areas easier to use.
+
+Technical Achievements:
+- Added the Legend on the top right side.
+
+Design Achievements: 
+- Again, colors for the points on the scatterplot was thoroughly discussed with my girlfriend who specializes in illustration and graphic design. We want the color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
+- A legend was added to help the reader understand the plot.
+
+![matlabPlot](img/matlab.png)
+
+# R-ggplot2
+The R programming language is a powerful and widely-used statistical computing and graphics language.
+The IDE includes built-in tools for creating and exploring visualizations of data. Users can generate a wide range of plots and charts to better understand and communicate their data.
+ggplot2 is a popular library for graphing in R.
+To visualize the data set, I used ggplot2's geom_point(), which has different aesthetics functions for things like color, size, and shape.
+Overall, I think R (ggplot2) is a great tool for data visualization, as it offers a lot of customizability, and also animations as well.
+
+Technical Achievements:
+- Added another element of shapes, which is determined by the island the penguin is from.
+- Added the Legend on the top right side.
+
+Design Achievements: 
+- Again, colors for the points on the scatterplot was thoroughly discussed with my girlfriend who specializes in illustration and graphic design. We want the color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
+- I opted for the Times New Roman font for better readability. In addition, bolding the title will help the reader easily identify what they are looking at. Also, the sizes of the axis titles and legend titles are a little larger than the axis labels for better readability.
+- A legend was added to help the reader understand the plot.
+
+![r-ggplot2Plot](img/r-ggplot2.png)
+
+# Tableau
+Tableau is powerful data visualization and business software that allows users to transform raw data into visually appealing and interactive dashboards.
+It makes data analysis accessible to individuals without extensive technical backgrounds in programming.
+Tableau provides a drag-and-drop interface that allows users to create visualizations effortlessly. In addition they make it easy to explore data, select variables, and build charts and graphs without the need for complex coding.
+To visualize the data I dragged Flipper Length to columns and Body Mass G to rows. Under marks I have colors for Species, shapes for Islands,
+and size for Bill Length. (Make sure in the dropdown of each element, all of them is set to dimension, as it defaults to sum) It then generates the scatterplot for you.
+Overall, I think Tableau is a wonderful tool for generating data visualization especially if you want to generate a quick graph or if you are inexperienced in coding. The tool offers a lot of functionality and aesthetic options to fit your needs.
+
+Technical Achievements:
+- Added another element of shapes, which is determined by the island the penguin is from.
+- Added the Legend on the top right side.
+
+Design Achievements: 
+- I was unable to figure out how to use hex codes, so I tried matching it to the rest of my graphs with the colors they have. Again, I wanted a color palette that relates to the penguin theme, while also making them distinct enough for the audience to easily identify the different species within the plot.
+- A legend was added to help the reader understand the plot.
+
+![tableauPlot](img/tableau.png)

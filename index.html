@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+</head>
+
+<body>
+<script>
+//Template: https://d3-graph-gallery.com/graph/custom_theme.html#ggplot2
+//Hover Animation: https://d3-graph-gallery.com/graph/scatter_grouped_highlight.html
+
+// set the dimensions and margins of the graph
+var margin = {top: 40, right: 30, bottom: 40, left: 80},
+    width = 800 - margin.left - margin.right,
+    height = 520 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right + 150)
+  .attr("height", height + margin.top + margin.bottom + 100)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+// Add the grey background that makes ggplot2 famous
+svg
+  .append("rect")
+  .attr("x",0)
+  .attr("y",0)
+  .attr("height", height)
+  .attr("width", width + 40)
+  .style("fill", "EBEBEB")
+
+// Add Legends
+svg.append("text").attr("x", 745).attr("y", 80).attr("font-family", "Times New Roman").text("Bill Length (mm)").style("font-size", "15px").style("font-weight", "bold").attr("alignment-baseline","middle")
+svg.append("circle").attr("cx",750).attr("cy",100).attr("r", 5.71).style("fill", "#Black")
+svg.append("circle").attr("cx",750).attr("cy",120).attr("r", 7.14).style("fill", "#Black")
+svg.append("text").attr("x", 770).attr("y", 100).attr("font-family", "Times New Roman").text("40").style("font-size", "15px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 770).attr("y", 120).attr("font-family", "Times New Roman").text("50").style("font-size", "15px").attr("alignment-baseline","middle")
+
+
+svg.append("text").attr("x", 745).attr("y", 180).attr("font-family", "Times New Roman").text("Species").style("font-size", "15px").style("font-weight", "bold").attr("alignment-baseline","middle")
+svg.append("circle").attr("cx",750).attr("cy",200).attr("r", 6).style("fill", "#4fb8b6")
+svg.append("circle").attr("cx",750).attr("cy",220).attr("r", 6).style("fill", "#343483")
+svg.append("circle").attr("cx",750).attr("cy",240).attr("r", 6).style("fill", "#383b47")
+svg.append("text").attr("x", 770).attr("y", 200).attr("font-family", "Times New Roman").text("Adelie").style("font-size", "15px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 770).attr("y", 220).attr("font-family", "Times New Roman").text("Chinstrap").style("font-size", "15px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 770).attr("y", 240).attr("font-family", "Times New Roman").text("Gentoo").style("font-size", "15px").attr("alignment-baseline","middle")
+
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([170, 230])
+    .range([ 20, width ])
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .attr("font-family", "Times New Roman")
+    .call(d3.axisBottom(x).tickSize(-height*1.3).ticks(7))
+    .select(".domain").remove()
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([3000, 6000])
+    .range([ 380, 60])
+    .nice()
+  svg.append("g")
+    .attr("font-family", "Times New Roman")
+    .call(d3.axisLeft(y).tickSize(-width*1.3).ticks(3))
+    .select(".domain").remove()
+
+  // Customization
+  svg.selectAll(".tick line").attr("stroke", "white")
+
+  //Add title:
+    svg.append("text")
+        .attr("text-anchor", "start")
+        .attr("x", width/10 + margin.left)
+        .attr("y", -margin.top + 20)
+        .attr("font-size", "20px")
+        .attr("font-weight", "bold")
+        .attr("font-family", "Times New Roman")
+        .text("Penguin Flipper Length(mm) vs. Body Mass(g)");
+
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/2 + margin.left)
+      .attr("y", height + margin.top + 10)
+      .attr("font-family", "Times New Roman")
+      .text("Flipper Length (mm)");
+
+  // Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left + 20)
+      .attr("x", -margin.top - height/2 + 70)
+      .attr("font-family", "Times New Roman")
+      .text("Body Mass (g)")
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["Adelie", "Gentoo", "Chinstrap" ])
+    .range(["#4fb8b6", "#383b47", "#343483"])
+
+  // Highlight the specie that is hovered
+  var highlight = function(d){
+    selected_species = d.species
+
+    d3.selectAll(".dot")
+    .transition()
+    .duration(200)
+    .attr("opacity", .05)
+
+    d3.selectAll("." + selected_species)
+    .transition()
+    .duration(200)
+    .style("fill", color(selected_species))
+    .attr("opacity", 0.9)
+
+    //display the species name, flipper length, and body mass above the circle being hovered
+    svg.append("text")
+      .attr("class", "species-label")
+      .attr("x", function() { return x(d.flipper_length_mm) - 80; })
+      .attr("y", function() { return y(d.body_mass_g) - 10; })
+      .text(d.species + " (" + d.flipper_length_mm + ", " + d.body_mass_g + ")")
+      .attr("font-family", "Times New Roman")
+      .attr("font-size", "15px")
+      .attr("font-weight", "bold")
+      .attr("fill", "black")
+    }
+
+  var doNotHighlight = function(d){
+    d3.selectAll(".dot")
+      .transition()
+      .duration(200)
+      .style("fill", function (d) { return color(d.species) } )
+      .attr("opacity", 0.7)
+    //remove the species name
+    svg.selectAll(".species-label").remove()
+  }
+
+  //Add dots
+  svg.append('g')
+    .selectAll("dot")
+    .data(data.filter(function(d) {
+        return !isNaN(d.flipper_length_mm) && !isNaN(d.body_mass_g);
+    }))
+    .enter()
+    .append("circle")
+      .attr("class", function (d) { return "dot " + d.species } )
+      .attr("cx", function (d) { return x(d.flipper_length_mm); } )
+      .attr("cy", function (d) { return y(d.body_mass_g); } )
+      .attr("r", function (d) { return d.bill_length_mm/7; } )
+      .attr("opacity", function (d) { return 0.7; } )
+      .style("fill", function (d) { return color(d.species) } )
+    .on("mouseover", highlight)
+    .on("mouseleave", doNotHighlight)
+})
+
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@ import pandas as pd
 
 # Load the data
 url = "https://raw.githubusercontent.com/cs4804-24c/a2-DataVis-5Ways/main/penglings.csv"
-data = pd.read_csv(url)
+penData = pd.read_csv(url)
 
 # Print avg bill length, flipper length, and body mass
 print("Average Bill Length:", penData["bill_length_mm"].mean())

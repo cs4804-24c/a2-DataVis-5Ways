@@ -1,0 +1,50 @@
+---
+title: "penglings"
+format: html
+editor: visual
+---
+
+## Quarto
+
+penguin dataset
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+
+
+penguins 
+```
+
+chart
+
+```{r}
+
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g, bill_length_mm, species) %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, size = bill_length_mm, shape = species), alpha = 0.8) +
+  scale_color_manual(values = c("#E75480", "darkorchid", "cyan4")) +
+  labs(
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)"
+  ) +
+  facet_grid(.~island) + 
+  ggtitle("Penguin Characteristics by Island") 
+
+```
+
+```{r}
+penguins %>%
+  drop_na(flipper_length_mm, body_mass_g, bill_length_mm, species) %>%
+  filter(bill_length_mm >= 35 & bill_length_mm <= 50) %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, size = bill_length_mm, shape = species), alpha = 0.8) +
+  scale_color_manual(values = c("#E75480", "darkorchid", "cyan4")) +
+  labs(
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)"
+  ) +
+  ggtitle("Flipper Length and Body Mass (Filtered for Bill Length between 35 and 50 mm)")
+
+```

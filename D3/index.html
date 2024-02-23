@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatter Plot with Species Color and Marker Size</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        /* Define CSS styles for the scatter plot container */
+        #scatterplot {
+            width: 1130px;
+            /* Increase width to accommodate legends */
+            height: 550px;
+            margin: 0 auto;
+            /* Center the container horizontally */
+            position: static;
+            /* Add relative positioning */
+        }
+
+        .legend {
+            font-size: 14px;
+            fill: black;
+        }
+
+        .legend-title {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .axis-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scatterplot"></div> <!-- Container for the scatter plot -->
+
+    <script>
+        // Define colors for each species
+        var colorMap = { 'Adelie': 'orange', 'Gentoo': 'mediumturquoise', 'Chinstrap': 'mediumorchid' };
+
+        // Read CSV data using d3.csv
+        d3.csv("penglings.csv").then(function (data) {
+            // Map species to colors
+            data.forEach(function (d) {
+                d.color = colorMap[d.species];
+            });
+
+            // Define marker size based on bill length
+            var markerSize = function (d) { return Math.sqrt(+d.bill_length_mm); }; // Adjust scaling factor as needed
+
+            // Define SVG dimensions and margins
+            var margin = { top: 50, right: 300, bottom: 50, left: 100 }, // Increase right margin for legends
+                width = 1000 - margin.left - margin.right, // Decrease width to fit legends
+                height = 600 - margin.top - margin.bottom;
+
+            // Define x and y scales
+            var xScale = d3.scaleLinear()
+                .domain([170, 240])
+                .range([0, width]);
+
+            var yScale = d3.scaleLinear()
+                .domain([2000, 7000])
+                .range([height, 0]);
+
+            // Create SVG element
+            var svg = d3.select("#scatterplot")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            // Create circles
+            svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return xScale(+d.flipper_length_mm); })
+                .attr("cy", function (d) { return yScale(+d.body_mass_g); })
+                .attr("r", markerSize)
+                .style("fill", function (d) { return d.color; })
+                .style("opacity", 0.8);
+
+            // Add x axis
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(xScale).tickValues(d3.range(170, 241, 10)))
+                .selectAll("text")
+                .style("font-size", "14px") // Make axis labels visible
+                .style("font-weight", "bold"); // Make axis labels bold
+
+            // Add y axis
+            svg.append("g")
+                .attr("transform", "translate(0,10)")
+                .call(d3.axisLeft(yScale).ticks(6).tickFormat(d3.format("d")))
+                .selectAll("text")
+                .style("font-size", "14px") // Make axis labels visible
+                .style("font-weight", "bold"); // Make axis labels bold
+
+            // Add x axis title
+            svg.append("text")
+                .attr("class", "axis-title")
+                .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top - 10) + ")")
+                .style("text-anchor", "middle")
+                .text("Flipper Size (mm)");
+
+            // Add y axis title
+            svg.append("text")
+                .attr("class", "axis-title")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left + 30)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Body Mass (g)");
+
+            // Legend for bill length
+            var legendBillLength = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + (width + 10) + ", 20)");
+
+            legendBillLength.append("text")
+                .attr("class", "legend-title")
+                .text("Bill Length Legend");
+
+            legendBillLength.selectAll("legend")
+                .data([40, 50]) // Adjust these values as needed
+                .enter()
+                .append("circle")
+                .attr("cx", 10)
+                .attr("cy", function (d, i) { return i * 20 + markerSize({ bill_length_mm: d }) + 18; })
+                .attr("r", function (d) { return markerSize({ bill_length_mm: d }); })
+                .style("fill", "none")
+                .style("stroke", "black")
+                .style("stroke-width", 2);
+
+            legendBillLength.selectAll("legend")
+                .data(["40", "50"])
+                .enter()
+                .append("text")
+                .attr("x", 30)
+                .attr("y", function (d, i) { return i * 20 + 30; })
+                .text(function (d) { return d; })
+                .attr("text-anchor", "start");
+
+
+            // Legend for species color
+            var legendColor = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", "translate(" + (width + 10) + ", 120)");
+
+            legendColor.append("text")
+                .attr("class", "legend-title")
+                .text("Species Color Legend");
+
+            legendColor.selectAll("legend")
+                .data(Object.keys(colorMap))
+                .enter()
+                .append("circle")
+                .attr("cx", 10)
+                .attr("cy", function (d, i) { return i * 20 + 25; })
+                .attr("r", 8)
+                .style("fill", function (d) { return colorMap[d]; });
+
+            legendColor.selectAll("legend")
+                .data(Object.keys(colorMap))
+                .enter()
+                .append("text")
+                .attr("x", 30)
+                .attr("y", function (d, i) { return i * 20 + 30; })
+                .text(function (d) { return d; })
+                .attr("text-anchor", "start");
+        });
+    </script>
+</body>
+
+</html>
